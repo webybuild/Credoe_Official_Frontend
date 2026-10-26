@@ -2,24 +2,26 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const GOLD = "#F4B400";
+const GOLD = "#F4A019";
 
 const testimonials = [
   {
     quote:
-      "Credoe Talent Solutions has been a game-changer for our organization. They consistently deliver top-tier executive talent that drives real business impact.",
-    name: "Lisa Thompson",
-    role: "VP of People & Culture",
-    company: "Microsoft",
-    logo: "microsoft",
+      "Andre invests in people. He took the time to truly understand me, and he does the same with every company he works with, from its culture to what each role requires. When I was deciding between two opportunities, he helped me see which one was the right fit. That trust has lasted long after the search, and he's still the first person I turn to for career advice.",
+    name: "L. Raymond",
+    role: "Enterprise Marketing & AI, Digital Executive",
+    company: "Formerly at Prudential and Bank of America",
+    logo: "prudential",
+    logoImages: ["/images/prudential.jpeg", "/images/bankofamerica.jpeg"],
   },
   {
     quote:
-      "Their team truly understands our needs and delivers candidates who not only have the right skills but also align with our values and long-term goals.",
-    name: "David Patel",
-    role: "Chief Human Resources Officer",
-    company: "Verizon",
-    logo: "verizon",
+      "Andre Dyer is an exceptional recruiting partner who combines deep business insight, thoughtful candidate assessment, and genuine commitment to identifying leaders who align with organizational culture, strengthen teams, and deliver lasting business impact.",
+    name: "J. Meraz",
+    role: "VP, Finance & Accounting",
+    company: "W.C. Bradley Co.",
+    logo: "wcbradley",
+    logoImages: ["/images/bradley.jpeg"],
   },
   {
     quote:
@@ -65,7 +67,7 @@ function MicrosoftMark() {
       <span className="bg-[#F25022]" />
       <span className="bg-[#7FBA00]" />
       <span className="bg-[#00A4EF]" />
-      <span className="bg-[#FFB900]" />
+      <span className="bg-[#F4A019]" />
     </span>
   );
 }
@@ -150,6 +152,39 @@ function CompanyLogo({ type, compact = false }) {
   );
 }
 
+function TestimonialBrandLogo({ testimonial, compact = false }) {
+  if (testimonial.logoImages?.length) {
+    return (
+      <span
+        className={`flex items-center justify-center ${
+          compact ? "gap-1" : "gap-2"
+        }`}
+        aria-label={`${testimonial.company} logos`}
+      >
+        {testimonial.logoImages.map((src) => (
+          <img
+            key={src}
+            src={src}
+            alt=""
+            loading="lazy"
+            className={
+              compact
+                ? "h-5 max-w-[38px] object-contain"
+                : "h-7 max-w-[54px] object-contain"
+            }
+          />
+        ))}
+      </span>
+    );
+  }
+
+  if (testimonial.logo === "microsoft") {
+    return <MicrosoftMark />;
+  }
+
+  return <CompanyLogo type={testimonial.logo} compact />;
+}
+
 function QuoteIcon() {
   return (
     <svg
@@ -224,7 +259,7 @@ function TestimonialCard({ testimonial, onViewFull }) {
         type="button"
         onClick={() => onViewFull(testimonial)}
         className="mt-2 w-fit text-left text-[12px] font-semibold transition-colors hover:underline"
-        style={{ color: "#9B7000" }}
+        style={{ color: "#F4A019" }}
       >
         Read full testimonial
       </button>
@@ -236,11 +271,7 @@ function TestimonialCard({ testimonial, onViewFull }) {
 
       <div className="mt-auto flex min-h-[72px] items-center gap-3">
         <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#EEEEEE] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
-          {testimonial.logo === "microsoft" ? (
-            <MicrosoftMark />
-          ) : (
-            <CompanyLogo type={testimonial.logo} compact />
-          )}
+          <TestimonialBrandLogo testimonial={testimonial} compact />
         </div>
 
         <div className="min-w-0 flex-1">
@@ -255,13 +286,13 @@ function TestimonialCard({ testimonial, onViewFull }) {
             {testimonial.role}
           </p>
 
-          <p className="mt-1 truncate text-[12px] text-[#354158]">
+          <p className="mt-1 text-[12px] leading-4 text-[#354158]">
             {testimonial.company}
           </p>
         </div>
 
         <div className="hidden min-w-[90px] shrink-0 items-center justify-center border-l border-[#D9DDE3] pl-3 md:flex">
-          <CompanyLogo type={testimonial.logo} compact />
+          <TestimonialBrandLogo testimonial={testimonial} compact />
         </div>
       </div>
     </article>
@@ -271,7 +302,6 @@ function TestimonialCard({ testimonial, onViewFull }) {
 function TestimonialModal({ testimonial, onClose }) {
   const modalRef = useRef(null);
 
-  // Animate the modal with the Web Animations API.
   useEffect(() => {
     if (!testimonial || !modalRef.current) return undefined;
 
@@ -296,7 +326,6 @@ function TestimonialModal({ testimonial, onClose }) {
     return () => animation.cancel();
   }, [testimonial]);
 
-  // Lock page scrolling and allow Escape to close the modal.
   useEffect(() => {
     if (!testimonial) return undefined;
 
@@ -347,7 +376,7 @@ function TestimonialModal({ testimonial, onClose }) {
 
           <p
             className="mt-5 text-xs font-semibold uppercase tracking-[0.16em]"
-            style={{ color: "#9B7000" }}
+            style={{ color: "#D98900" }}
           >
             Client Success Story
           </p>
@@ -367,17 +396,15 @@ function TestimonialModal({ testimonial, onClose }) {
         <div className="my-7 h-px w-full bg-[#EAEAEA]" />
 
         <div className="flex items-center gap-4">
-          <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full border border-[#EEEEEE] bg-white">
-            {testimonial.logo === "microsoft" ? (
-              <MicrosoftMark />
-            ) : (
-              <CompanyLogo type={testimonial.logo} compact />
-            )}
+          <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#EEEEEE] bg-white p-1">
+            <TestimonialBrandLogo testimonial={testimonial} compact />
           </div>
 
           <div className="min-w-0">
             <p className="font-semibold text-[#111827]">{testimonial.name}</p>
+
             <p className="mt-1 text-sm text-[#536176]">{testimonial.role}</p>
+
             <p className="mt-1 text-sm font-medium text-[#17243A]">
               {testimonial.company}
             </p>
@@ -403,8 +430,6 @@ export default function ClientSuccessSection() {
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
   const carouselTrackRef = useRef(null);
 
-  // Rotate testimonials automatically every five seconds.
-  // Pause while the user is interacting or the modal is open.
   useEffect(() => {
     if (isPaused || selectedTestimonial) return undefined;
 
@@ -415,7 +440,6 @@ export default function ClientSuccessSection() {
     return () => clearInterval(interval);
   }, [isPaused, selectedTestimonial]);
 
-  // Animate the newly rendered grid without relying on styled-jsx.
   useEffect(() => {
     const track = carouselTrackRef.current;
     if (!track) return undefined;
@@ -499,7 +523,7 @@ export default function ClientSuccessSection() {
 
             <p
               className="text-[13px] font-medium uppercase tracking-wide sm:text-[15px]"
-              style={{ color: "#9B7000" }}
+              style={{ color: "#D98900" }}
             >
               Client Success Stories
             </p>
@@ -510,7 +534,7 @@ export default function ClientSuccessSection() {
           <h2 className="mt-4 font-heading text-[36px] font-semibold leading-[1.15] tracking-[-0.025em] text-[#0C1A32] sm:text-[44px] lg:text-[52px]">
             What Leaders Say
             <br />
-            About Working with <span style={{ color: "#9B7000" }}>Credoe.</span>
+            About Working with <span style={{ color: "#D98900" }}>Credoe.</span>
           </h2>
 
           <div
@@ -597,7 +621,7 @@ export default function ClientSuccessSection() {
           <a
             href="/testimonials"
             className="group inline-flex min-h-[54px] items-center justify-center gap-4 rounded-[11px] border px-7 py-3 text-[13px] font-medium uppercase tracking-wide transition duration-300 hover:bg-[#F4B400] hover:text-[#111827] sm:px-8 sm:text-[14px]"
-            style={{ borderColor: GOLD, color: "#9B7000" }}
+            style={{ borderColor: GOLD, color: "black" }}
           >
             View All Testimonials
             <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -618,7 +642,7 @@ export default function ClientSuccessSection() {
 
             <h3
               className="text-center text-[12px] font-medium uppercase tracking-wide sm:text-[14px]"
-              style={{ color: "#9B7000" }}
+              style={{ color: "#D98900" }}
             >
               Trusted by Leading Organizations
             </h3>

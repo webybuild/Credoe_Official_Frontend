@@ -84,7 +84,7 @@ export default function ContactCTASection() {
               <span>Let’s Build a Stronger</span>
               <br className="hidden sm:block" />
               <span>
-                {"Future—"}
+                {"Future"}
                 <span style={{ color: GOLD }}>Together.</span>
               </span>
             </h2>

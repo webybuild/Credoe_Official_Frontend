@@ -46,7 +46,7 @@ const processSteps = [
       <>
         We partner with you beyond
         <br className="hidden xl:block" /> placement to ensure
-        <br className="hidden xl:block" /> long-term success.
+        <br className="hidden xl:block" /> long term success.
       </>
     ),
     icon: "support",

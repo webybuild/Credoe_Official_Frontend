@@ -68,6 +68,23 @@ function StatIcon({ type }) {
 }
 
 export default function HeroSection() {
+  function ArrowRight() {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        className="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M4 12h16" />
+        <path d="m13 5 7 7-7 7" />
+      </svg>
+    );
+  }
   return (
     <>
       {/* HERO SECTION */}
@@ -122,7 +139,7 @@ export default function HeroSection() {
               >
                 OUR SERVICES
                 <span className="text-2xl transition-transform duration-300 group-hover:translate-x-1">
-                  →
+                  <ArrowRight />
                 </span>
               </a>
 
@@ -132,7 +149,7 @@ export default function HeroSection() {
               >
                 ABOUT CREDOE
                 <span className="text-2xl transition-transform duration-300 group-hover:translate-x-1">
-                  →
+                  <ArrowRight />
                 </span>
               </a>
             </div>

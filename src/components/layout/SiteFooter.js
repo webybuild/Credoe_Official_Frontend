@@ -265,7 +265,7 @@ export default function SiteFooter() {
               className="inline-block"
             >
               <img
-                src="/logos/logo.png"
+                src="/logos/CredoeLogo.png"
                 alt="Credoe Talent Solutions"
                 className="h-auto w-[245px] max-w-full object-contain object-left"
               />
@@ -358,7 +358,7 @@ export default function SiteFooter() {
                 <span className="shrink-0 text-[#F4A019]">
                   <FooterIcon type="phone" />
                 </span>
-                <span>(608) 792-2125</span>
+                <span>(678) 866-0962</span>
               </a>
 
               <a
@@ -368,14 +368,14 @@ export default function SiteFooter() {
                 <span className="shrink-0 text-[#F4A019]">
                   <FooterIcon type="email" />
                 </span>
-                <span className="break-all">andre@credoetalent.com</span>
+                <span className="break-all">adyer@credoetalent.com</span>
               </a>
 
               <div className="flex items-center gap-4 py-5 text-[14px] text-white/95 sm:text-[15px]">
                 <span className="shrink-0 text-[#F4A019]">
                   <FooterIcon type="location" />
                 </span>
-                <span>Menomonee Falls, WI</span>
+                <span> 730 Peachtree Street NE, #570 Atlanta, GA 30308</span>
               </div>
             </div>
           </div>

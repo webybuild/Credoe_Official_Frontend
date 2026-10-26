@@ -33,7 +33,7 @@ export default function UserNav() {
           className="relative z-50 block shrink-0"
         >
           <Image
-            src="/logos/logo.png"
+            src="/logos/CredoeLogo.png"
             alt="Credoe Talent Solutions"
             width={350}
             height={120}
