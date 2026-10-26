@@ -269,7 +269,7 @@ export default function ResourcesSection() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveCategory(category)}
-                className={`relative shrink-0 pb-3 text-[15px] transition-colors sm:text-[17px] ${
+                className={`relative shrink-0 pb-3 text-[15px] transition-colors sm:text-[17px] cursor-pointer ${
                   isActive
                     ? "font-medium text-[#C9790A]"
                     : "text-[#0B1930] hover:text-[#C9790A]"

@@ -17,7 +17,7 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Industries", href: "/industries" },
+  // { label: "Industries", href: "/industries" },
   { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" },
 ];
@@ -265,7 +265,7 @@ export default function SiteFooter() {
               className="inline-block"
             >
               <img
-                src="/logos/CredoeLogo.png"
+                src="/logos/logo.png"
                 alt="Credoe Talent Solutions"
                 className="h-auto w-[245px] max-w-full object-contain object-left"
               />
@@ -280,7 +280,7 @@ export default function SiteFooter() {
               {[
                 {
                   type: "linkedin",
-                  href: "https://www.linkedin.com/",
+                  href: "https://www.linkedin.com/in/andre-dyer/",
                   label: "LinkedIn",
                 },
                 { type: "x", href: "https://x.com/", label: "X" },

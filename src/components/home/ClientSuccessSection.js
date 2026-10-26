@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const GOLD = "#F4A019";
+const SLIDE_DURATION = 450;
 
 const testimonials = [
   {
@@ -182,7 +183,7 @@ function TestimonialBrandLogo({ testimonial, compact = false }) {
     return <MicrosoftMark />;
   }
 
-  return <CompanyLogo type={testimonial.logo} compact />;
+  return <CompanyLogo type={testimonial.logo} compact={compact} />;
 }
 
 function QuoteIcon() {
@@ -232,9 +233,61 @@ function InfoIcon() {
   );
 }
 
-function TestimonialCard({ testimonial, onViewFull }) {
+/* Animated testimonial card */
+function TestimonialCard({
+  testimonial,
+  onViewFull,
+  slideDirection,
+  animationDelay = 0,
+}) {
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+
+    if (!card || typeof card.animate !== "function") {
+      return undefined;
+    }
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (prefersReducedMotion) {
+      return undefined;
+    }
+
+    const startX = slideDirection === "previous" ? -48 : 48;
+
+    const animation = card.animate(
+      [
+        {
+          opacity: 0.45,
+          transform: `translate3d(${startX}px, 0, 0)`,
+        },
+        {
+          opacity: 1,
+          transform: "translate3d(0, 0, 0)",
+        },
+      ],
+      {
+        duration: SLIDE_DURATION,
+        delay: animationDelay,
+        easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+        fill: "both",
+      },
+    );
+
+    return () => {
+      animation.cancel();
+    };
+  }, [slideDirection, animationDelay, testimonial.name]);
+
   return (
-    <article className="flex h-full min-h-[350px] flex-col rounded-[14px] border border-[#E9E9E9] bg-white p-6 shadow-[0_3px_16px_rgba(0,0,0,0.035)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)] sm:p-7">
+    <article
+      ref={cardRef}
+      className="flex h-full min-h-[350px] flex-col rounded-[14px] border border-[#E9E9E9] bg-white p-6 shadow-[0_3px_16px_rgba(0,0,0,0.035)] transition-shadow duration-300 hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)]"
+    >
       <div className="flex items-start justify-between gap-3">
         <QuoteIcon />
 
@@ -259,7 +312,7 @@ function TestimonialCard({ testimonial, onViewFull }) {
         type="button"
         onClick={() => onViewFull(testimonial)}
         className="mt-2 w-fit text-left text-[12px] font-semibold transition-colors hover:underline"
-        style={{ color: "#F4A019" }}
+        style={{ color: GOLD }}
       >
         Read full testimonial
       </button>
@@ -303,30 +356,6 @@ function TestimonialModal({ testimonial, onClose }) {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    if (!testimonial || !modalRef.current) return undefined;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) return undefined;
-
-    const animation = modalRef.current.animate(
-      [
-        { opacity: 0, transform: "translateY(12px) scale(0.98)" },
-        { opacity: 1, transform: "translateY(0) scale(1)" },
-      ],
-      {
-        duration: 220,
-        easing: "ease-out",
-        fill: "both",
-      },
-    );
-
-    return () => animation.cancel();
-  }, [testimonial]);
-
-  useEffect(() => {
     if (!testimonial) return undefined;
 
     const previousOverflow = document.body.style.overflow;
@@ -346,13 +375,23 @@ function TestimonialModal({ testimonial, onClose }) {
     };
   }, [testimonial, onClose]);
 
+  useEffect(() => {
+    if (!testimonial || !modalRef.current) return undefined;
+
+    modalRef.current.focus();
+
+    return undefined;
+  }, [testimonial]);
+
   if (!testimonial) return null;
 
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-[#050A18]/70 p-4 backdrop-blur-sm"
       onMouseDown={(event) => {
-        if (event.target === event.currentTarget) onClose();
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
       }}
     >
       <div
@@ -360,7 +399,8 @@ function TestimonialModal({ testimonial, onClose }) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="testimonial-modal-title"
-        className="relative my-auto w-full max-w-[600px] rounded-2xl bg-white p-6 shadow-2xl sm:p-9"
+        tabIndex={-1}
+        className="relative my-auto w-full max-w-[600px] rounded-2xl bg-white p-6 shadow-2xl outline-none sm:p-9"
       >
         <button
           type="button"
@@ -428,51 +468,34 @@ export default function ClientSuccessSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState(null);
-  const carouselTrackRef = useRef(null);
+  const [slideDirection, setSlideDirection] = useState("next");
 
   useEffect(() => {
     if (isPaused || selectedTestimonial) return undefined;
 
     const interval = setInterval(() => {
+      setSlideDirection("next");
       setActiveIndex((current) => (current + 1) % testimonials.length);
     }, 5000);
 
     return () => clearInterval(interval);
   }, [isPaused, selectedTestimonial]);
 
-  useEffect(() => {
-    const track = carouselTrackRef.current;
-    if (!track) return undefined;
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) return undefined;
-
-    const animation = track.animate(
-      [
-        { opacity: 0, transform: "translateX(44px)" },
-        { opacity: 1, transform: "translateX(0)" },
-      ],
-      {
-        duration: 650,
-        easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-        fill: "both",
-      },
-    );
-
-    return () => animation.cancel();
-  }, [activeIndex]);
-
   const next = () => {
+    setSlideDirection("next");
     setActiveIndex((current) => (current + 1) % testimonials.length);
   };
 
   const previous = () => {
+    setSlideDirection("previous");
     setActiveIndex(
       (current) => (current - 1 + testimonials.length) % testimonials.length,
     );
+  };
+
+  const goToTestimonial = (index) => {
+    setSlideDirection(index >= activeIndex ? "next" : "previous");
+    setActiveIndex(index);
   };
 
   const visibleTestimonials = [0, 1, 2].map(
@@ -484,7 +507,7 @@ export default function ClientSuccessSection() {
       id="testimonials"
       className="relative isolate overflow-hidden bg-[#FCFCFB] text-[#0D1B32]"
     >
-      {/* Decorative circles */}
+      {/* Decorative background circles */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -left-[300px] top-[120px] -z-10 h-[550px] w-[550px] rounded-full border"
@@ -550,7 +573,7 @@ export default function ClientSuccessSection() {
           </p>
         </header>
 
-        {/* Carousel */}
+        {/* Animated testimonial carousel */}
         <div
           className="relative mt-8 sm:mt-10 lg:mt-9"
           onMouseEnter={() => setIsPaused(true)}
@@ -562,16 +585,14 @@ export default function ClientSuccessSection() {
             }
           }}
         >
-          <div
-            key={activeIndex}
-            ref={carouselTrackRef}
-            className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6"
-          >
-            {visibleTestimonials.map((testimonial) => (
+          <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6">
+            {visibleTestimonials.map((testimonial, index) => (
               <TestimonialCard
-                key={testimonial.name}
+                key={`${activeIndex}-${testimonial.name}`}
                 testimonial={testimonial}
                 onViewFull={setSelectedTestimonial}
+                slideDirection={slideDirection}
+                animationDelay={index * 65}
               />
             ))}
           </div>
@@ -580,7 +601,7 @@ export default function ClientSuccessSection() {
             type="button"
             onClick={previous}
             aria-label="Previous testimonials"
-            className="absolute -left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#E9E9E9] bg-white text-[#536176] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition duration-300 hover:scale-105 hover:border-[#F4B400] hover:text-[#9B7000] sm:-left-5 sm:h-[54px] sm:w-[54px] lg:-left-6"
+            className="absolute -left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#E9E9E9] bg-white text-[#536176] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition duration-300 hover:scale-105 hover:border-[#F4B400] hover:text-[#9B7000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4B400] sm:-left-5 sm:h-[54px] sm:w-[54px] lg:-left-6 cursor-pointer"
           >
             <ArrowIcon direction="left" />
           </button>
@@ -589,7 +610,7 @@ export default function ClientSuccessSection() {
             type="button"
             onClick={next}
             aria-label="Next testimonials"
-            className="absolute -right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#E9E9E9] bg-white text-[#536176] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition duration-300 hover:scale-105 hover:border-[#F4B400] hover:text-[#9B7000] sm:-right-5 sm:h-[54px] sm:w-[54px] lg:-right-6"
+            className="absolute -right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#E9E9E9] bg-white text-[#536176] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition duration-300 hover:scale-105 hover:border-[#F4B400] hover:text-[#9B7000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4B400] sm:-right-5 sm:h-[54px] sm:w-[54px] lg:-right-6 cursor-pointer"
           >
             <ArrowIcon direction="right" />
           </button>
@@ -601,13 +622,11 @@ export default function ClientSuccessSection() {
             <button
               key={testimonial.name}
               type="button"
-              onClick={() => setActiveIndex(index)}
+              onClick={() => goToTestimonial(index)}
               aria-label={`Show testimonial ${index + 1}`}
               aria-current={activeIndex === index ? "true" : undefined}
-              className={`h-[11px] w-[11px] rounded-full transition-all duration-300 ${
-                activeIndex === index
-                  ? "scale-110"
-                  : "bg-[#D6D7D9] hover:bg-[#B6B8BC]"
+              className={`h-[11px] w-[11px] rounded-full transition-colors duration-200 ${
+                activeIndex === index ? "" : "bg-[#D6D7D9] hover:bg-[#B6B8BC]"
               }`}
               style={
                 activeIndex === index ? { backgroundColor: GOLD } : undefined
@@ -616,15 +635,15 @@ export default function ClientSuccessSection() {
           ))}
         </div>
 
-        {/* View all */}
+        {/* View all testimonials */}
         <div className="mt-7 flex justify-center">
           <a
             href="/testimonials"
-            className="group inline-flex min-h-[54px] items-center justify-center gap-4 rounded-[11px] border px-7 py-3 text-[13px] font-medium uppercase tracking-wide transition duration-300 hover:bg-[#F4B400] hover:text-[#111827] sm:px-8 sm:text-[14px]"
+            className="group inline-flex min-h-[54px] items-center justify-center gap-4 rounded-[11px] border px-7 py-3 text-[13px] font-medium uppercase tracking-wide transition-colors duration-200 hover:bg-[#F4B400] hover:text-[#111827] sm:px-8 sm:text-[14px]"
             style={{ borderColor: GOLD, color: "black" }}
           >
             View All Testimonials
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
+            <span className="transition-transform duration-200 group-hover:translate-x-1">
               <ArrowIcon direction="right" />
             </span>
           </a>
@@ -668,7 +687,7 @@ export default function ClientSuccessSection() {
         </div>
       </div>
 
-      {/* Full testimonial modal */}
+      {/* Full testimonial popup */}
       <TestimonialModal
         testimonial={selectedTestimonial}
         onClose={() => setSelectedTestimonial(null)}
