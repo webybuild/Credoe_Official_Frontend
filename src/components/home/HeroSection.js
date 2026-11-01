@@ -157,27 +157,28 @@ export default function HeroSection() {
           </div>
 
           {/* Mobile and tablet founder portrait */}
-          <div className="relative mt-2 flex h-[245px] w-full items-end justify-end sm:mt-0 sm:h-[340px] lg:hidden">
+          <div className="relative mt-2 h-[260px] w-full sm:h-[340px] lg:hidden">
             {/* Subtle portrait background */}
             <div
-              className="absolute bottom-0 right-0 h-[90%] w-[80%] opacity-50"
+              className="absolute bottom-0 -right-6 h-[90%] w-[85%] opacity-50"
               style={{
                 background:
                   "radial-gradient(ellipse at 70% 75%, rgba(245,166,35,0.12), transparent 70%)",
               }}
             />
 
-            <div className="relative h-full w-[245px] max-w-[85%] sm:w-[340px]">
+            {/* Founder image */}
+            <div className="absolute bottom-0 -right-6 h-full w-[270px] sm:-right-10 sm:w-[360px]">
               <Image
                 src="/images/AndreDyer2026.png"
                 alt="Andre Dyer, Founder and CEO of Credoe Talent"
                 fill
-                sizes="(max-width: 640px) 245px, 340px"
+                sizes="(max-width: 640px) 270px, 360px"
                 className="object-contain object-bottom"
               />
             </div>
 
-            {/* Mobile founder label */}
+            {/* Founder label */}
             <div className="absolute bottom-5 left-0 z-10">
               <div className="mb-2 h-px w-10 bg-[#F5A623]" />
               <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/80">
@@ -230,16 +231,28 @@ export default function HeroSection() {
 
       {/* STATISTICS BAR */}
       <section className="relative z-20 border-t border-white/10 bg-[#050A18]">
-        <div className="mx-auto grid max-w-[1800px] grid-cols-2 gap-x-3 gap-y-7 px-6 py-6 sm:gap-x-5 sm:gap-y-8 sm:px-10 sm:py-7 md:grid-cols-3 lg:grid-cols-5 lg:gap-5 lg:px-16 lg:py-7">
-          {stats.map((stat) => (
+        <div className="mx-auto grid max-w-[1800px] grid-cols-2 gap-3 px-4 py-6 sm:gap-x-5 sm:gap-y-8 sm:px-10 sm:py-7 md:grid-cols-3 lg:grid-cols-5 lg:gap-5 lg:px-16 lg:py-7">
+          {stats.map((stat, index) => (
             <div
               key={stat.label}
-              className="flex min-w-0 items-center gap-2 sm:gap-4"
+              className={`
+          flex min-h-[94px] min-w-0 items-center gap-3
+          rounded-lg border border-white/[0.08]
+          bg-white/[0.025] px-3 py-4
+          sm:gap-4
+          lg:min-h-0 lg:rounded-none lg:border-0
+          lg:bg-transparent lg:p-0
+          ${
+            index === 4
+              ? "col-span-2 mx-auto w-full max-w-[250px] justify-center md:col-span-1 md:max-w-none lg:col-span-1 lg:justify-start"
+              : ""
+          }
+        `}
             >
               <StatIcon type={stat.icon} />
 
               <div className="min-w-0">
-                <h2 className="font-heading text-[23px] leading-tight text-white sm:text-[30px] lg:text-[29px] xl:text-[31px]">
+                <h2 className="font-heading text-[21px] leading-tight text-white sm:text-[30px] lg:text-[29px] xl:text-[31px]">
                   {stat.number}
                 </h2>
 
