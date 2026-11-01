@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-const GOLD = "#F4A019";
-
 const industries = [
   { name: "Manufacturing", icon: "manufacturing" },
   { name: "Technology", icon: "technology" },
@@ -15,19 +13,10 @@ const industries = [
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
+  { label: "Services", href: "/#services" },
   { label: "About", href: "/about" },
-  // { label: "Industries", href: "/industries" },
   { label: "Resources", href: "/resources" },
   { label: "Contact", href: "/contact" },
-];
-
-const services = [
-  { label: "Executive Search", href: "/services/executive-search" },
-  { label: "Talent Advisory", href: "/services/talent-acquisition" },
-  { label: "Market Intelligence", href: "/services/market-intelligence" },
-  { label: "Leadership Advisory", href: "/services/leadership-advisory" },
-  { label: "Interim Solutions", href: "/services/interim-solutions" },
 ];
 
 function IndustryIcon({ type }) {
@@ -237,26 +226,25 @@ export default function SiteFooter() {
           </div>
 
           {industries.map((industry, index) => (
-            <a
+            <div
               key={industry.name}
-              href={`/industries/${industry.name.toLowerCase().replaceAll(" ", "-")}`}
-              className={`flex min-h-[128px] flex-col items-center justify-center gap-3 border-t border-white/10 px-3 py-5 text-center transition-colors hover:bg-white/[0.04] sm:min-h-[140px] lg:border-l lg:border-t-0 lg:border-white/10 lg:px-2 ${
+              className={`flex min-h-[128px] flex-col items-center justify-center gap-3 border-t border-white/10 px-3 py-5 text-center sm:min-h-[140px] lg:border-l lg:border-t-0 lg:border-white/10 lg:px-2 ${
                 index === 0 ? "lg:border-l-white/10" : ""
               }`}
             >
-              <span className="text-white transition-colors duration-300 group-hover:text-[#F4A019]">
+              <span className="text-white">
                 <IndustryIcon type={industry.icon} />
               </span>
 
               <span className="text-[13px] leading-tight text-white/95 sm:text-[14px]">
                 {industry.name}
               </span>
-            </a>
+            </div>
           ))}
         </div>
 
         {/* Main footer columns */}
-        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:mt-[104px] lg:grid-cols-[1.3fr_0.8fr_1fr_1.1fr_1.25fr] lg:gap-0">
+        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:mt-[104px] lg:grid-cols-[1.3fr_0.8fr_1.1fr_1.25fr] lg:gap-0">
           {/* Brand column */}
           <div className="border-white/15 sm:col-span-2 lg:col-span-1 lg:border-r lg:pr-8">
             <a
@@ -328,31 +316,13 @@ export default function SiteFooter() {
             </ul>
           </div>
 
-          {/* Services */}
-          <div className="lg:border-r lg:border-white/15 lg:px-8">
-            <SectionHeading>Our Services</SectionHeading>
-
-            <ul className="mt-7 space-y-[15px]">
-              {services.map((service) => (
-                <li key={service.label}>
-                  <a
-                    href={service.href}
-                    className="text-[14px] leading-relaxed text-white/95 transition-colors hover:text-[#F4A019] sm:text-[15px]"
-                  >
-                    {service.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Contact */}
           <div className="lg:border-r lg:border-white/15 lg:px-8">
             <SectionHeading>Contact</SectionHeading>
 
             <div className="mt-7">
               <a
-                href="tel:+16087922125"
+                href="tel:+16788660962"
                 className="flex items-center gap-4 border-b border-white/10 pb-5 text-[14px] text-white/95 transition-colors hover:text-[#F4A019] sm:text-[15px]"
               >
                 <span className="shrink-0 text-[#F4A019]">
@@ -362,7 +332,7 @@ export default function SiteFooter() {
               </a>
 
               <a
-                href="mailto:andre@credoetalent.com"
+                href="mailto:adyer@credoetalent.com"
                 className="flex items-center gap-4 border-b border-white/10 py-5 text-[13px] text-white/95 transition-colors hover:text-[#F4A019] sm:text-[14px] xl:text-[15px]"
               >
                 <span className="shrink-0 text-[#F4A019]">
@@ -375,7 +345,7 @@ export default function SiteFooter() {
                 <span className="shrink-0 text-[#F4A019]">
                   <FooterIcon type="location" />
                 </span>
-                <span> 730 Peachtree Street NE, #570 Atlanta, GA 30308</span>
+                <span>730 Peachtree Street NE, #570 Atlanta, GA 30308</span>
               </div>
             </div>
           </div>

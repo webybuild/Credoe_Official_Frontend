@@ -34,3 +34,8 @@ code,
 pre {
   font-family: "Courier New", monospace;
 }
+
+/* Global heading typography */
+.font-heading {
+  font-family: var(--font-bodoni), "Times New Roman", serif;
+}

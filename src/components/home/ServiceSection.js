@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const coreSolutions = [
   {
     title: "Executive Search",
+    href: "/services/executive-search",
     description:
       "We identify and secure transformational leaders who align with your vision and accelerate success.",
     image: "/images/cardOneImg.png",
@@ -11,6 +13,7 @@ const coreSolutions = [
   },
   {
     title: "Talent Advisory",
+    href: "/services/talent-advisory",
     description:
       "Custom strategies to attract, engage, and retain top talent across every level of your organization.",
     image: "/images/cardTwoImg.png",
@@ -19,6 +22,7 @@ const coreSolutions = [
   },
   {
     title: "Succession Planning",
+    href: "/services/succession-planning",
     description:
       "Build strong leadership pipelines and future-ready teams to ensure business continuity.",
     image: "/images/cardThreeImg.png",
@@ -26,12 +30,13 @@ const coreSolutions = [
     alt: "Modern bridge representing future growth",
   },
   {
-    title: "Executive Coaching",
+    title: "Executive and Leadership Career Coaching",
+    href: "/services/leadership-coaching",
     description:
       "Empower leaders to unlock potential, enhance performance, and lead with confidence.",
     image: "/images/cardFourImg.png",
     icon: "/icons/men-suit-tuxedo-icon.svg",
-    alt: "Executive coaching discussion",
+    alt: "Executive and Leadership Career Coaching",
   },
 ];
 
@@ -71,13 +76,18 @@ function ArrowIcon({ className = "" }) {
 
 function SolutionCard({ solution }) {
   return (
-    <article className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-black/[0.06] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+    <Link
+      href={solution.href}
+      aria-label={`Learn more about ${solution.title}`}
+      className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-black/[0.06] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A000] focus-visible:ring-offset-2"
+    >
       {/* Card image */}
       <div className="relative h-[150px] overflow-hidden sm:h-[165px] lg:h-[150px] xl:h-[165px]">
         <Image
           src={solution.image}
           alt={solution.alt}
           fill
+          loading="eager"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
@@ -110,22 +120,19 @@ function SolutionCard({ solution }) {
           {solution.description}
         </p>
 
-        <a
-          href="/services"
-          aria-label={`Learn more about ${solution.title}`}
-          className="mt-4 inline-flex w-fit items-center text-[#F5A000] transition-transform duration-300 hover:translate-x-2"
-        >
+        {/* Arrow */}
+        <div className="mt-4 inline-flex w-fit items-center text-[#F5A000] transition-transform duration-300 group-hover:translate-x-2">
           <ArrowIcon className="h-6 w-9" />
-        </a>
+        </div>
       </div>
-    </article>
+    </Link>
   );
 }
 
 function EmergingSolutionCard({ solution }) {
   return (
     <a
-      href="/services"
+      href="/coming-soon"
       className="group flex min-w-0 items-center gap-4 rounded-xl border border-black/10 bg-white px-4 py-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md sm:gap-5 sm:px-6 sm:py-5 lg:px-5 xl:px-6"
     >
       {/* Icon circle */}

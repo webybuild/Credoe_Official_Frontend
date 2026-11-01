@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const GOLD = "#F4A019";
 
 function DecorativeRings() {
@@ -15,7 +17,7 @@ function DecorativeRings() {
 
 export default function ContactHero() {
   return (
-    <section className="relative isolate min-h-[420px] overflow-hidden bg-[#03101E] text-white sm:min-h-[450px] lg:min-h-[490px]">
+    <section className="relative isolate min-h-[500px] overflow-hidden bg-[#03101E] text-white sm:min-h-[530px] lg:min-h-[550px]">
       {/* Skyline background */}
       <div
         aria-hidden="true"
@@ -42,26 +44,30 @@ export default function ContactHero() {
 
       <DecorativeRings />
 
-      {/* Hero content: positioned below the shared navbar */}
-      <div className="mx-auto flex min-h-[420px] max-w-[1450px] items-center px-5 pb-10 pt-24 sm:min-h-[450px] sm:px-8 sm:pb-12 sm:pt-28 lg:min-h-[490px] lg:px-12 lg:pb-14 lg:pt-32">
+      {/* Hero content, aligned with About Hero */}
+      <div className="relative z-20 mx-auto flex min-h-[500px] max-w-[1450px] items-start px-5 pb-12 pt-[145px] sm:min-h-[530px] sm:px-8 sm:pb-14 sm:pt-[150px] lg:min-h-[550px] lg:px-12 lg:pt-[155px]">
         <div className="w-full max-w-[650px]">
           {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
             className="mb-6 flex items-center gap-3 text-sm sm:mb-7"
           >
-            <a
+            <Link
               href="/"
               className="text-white/75 transition-colors hover:text-white"
             >
               Home
-            </a>
+            </Link>
 
             <span aria-hidden="true" className="text-white/40">
               /
             </span>
 
-            <span className="font-medium" style={{ color: GOLD }}>
+            <span
+              aria-current="page"
+              className="font-medium"
+              style={{ color: GOLD }}
+            >
               Contact
             </span>
           </nav>
