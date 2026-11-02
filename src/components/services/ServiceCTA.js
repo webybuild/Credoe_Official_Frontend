@@ -23,7 +23,9 @@ export default function ServiceCTA({
             src={IMAGE}
             alt="Gold chess king symbolizing strategic leadership"
             fill
-            sizes="57vw"
+            priority
+            loading="eager"
+            sizes="(min-width: 1024px) 57vw, 0px"
             className="object-cover object-[62%_center]"
           />
 
@@ -59,6 +61,7 @@ export default function ServiceCTA({
           {/* Heading */}
           <h2 className="max-w-[590px] font-heading text-[46px] font-medium leading-[1.08] tracking-[-0.035em] xl:text-[56px]">
             {title}
+
             <span className="mt-1 block">
               {highlight.split(" ").map((word, index, words) => (
                 <span
@@ -118,6 +121,7 @@ export default function ServiceCTA({
 
           <h2 className="max-w-[540px] font-heading text-[38px] font-medium leading-[1.08] tracking-[-0.035em] text-[#07172B] sm:text-[48px]">
             {title}
+
             <span className="mt-1 block">
               {highlight.split(" ").map((word, index, words) => (
                 <span
@@ -166,7 +170,9 @@ export default function ServiceCTA({
             src={IMAGE}
             alt="Gold chess king symbolizing strategic leadership"
             fill
-            sizes="100vw"
+            priority
+            loading="eager"
+            sizes="(max-width: 1023px) 100vw, 0px"
             className="object-cover object-[65%_center]"
           />
         </div>

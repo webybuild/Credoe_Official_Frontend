@@ -6,7 +6,7 @@ const executiveSearch = {
   highlight: "move your organization forward.",
   description:
     "We identify and secure transformational leaders who align with your vision, culture, and long-term goals, helping you build stronger teams and accelerate sustainable success.",
-  backgroundImage: "/images/executive-coaching-hero-bg.png",
+  backgroundImage: "/images/cardOneImg.png",
 
   // 01. THE CHALLENGE
   challenge: {
@@ -25,28 +25,28 @@ const executiveSearch = {
         title: "Rising Expectations",
         description:
           "Leaders are expected to deliver growth, transformation, and cultural alignment, often simultaneously.",
-        image: "/images/rising-expectations.png",
+        visual: "executive-growth",
       },
       {
         number: "02",
         title: "Talent Scarcity",
         description:
           "High-caliber executives are limited, highly sought after, and increasingly selective about their next move.",
-        image: "/images/talent-scarcity.png",
+        visual: "executive-scarcity",
       },
       {
         number: "03",
         title: "Greater Complexity",
         description:
           "Global markets, technology disruption, and regulatory pressures demand broader, more adaptive leadership capabilities.",
-        image: "/images/leadership-complexity.png",
+        visual: "executive-complexity",
       },
       {
         number: "04",
         title: "Higher Stakes",
         description:
           "A leadership mis-hire can have significant financial, operational, and cultural consequences.",
-        image: "/images/higher-stakes.png",
+        visual: "executive-stakes",
       },
     ],
   },

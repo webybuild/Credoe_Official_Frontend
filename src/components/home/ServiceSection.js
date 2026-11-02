@@ -282,7 +282,7 @@ export default function ServiceSection() {
 
             {/* CTA button */}
             <a
-              href="/contact"
+              href="/schedule-consultation"
               className="group inline-flex min-h-[54px] shrink-0 items-center justify-center gap-5 rounded-md bg-[#F5A623] px-6 py-4 text-center text-[12px] font-bold uppercase text-black transition-colors duration-300 hover:bg-white sm:px-8 sm:text-sm lg:min-w-[300px]"
             >
               Schedule a Consultation

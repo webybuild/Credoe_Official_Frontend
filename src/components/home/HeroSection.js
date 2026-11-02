@@ -71,7 +71,7 @@ function ArrowRight() {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-5 w-5 shrink-0 sm:h-6 sm:w-6"
+      className="h-4 w-4 shrink-0"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -133,10 +133,10 @@ export default function HeroSection() {
             </p>
 
             {/* Buttons */}
-            <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-3">
               <a
                 href="/services"
-                className="group inline-flex min-h-[46px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-4 text-[11px] font-bold tracking-wide text-black transition-colors duration-300 hover:bg-white sm:min-h-[60px] sm:gap-6 sm:px-7 sm:text-base"
+                className="group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md bg-[#F5A623] px-4 text-[10px] font-bold tracking-wide text-black transition-colors duration-300 hover:bg-white sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
               >
                 OUR SERVICES
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -146,7 +146,7 @@ export default function HeroSection() {
 
               <a
                 href="/about"
-                className="group inline-flex min-h-[46px] items-center justify-center gap-3 rounded-md border border-white/65 px-4 text-[11px] font-semibold tracking-wide text-white transition-colors duration-300 hover:border-[#F5A623] hover:text-[#F5A623] sm:min-h-[60px] sm:gap-4 sm:px-7 sm:text-base"
+                className="group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md border border-white/65 px-4 text-[10px] font-semibold tracking-wide text-white transition-colors duration-300 hover:border-[#F5A623] hover:text-[#F5A623] sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
               >
                 ABOUT CREDOE
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -156,29 +156,40 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Mobile and tablet founder portrait */}
-          <div className="relative mt-2 h-[260px] w-full sm:h-[340px] lg:hidden">
-            {/* Subtle portrait background */}
+          {/* Premium mobile and tablet founder presentation */}
+          <div className="relative mt-3 h-[270px] w-full sm:mt-5 sm:h-[350px] lg:hidden">
+            {/* Warm ambient glow */}
             <div
-              className="absolute bottom-0 -right-6 h-[90%] w-[85%] opacity-50"
+              className="pointer-events-none absolute bottom-0 right-0 h-[90%] w-[85%]"
               style={{
                 background:
-                  "radial-gradient(ellipse at 70% 75%, rgba(245,166,35,0.12), transparent 70%)",
+                  "radial-gradient(ellipse at 70% 70%, rgba(245,166,35,0.16), transparent 68%)",
               }}
             />
 
-            {/* Founder image */}
-            <div className="absolute bottom-0 -right-6 h-full w-[270px] sm:-right-10 sm:w-[360px]">
+            {/* Founder portrait, full width retained */}
+            <div
+              className="absolute bottom-0 right-[-12px] h-full w-[290px] sm:right-[-15px] sm:w-[370px]"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, black 0%, black 66%, rgba(0,0,0,0.85) 78%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, black 0%, black 66%, rgba(0,0,0,0.85) 78%, transparent 100%)",
+              }}
+            >
               <Image
                 src="/images/AndreDyer2026.png"
                 alt="Andre Dyer, Founder and CEO of Credoe Talent"
                 fill
-                sizes="(max-width: 640px) 270px, 360px"
+                sizes="(max-width: 640px) 290px, 370px"
                 className="object-contain object-bottom"
               />
             </div>
 
-            {/* Founder label */}
+            {/* Bottom blend into background */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65px] bg-gradient-to-t from-[#050A18] via-[#050A18]/65 to-transparent" />
+
+            {/* Founder identity */}
             <div className="absolute bottom-5 left-0 z-10">
               <div className="mb-2 h-px w-10 bg-[#F5A623]" />
               <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/80">
@@ -236,18 +247,18 @@ export default function HeroSection() {
             <div
               key={stat.label}
               className={`
-          flex min-h-[94px] min-w-0 items-center gap-3
-          rounded-lg border border-white/[0.08]
-          bg-white/[0.025] px-3 py-4
-          sm:gap-4
-          lg:min-h-0 lg:rounded-none lg:border-0
-          lg:bg-transparent lg:p-0
-          ${
-            index === 4
-              ? "col-span-2 mx-auto w-full max-w-[250px] justify-center md:col-span-1 md:max-w-none lg:col-span-1 lg:justify-start"
-              : ""
-          }
-        `}
+                flex min-h-[94px] min-w-0 items-center gap-3
+                rounded-lg border border-white/[0.08]
+                bg-white/[0.025] px-3 py-4
+                sm:gap-4
+                lg:min-h-0 lg:rounded-none lg:border-0
+                lg:bg-transparent lg:p-0
+                ${
+                  index === 4
+                    ? "col-span-2 mx-auto w-full max-w-[250px] justify-center md:col-span-1 md:max-w-none lg:col-span-1 lg:justify-start"
+                    : ""
+                }
+              `}
             >
               <StatIcon type={stat.icon} />
 

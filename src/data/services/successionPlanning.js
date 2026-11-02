@@ -6,7 +6,7 @@ const successionPlanning = {
   highlight: "leaders, today.",
   description:
     "We help organizations identify, develop, and prepare future leaders through thoughtful succession strategies that strengthen leadership continuity, reduce transition risks, and support long-term business success.",
-  backgroundImage: "/images/executive-coaching-hero-bg.png",
+  backgroundImage: "/images/cardThreeImg.png",
 
   // 01. THE CHALLENGE
   challenge: {
@@ -23,24 +23,28 @@ const successionPlanning = {
         title: "Unprepared Successors",
         description:
           "Potential future leaders may lack the experience, capabilities, or development needed to confidently step into critical leadership positions.",
+        visual: "succession-readiness",
       },
       {
         number: "02",
         title: "Leadership Dependency",
         description:
           "When business knowledge and key decisions depend on a small number of individuals, unexpected departures can disrupt organizational stability.",
+        visual: "succession-dependency",
       },
       {
         number: "03",
         title: "Limited Leadership Visibility",
         description:
           "Without a clear understanding of internal talent and leadership potential, organizations may overlook capable future successors.",
+        visual: "succession-visibility",
       },
       {
         number: "04",
         title: "Disruptive Leadership Transitions",
         description:
           "Poorly planned leadership changes can create uncertainty, weaken team confidence, and interrupt strategic priorities.",
+        visual: "succession-transition",
       },
     ],
   },

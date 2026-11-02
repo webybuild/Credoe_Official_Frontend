@@ -6,7 +6,7 @@ const talentAdvisory = {
   highlight: "strategies for lasting success.",
   description:
     "We help organizations attract, engage, and retain exceptional talent through tailored advisory strategies, organizational readiness assessments, and actionable workforce insights that support long-term business success.",
-  backgroundImage: "/images/executive-coaching-hero-bg.png",
+  backgroundImage: "/images/cardFourImg.png",
 
   // 01. THE CHALLENGE
   challenge: {
@@ -23,24 +23,28 @@ const talentAdvisory = {
         title: "Misaligned Leadership Expectations",
         description:
           "When stakeholders lack a unified vision, new talent faces conflicting priorities and unclear expectations from the start.",
+        visual: "advisory-alignment",
       },
       {
         number: "02",
         title: "Organizational Readiness Gaps",
         description:
           "Without the right systems, support structures, and role clarity, even exceptional talent can struggle to deliver its full potential.",
+        visual: "advisory-readiness",
       },
       {
         number: "03",
         title: "Talent Attraction Challenges",
         description:
           "Organizations that cannot clearly communicate their value proposition may struggle to attract and engage the talent they need.",
+        visual: "advisory-attraction",
       },
       {
         number: "04",
         title: "Retention and Integration Risks",
         description:
           "Cultural barriers, limited development opportunities, and poor integration can prevent organizations from retaining high-impact talent.",
+        visual: "advisory-retention",
       },
     ],
   },

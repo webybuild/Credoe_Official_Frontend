@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaArrowRight, FaChevronDown } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import Image from "next/image";
 
 const menuItems = [
   { title: "HOME", path: "/" },
   { title: "ABOUT", path: "/about" },
-  { title: "RESOURCES", path: "/resources" },
+  { title: "RESOURCES", path: "/coming-soon" },
   { title: "CONTACT", path: "/contact" },
 ];
 
@@ -54,34 +54,46 @@ export default function UserNav() {
   const lastScrollY = useRef(0);
   const servicesDropdownRef = useRef(null);
 
-  // Smart sticky navigation: hide while scrolling down, show while scrolling up
+  // Synchronize navbar appearance with the actual browser scroll position
   useEffect(() => {
     let ticking = false;
+    let animationFrameId;
+
+    const syncScrollState = () => {
+      const currentScrollY = Math.max(0, window.scrollY);
+
+      lastScrollY.current = currentScrollY;
+      setIsScrolled(currentScrollY > 30);
+      setIsVisible(true);
+    };
+
+    // Detect the existing scroll position immediately
+    syncScrollState();
+
+    // Check again after browser scroll restoration
+    const initialFrame = window.requestAnimationFrame(() => {
+      syncScrollState();
+    });
 
     const handleScroll = () => {
       if (ticking) return;
 
       ticking = true;
 
-      window.requestAnimationFrame(() => {
+      animationFrameId = window.requestAnimationFrame(() => {
         const currentScrollY = Math.max(0, window.scrollY);
         const previousScrollY = lastScrollY.current;
         const scrollDifference = currentScrollY - previousScrollY;
 
         setIsScrolled(currentScrollY > 30);
 
-        // Always show navigation at the top of the page
         if (currentScrollY <= 30) {
           setIsVisible(true);
-        }
-        // Avoid reacting to tiny trackpad or touch scroll movements
-        else if (Math.abs(scrollDifference) > 5) {
+        } else if (Math.abs(scrollDifference) > 5) {
           if (scrollDifference > 0) {
-            // Scrolling down
             setIsVisible(false);
             setServicesOpen(false);
           } else {
-            // Scrolling up
             setIsVisible(true);
           }
         }
@@ -91,12 +103,23 @@ export default function UserNav() {
       });
     };
 
-    lastScrollY.current = window.scrollY;
+    // Handle browser back-forward cache restoration
+    const handlePageShow = () => {
+      syncScrollState();
+    };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("pageshow", handlePageShow);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("pageshow", handlePageShow);
+
+      window.cancelAnimationFrame(initialFrame);
+
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
     };
   }, []);
 
@@ -105,6 +128,9 @@ export default function UserNav() {
     setMenuOpen(false);
     setServicesOpen(false);
     setIsVisible(true);
+
+    setIsScrolled(window.scrollY > 30);
+    lastScrollY.current = window.scrollY;
   }, [pathname]);
 
   const closeMenu = () => {
@@ -211,18 +237,27 @@ export default function UserNav() {
                 aria-haspopup="true"
                 aria-expanded={servicesOpen}
                 onClick={() => setServicesOpen((prev) => !prev)}
-                className={`relative flex cursor-pointer items-center gap-2 px-2 py-3 text-sm font-medium transition-colors duration-200 ${
+                className={`group relative flex cursor-pointer items-center gap-3 px-2 py-3 text-sm font-medium transition-colors duration-200 ${
                   isServiceActive || servicesOpen
                     ? "text-[#F5A623]"
                     : "text-white hover:text-[#F5A623]"
                 }`}
               >
                 SERVICES
-                <FaChevronDown
-                  className={`h-3 w-3 transition-transform duration-300 ${
-                    servicesOpen ? "rotate-180" : ""
+                {/* Premium circular chevron */}
+                <span
+                  className={`flex h-6 w-6 items-center justify-center rounded-full border transition-all duration-300 ${
+                    servicesOpen
+                      ? "rotate-180 border-[#F5A623]/60 bg-[#F5A623]/10"
+                      : "border-white/25 group-hover:border-[#F5A623]/60"
                   }`}
-                />
+                >
+                  <span
+                    className={`h-[6px] w-[6px] rotate-45 border-b border-r transition-colors duration-300 ${
+                      servicesOpen ? "border-[#F5A623]" : "border-white/80"
+                    }`}
+                  />
+                </span>
                 <span
                   className={`absolute bottom-1 left-2 right-2 h-0.5 origin-left bg-[#F5A623] transition-transform duration-200 ${
                     isServiceActive || servicesOpen
@@ -335,14 +370,15 @@ export default function UserNav() {
             })}
           </div>
 
-          {/* Contact button */}
+          {/* Desktop CTA */}
           <Link
-            href="/contact"
-            className={`ml-3 inline-flex items-center justify-center rounded-md bg-[#F5A623] text-sm font-bold text-black transition-all duration-300 hover:bg-white ${
-              isScrolled ? "min-h-[42px] px-5" : "min-h-[50px] px-7"
+            href="/schedule-consultation"
+            className={`group ml-3 inline-flex items-center justify-center gap-3 rounded-md bg-[#F5A623] font-[inherit] text-[12px] font-bold tracking-[0.08em] text-black transition-all duration-300 hover:bg-white ${
+              isScrolled ? "min-h-[42px] px-5" : "min-h-[50px] px-6"
             }`}
           >
-            LET'S CONNECT
+            LET'S TALK
+            <FaArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
 
@@ -384,6 +420,7 @@ export default function UserNav() {
                 }`}
               >
                 {item.title}
+
                 <FaArrowRight className="-rotate-45 text-white/50" />
               </Link>
             );
@@ -402,11 +439,20 @@ export default function UserNav() {
               }`}
             >
               SERVICES
-              <FaChevronDown
-                className={`h-3 w-3 transition-transform duration-300 ${
-                  servicesOpen ? "rotate-180 text-[#F5A623]" : ""
+              {/* Premium circular chevron */}
+              <span
+                className={`flex h-6 w-6 items-center justify-center rounded-full border transition-all duration-300 ${
+                  servicesOpen
+                    ? "rotate-180 border-[#F5A623]/60 bg-[#F5A623]/10"
+                    : "border-white/25"
                 }`}
-              />
+              >
+                <span
+                  className={`h-[6px] w-[6px] rotate-45 border-b border-r ${
+                    servicesOpen ? "border-[#F5A623]" : "border-white/80"
+                  }`}
+                />
+              </span>
             </button>
 
             <div
@@ -458,19 +504,20 @@ export default function UserNav() {
                 }`}
               >
                 {item.title}
+
                 <FaArrowRight className="-rotate-45 text-white/50" />
               </Link>
             );
           })}
 
-          {/* Mobile contact button */}
+          {/* Mobile CTA */}
           <Link
-            href="/contact"
+            href="/schedule-consultation"
             onClick={closeMenu}
-            className="mt-6 flex min-h-[48px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-6 text-sm font-bold text-black transition-colors hover:bg-white"
+            className="group mt-6 flex min-h-[50px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-6 font-[inherit] text-[12px] tracking-[0.08em] text-black transition-colors hover:bg-white font-bold"
           >
-            LET'S CONNECT
-            <FaArrowRight />
+            LET'S TALK
+            <FaArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

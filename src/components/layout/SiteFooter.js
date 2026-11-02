@@ -15,8 +15,17 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/#services" },
   { label: "About", href: "/about" },
-  { label: "Resources", href: "/resources" },
+  { label: "Resources", href: "/coming-soon" },
   { label: "Contact", href: "/contact" },
+];
+
+// Keep this list static so the server and client render identical links.
+const socialLinks = [
+  {
+    type: "linkedin",
+    href: "https://www.linkedin.com/in/andre-dyer/",
+    label: "LinkedIn",
+  },
 ];
 
 function IndustryIcon({ type }) {
@@ -190,6 +199,7 @@ export default function SiteFooter() {
 
   function handleSubscribe(event) {
     event.preventDefault();
+
     if (!email.trim()) return;
 
     // Connect your newsletter API or provider here.
@@ -225,12 +235,10 @@ export default function SiteFooter() {
             </p>
           </div>
 
-          {industries.map((industry, index) => (
+          {industries.map((industry) => (
             <div
               key={industry.name}
-              className={`flex min-h-[128px] flex-col items-center justify-center gap-3 border-t border-white/10 px-3 py-5 text-center sm:min-h-[140px] lg:border-l lg:border-t-0 lg:border-white/10 lg:px-2 ${
-                index === 0 ? "lg:border-l-white/10" : ""
-              }`}
+              className="flex min-h-[128px] flex-col items-center justify-center gap-3 border-t border-white/10 px-3 py-5 text-center sm:min-h-[140px] lg:border-l lg:border-t-0 lg:border-white/10 lg:px-2"
             >
               <span className="text-white">
                 <IndustryIcon type={industry.icon} />
@@ -265,24 +273,12 @@ export default function SiteFooter() {
             </p>
 
             <div className="mt-8 flex items-center gap-6">
-              {[
-                {
-                  type: "linkedin",
-                  href: "https://www.linkedin.com/in/andre-dyer/",
-                  label: "LinkedIn",
-                },
-                { type: "x", href: "https://x.com/", label: "X" },
-                {
-                  type: "youtube",
-                  href: "https://www.youtube.com/",
-                  label: "YouTube",
-                },
-              ].map((social) => (
+              {socialLinks.map((social) => (
                 <a
                   key={social.type}
                   href={social.href}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#F4A019]/60 text-white transition-colors hover:bg-[#F4A019] hover:text-[#020D19]"
                 >

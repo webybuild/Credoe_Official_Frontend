@@ -4,61 +4,54 @@ const GOLD = "#F4A51C";
 
 export default function AboutHero() {
   return (
-    <section className="relative isolate min-h-[500px] overflow-hidden bg-[#061426] text-white sm:min-h-[530px] lg:min-h-[550px]">
-      {/* Background image and overlays */}
+    <section className="relative isolate min-h-[480px] overflow-hidden bg-[#061426] text-white sm:min-h-[500px] lg:min-h-[510px]">
+      {/* Background atmosphere */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 z-0 bg-cover bg-[center_55%] sm:bg-center"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              90deg,
-              rgba(3, 13, 27, 0.97) 0%,
-              rgba(3, 13, 27, 0.91) 32%,
-              rgba(3, 13, 27, 0.76) 52%,
-              rgba(3, 13, 27, 0.30) 78%,
-              rgba(3, 13, 27, 0.18) 100%
-            ),
-            linear-gradient(
-              0deg,
-              rgba(3, 13, 27, 0.40),
-              transparent 50%
-            ),
-            url("/images/aboutHeaderBg.png")
-          `,
-        }}
-      />
-
-      {/* Decorative gold rings */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-10 overflow-hidden"
+        className="pointer-events-none absolute inset-0 -z-20"
       >
-        <div className="absolute -right-[190px] top-[40px] h-[440px] w-[440px] rounded-full border border-[#D99B27]/35 sm:-right-[130px] sm:h-[540px] sm:w-[540px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_10%_45%,rgba(24,49,75,0.55),transparent_55%)]" />
 
-        <div className="absolute -right-[110px] top-[100px] h-[320px] w-[320px] rounded-full border border-[#D99B27]/20 sm:-right-[40px] sm:h-[420px] sm:w-[420px]" />
+        <div className="absolute -left-32 top-16 h-[360px] w-[360px] rounded-full border border-white/[0.035]" />
 
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#03101E]/50 to-transparent" />
+        <div className="absolute -left-20 top-28 h-[260px] w-[260px] rounded-full border border-[#F4A51C]/[0.08]" />
       </div>
 
-      {/* Hero content */}
-      <div className="relative z-20 mx-auto flex min-h-[500px] max-w-[1450px] items-start px-5 pb-12 pt-[145px] sm:min-h-[530px] sm:px-8 sm:pt-[150px] lg:min-h-[550px] lg:px-12 lg:pt-[155px]">
-        <div className="w-full max-w-[800px]">
+      {/* Right-side background image */}
+      <div
+        aria-hidden="true"
+        className="absolute right-0 top-0 -z-10 h-full w-[48%] overflow-hidden max-sm:w-[58%]"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url("/images/aboutHeaderBg.png")',
+          }}
+        />
+
+        {/* Image overlays */}
+        <div className="absolute inset-0 bg-[#061426]/15" />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426] via-[#061426]/55 to-transparent" />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#061426]/40 via-transparent to-[#061426]/20" />
+
+        <div className="absolute inset-y-0 left-0 w-[25%] bg-gradient-to-r from-[#061426] to-transparent" />
+      </div>
+
+      {/* Main content */}
+      <div className="relative mx-auto flex min-h-[480px] max-w-[1600px] items-center px-5 pb-10 pt-28 sm:min-h-[500px] sm:px-8 sm:pb-12 sm:pt-32 lg:min-h-[510px] lg:px-12 lg:pb-12 lg:pt-32">
+        <div className="relative z-10 w-full max-w-[850px]">
           {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
-            className="mb-6 flex items-center gap-3 text-sm sm:mb-7"
+            className="mb-9 flex flex-wrap items-center gap-3 text-[11px] tracking-[0.12em] text-white/50 sm:mb-10 sm:text-[12px]"
           >
-            <Link
-              href="/"
-              className="inline-flex cursor-pointer text-white/75 transition-colors hover:text-[#F4A51C]"
-            >
+            <Link href="/" className="transition-colors hover:text-[#F4A51C]">
               Home
             </Link>
 
-            <span aria-hidden="true" className="text-white/40">
-              /
-            </span>
+            <span className="text-white/25">/</span>
 
             <span aria-current="page" className="font-medium text-[#F4A51C]">
               About
@@ -66,36 +59,48 @@ export default function AboutHero() {
           </nav>
 
           {/* Eyebrow */}
-          {/* <div className="mb-5 flex items-center gap-4">
-            <span
-              className="h-[3px] w-11 rounded-full"
-              style={{ backgroundColor: GOLD }}
-            />
+          <div className="mb-5 flex items-center gap-4">
+            <span className="h-[2px] w-10 bg-[#F4A51C]" />
 
-            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#F4A51C] sm:text-[13px]">
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#F4A51C] sm:text-[12px]">
               About Credoe Talent Solutions
             </span>
-          </div> */}
+          </div>
 
           {/* Main heading */}
-          <h1 className="font-heading max-w-[800px] text-[40px] font-semibold leading-[1.08] tracking-[-0.035em] sm:text-[52px] lg:text-[62px] xl:text-[66px]">
-            Beyond Executive
-            <br />
-            Search. <span style={{ color: GOLD }}>Building</span>
-            <br />
-            <span style={{ color: GOLD }}>Organizational Readiness.</span>
+          <h1 className="font-heading max-w-[760px] text-[36px] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[46px] lg:text-[54px] xl:text-[58px]">
+            <span className="block">Beyond Executive Search.</span>
+
+            <span className="mt-1 block text-[#F4A51C]">
+              Building Organizational Readiness.
+            </span>
           </h1>
 
+          {/* Gold accent */}
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-[2px] w-9 rounded-full bg-[#F4A51C]" />
+            <span className="h-px w-12 bg-white/20" />
+          </div>
+
           {/* Description */}
-          <p className="mt-6 max-w-[580px] text-[14px] leading-[1.75] text-white/85 sm:text-[16px]">
+          <p className="mt-5 max-w-[570px] text-[13px] leading-[1.8] text-white/75 sm:text-[15px]">
             Helping organizations attract, integrate, and retain exceptional
             leaders.
           </p>
+
+          {/* Brand detail */}
+          <div className="mt-7 flex items-center gap-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#F4A51C]" />
+
+            <span className="text-[9px] font-medium uppercase tracking-[0.23em] text-white/40">
+              Credoe Talent Solutions
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Bottom separator */}
-      <div className="absolute inset-x-0 bottom-0 z-20 h-px bg-gradient-to-r from-transparent via-[#D99B27]/50 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F4A51C]/45 to-transparent" />
     </section>
   );
 }

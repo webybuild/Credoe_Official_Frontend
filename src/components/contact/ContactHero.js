@@ -2,95 +2,103 @@ import Link from "next/link";
 
 const GOLD = "#F4A019";
 
-function DecorativeRings() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute -right-40 top-[-70px] -z-10 h-[520px] w-[520px] rounded-full border border-[#F4A019]/25 sm:-right-28 sm:top-[-90px] sm:h-[650px] sm:w-[650px]"
-    >
-      <div className="absolute inset-[10%] rounded-full border border-[#F4A019]/20" />
-      <div className="absolute inset-[20%] rounded-full border border-[#F4A019]/15" />
-      <div className="absolute inset-[30%] rounded-full border border-[#F4A019]/10" />
-    </div>
-  );
-}
-
 export default function ContactHero() {
   return (
-    <section className="relative isolate min-h-[500px] overflow-hidden bg-[#03101E] text-white sm:min-h-[530px] lg:min-h-[550px]">
-      {/* Skyline background */}
+    <section className="relative isolate min-h-[480px] overflow-hidden bg-[#061426] text-white sm:min-h-[500px] lg:min-h-[510px]">
+      {/* Background atmosphere */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-cover bg-[center_55%] sm:bg-center"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              90deg,
-              rgba(3, 16, 30, 0.97) 0%,
-              rgba(3, 16, 30, 0.84) 34%,
-              rgba(3, 16, 30, 0.48) 68%,
-              rgba(3, 16, 30, 0.40) 100%
-            ),
-            url("/images/bg-hero.png")
-          `,
-        }}
-      />
+        className="pointer-events-none absolute inset-0 -z-20"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_10%_45%,rgba(24,49,75,0.55),transparent_55%)]" />
 
-      {/* Bottom contrast overlay */}
+        <div className="absolute -left-32 top-16 h-[360px] w-[360px] rounded-full border border-white/[0.035]" />
+
+        <div className="absolute -left-20 top-28 h-[260px] w-[260px] rounded-full border border-[#F4A019]/[0.08]" />
+      </div>
+
+      {/* Right-side background image */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-b from-[#03101E]/15 via-transparent to-[#03101E]/40"
-      />
+        className="absolute right-0 top-0 -z-10 h-full w-[48%] overflow-hidden max-sm:w-[58%]"
+      >
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: 'url("/images/bg-hero.png")',
+          }}
+        />
 
-      <DecorativeRings />
+        {/* Image overlays */}
+        <div className="absolute inset-0 bg-[#061426]/15" />
 
-      {/* Hero content, aligned with About Hero */}
-      <div className="relative z-20 mx-auto flex min-h-[500px] max-w-[1450px] items-start px-5 pb-12 pt-[145px] sm:min-h-[530px] sm:px-8 sm:pb-14 sm:pt-[150px] lg:min-h-[550px] lg:px-12 lg:pt-[155px]">
-        <div className="w-full max-w-[650px]">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#061426] via-[#061426]/55 to-transparent" />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#061426]/40 via-transparent to-[#061426]/20" />
+
+        <div className="absolute inset-y-0 left-0 w-[25%] bg-gradient-to-r from-[#061426] to-transparent" />
+      </div>
+
+      {/* Main content */}
+      <div className="relative mx-auto flex min-h-[480px] max-w-[1600px] items-center px-5 pb-10 pt-28 sm:min-h-[500px] sm:px-8 sm:pb-12 sm:pt-32 lg:min-h-[510px] lg:px-12 lg:pb-12 lg:pt-32">
+        <div className="relative z-10 w-full max-w-[850px]">
           {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
-            className="mb-6 flex items-center gap-3 text-sm sm:mb-7"
+            className="mb-9 flex flex-wrap items-center gap-3 text-[11px] tracking-[0.12em] text-white/50 sm:mb-10 sm:text-[12px]"
           >
-            <Link
-              href="/"
-              className="text-white/75 transition-colors hover:text-white"
-            >
+            <Link href="/" className="transition-colors hover:text-[#F4A019]">
               Home
             </Link>
 
-            <span aria-hidden="true" className="text-white/40">
-              /
-            </span>
+            <span className="text-white/25">/</span>
 
-            <span
-              aria-current="page"
-              className="font-medium"
-              style={{ color: GOLD }}
-            >
+            <span aria-current="page" className="font-medium text-[#F4A019]">
               Contact
             </span>
           </nav>
 
-          {/* Heading */}
-          <h1 className="font-heading text-[40px] font-semibold leading-[1.05] tracking-[-0.035em] sm:text-[54px] lg:text-[68px]">
-            Let&apos;s Start a
-            <span className="block" style={{ color: GOLD }}>
-              Conversation.
+          {/* Eyebrow */}
+          <div className="mb-5 flex items-center gap-4">
+            <span className="h-[2px] w-10 bg-[#F4A019]" />
+
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#F4A019] sm:text-[12px]">
+              Get in Touch
             </span>
+          </div>
+
+          {/* Heading */}
+          <h1 className="font-heading max-w-[760px] text-[36px] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[46px] lg:text-[54px] xl:text-[58px]">
+            <span className="block">Let&apos;s Start a</span>
+
+            <span className="mt-1 block text-[#F4A019]">Conversation.</span>
           </h1>
 
+          {/* Gold accent */}
+          <div className="mt-5 flex items-center gap-3">
+            <span className="h-[2px] w-9 rounded-full bg-[#F4A019]" />
+            <span className="h-px w-12 bg-white/20" />
+          </div>
+
           {/* Description */}
-          <p className="mt-5 max-w-[520px] text-[15px] leading-7 text-white/85 sm:text-[17px] sm:leading-8">
-            Tell us what you&apos;re building. We&apos;ll help you
-            <br className="hidden sm:block" />
-            find the leaders who move it forward.
+          <p className="mt-5 max-w-[570px] text-[13px] leading-[1.8] text-white/75 sm:text-[15px]">
+            Tell us what you&apos;re building. We&apos;ll help you find the
+            leaders who move it forward.
           </p>
+
+          {/* Brand detail */}
+          <div className="mt-7 flex items-center gap-3">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#F4A019]" />
+
+            <span className="text-[9px] font-medium uppercase tracking-[0.23em] text-white/40">
+              Credoe Talent Solutions
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Bottom accent */}
-      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F4A019]/50 to-transparent" />
+      {/* Bottom separator */}
+      <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#F4A019]/45 to-transparent" />
     </section>
   );
 }

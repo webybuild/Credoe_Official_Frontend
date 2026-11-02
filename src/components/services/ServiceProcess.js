@@ -2,88 +2,73 @@
 
 const GOLD = "#F4A019";
 
-function ProcessIcon({ type }) {
-  const iconType = String(type || "")
-    .toLowerCase()
-    .trim();
+function ProcessIcon({ index }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.5,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  const iconIndex =
+    Number.isInteger(index) && index >= 0 && index <= 4 ? index : 0;
 
   return (
     <svg
       viewBox="0 0 48 48"
       className="h-7 w-7 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       aria-hidden="true"
       focusable="false"
+      {...common}
     >
-      {(iconType === "discovery" || iconType === "discover") && (
+      {/* 01. DISCOVERY: Focus and insight */}
+      {iconIndex === 0 && (
         <>
-          <circle cx="21" cy="21" r="11" />
-          <path d="m29 29 9 9" />
-          <path d="M17 21a4 4 0 0 1 4-4" />
+          <circle cx="24" cy="24" r="16" />
+          <circle cx="24" cy="24" r="9" />
+          <circle cx="24" cy="24" r="3" />
+          <path d="M24 4v4M24 40v4M4 24h4M40 24h4" />
         </>
       )}
 
-      {(iconType === "engagement" || iconType === "engage") && (
+      {/* 02. ENGAGEMENT: Connection and alignment */}
+      {iconIndex === 1 && (
         <>
-          <circle cx="24" cy="13" r="5" />
-          <circle cx="11" cy="21" r="4" />
-          <circle cx="37" cy="21" r="4" />
-          <path d="M14 39v-5a10 10 0 0 1 20 0v5" />
-          <path d="M3 38v-4a8 8 0 0 1 7-8" />
-          <path d="M45 38v-4a8 8 0 0 0-7-8" />
+          <circle cx="24" cy="24" r="16" />
+          <circle cx="24" cy="15" r="3.5" />
+          <circle cx="15" cy="29" r="3.5" />
+          <circle cx="33" cy="29" r="3.5" />
+          <path d="m22 18-5 8M26 18l5 8M19 29h10" />
         </>
       )}
 
-      {(iconType === "evaluation" || iconType === "assess") && (
+      {/* 03. EVALUATION: Structure and precision */}
+      {iconIndex === 2 && (
         <>
-          <rect x="9" y="6" width="25" height="35" rx="2" />
-          <path d="M15 15h13M15 22h10M15 29h6" />
-          <circle cx="32" cy="30" r="7" />
-          <path d="m37 35 6 6" />
+          <circle cx="24" cy="24" r="16" />
+          <path d="M16 15h16v19H16z" />
+          <path d="M20 21h8M20 25h6" />
+          <path d="m20 30 3 3 6-7" />
         </>
       )}
 
-      {(iconType === "transition" || iconType === "integrate") && (
+      {/* 04. TRANSITION: Progress and continuity */}
+      {iconIndex === 3 && (
         <>
-          <path d="m5 18 10-7 9 5 6-2 13 10-9 10-7-4-5 3-7-5-5 1-5-11Z" />
-          <path d="m15 12 8 8a4 4 0 0 0 6-1l2-3" />
-          <path d="m18 30 4 4a3 3 0 0 0 4-1" />
-          <path d="m25 33 3 3a3 3 0 0 0 4-1" />
+          <circle cx="24" cy="24" r="16" />
+          <path d="M12 25h8l4-8 5 14 3-6h4" />
+          <path d="m31 20 5 5-5 5" />
         </>
       )}
 
-      {(iconType === "growth" ||
-        iconType === "partner" ||
-        iconType === "partnership") && (
+      {/* 05. GROWTH: Development and long-term impact */}
+      {iconIndex === 4 && (
         <>
-          <path d="M7 37V25h8v12M20 37V17h8v20M33 37V9h8v28" />
-          <path d="m7 18 11-7 8 2 13-9" />
-          <path d="M32 4h7v7" />
-          <path d="M5 42h39" />
-        </>
-      )}
-
-      {![
-        "discovery",
-        "discover",
-        "engagement",
-        "engage",
-        "evaluation",
-        "assess",
-        "transition",
-        "integrate",
-        "growth",
-        "partner",
-        "partnership",
-      ].includes(iconType) && (
-        <>
-          <circle cx="21" cy="21" r="11" />
-          <path d="m29 29 9 9" />
-          <path d="M17 21a4 4 0 0 1 4-4" />
+          <circle cx="24" cy="24" r="16" />
+          <path d="M15 32V25h5v7M22 32V19h5v13M29 32V13h5v19" />
+          <path d="m15 19 7-5 6 1 7-7" />
+          <path d="M29 8h6v6" />
         </>
       )}
     </svg>
@@ -191,7 +176,7 @@ export default function ServiceProcess({
 
                   {/* Icon container */}
                   <div className="relative z-10 flex h-[62px] w-[62px] items-center justify-center border border-[#D99B27]/35 bg-[#FAF9F6] text-[#C88B28] transition-all duration-500 group-hover:border-[#F4A019] group-hover:bg-[#F4A019] group-hover:text-white">
-                    <ProcessIcon type={step.icon} />
+                    <ProcessIcon index={index} />
 
                     <span
                       aria-hidden="true"

@@ -2,6 +2,7 @@ import "./globals.css";
 import UserNav from "@/components/layout/UserNav";
 import SiteFooter from "@/components/layout/SiteFooter";
 import { Bodoni_Moda } from "next/font/google";
+import IntroLoader from "@/components/layout/IntroLoader";
 
 const bodoni = Bodoni_Moda({
   subsets: ["latin"],

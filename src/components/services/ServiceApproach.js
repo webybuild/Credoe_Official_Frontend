@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const GOLD = "#F4A019";
 
-function StepIcon({ type }) {
+function StepIcon({ index }) {
   const common = {
     fill: "none",
     stroke: "currentColor",
@@ -13,65 +13,47 @@ function StepIcon({ type }) {
     strokeLinejoin: "round",
   };
 
-  const iconType = String(type || "").toLowerCase();
+  const iconIndex =
+    Number.isInteger(index) && index >= 0 && index <= 3 ? index : 0;
 
   return (
     <svg viewBox="0 0 48 48" className="h-7 w-7" aria-hidden="true" {...common}>
-      {(iconType === "discovery" || iconType === "discover") && (
+      {/* 01. DISCOVERY: Focus and insight */}
+      {iconIndex === 0 && (
         <>
-          <circle cx="21" cy="21" r="11" />
-          <path d="m29 29 9 9" />
-          <path d="M17 21a4 4 0 0 1 4-4" />
+          <circle cx="24" cy="24" r="15" />
+          <circle cx="24" cy="24" r="9" />
+          <circle cx="24" cy="24" r="3" />
+          <path d="M24 5v4M24 39v4M5 24h4M39 24h4" />
         </>
       )}
 
-      {(iconType === "engagement" || iconType === "engage") && (
+      {/* 02. ENGAGEMENT: Connection and alignment */}
+      {iconIndex === 1 && (
         <>
-          <circle cx="24" cy="13" r="5" />
-          <circle cx="11" cy="20" r="4" />
-          <circle cx="37" cy="20" r="4" />
-          <path d="M14 38v-5a10 10 0 0 1 20 0v5" />
-          <path d="M3 37v-4a8 8 0 0 1 7-8" />
-          <path d="M45 37v-4a8 8 0 0 0-7-8" />
+          <circle cx="24" cy="24" r="15" />
+          <circle cx="24" cy="15" r="3.5" />
+          <circle cx="14" cy="30" r="3.5" />
+          <circle cx="34" cy="30" r="3.5" />
+          <path d="m22 18-6 9M26 18l6 9M18 30h12" />
         </>
       )}
 
-      {(iconType === "evaluation" || iconType === "assess") && (
+      {/* 03. EVALUATION: Structure and precision */}
+      {iconIndex === 2 && (
         <>
-          <rect x="9" y="7" width="23" height="32" rx="2" />
-          <path d="M15 15h11M15 21h7M15 27h5" />
-          <circle cx="31" cy="29" r="7" />
-          <path d="m36 34 6 6" />
+          <rect x="9" y="9" width="30" height="30" rx="3" />
+          <path d="M16 17h16M16 24h10" />
+          <path d="m16 31 4 4 9-9" />
         </>
       )}
 
-      {(iconType === "partnership" ||
-        iconType === "partner" ||
-        iconType === "transition") && (
+      {/* 04. PARTNERSHIP: Continuity and trust */}
+      {iconIndex === 3 && (
         <>
-          <path d="m5 20 9-8 8 5 6-2 15 10-8 9-7-4-5 3-6-4-5 1-7-10Z" />
-          <path d="m14 12 8 7a4 4 0 0 0 6-1l2-3" />
-          <path d="m17 31 4 3a3 3 0 0 0 4-1" />
-          <path d="m23 34 2 2a3 3 0 0 0 4-1" />
-          <path d="m29 33 2 2a3 3 0 0 0 4-1" />
-        </>
-      )}
-
-      {![
-        "discovery",
-        "discover",
-        "engagement",
-        "engage",
-        "evaluation",
-        "assess",
-        "partnership",
-        "partner",
-        "transition",
-      ].includes(iconType) && (
-        <>
-          <circle cx="21" cy="21" r="11" />
-          <path d="m29 29 9 9" />
-          <path d="M17 21a4 4 0 0 1 4-4" />
+          <circle cx="24" cy="24" r="15" />
+          <path d="m13 25 7-7 7 7-7 7-7-7Z" />
+          <path d="m21 25 7-7 7 7-7 7-7-7Z" />
         </>
       )}
     </svg>
@@ -230,9 +212,9 @@ export default function ServiceApproach({
                         </h3>
                       </div>
 
-                      {/* Icon */}
+                      {/* Unified geometric icon */}
                       <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-[#F4A019]/20 text-[#F4A019] transition-all duration-500 group-hover:border-[#F4A019]/60 group-hover:bg-[#F4A019]/10 sm:h-14 sm:w-14">
-                        <StepIcon type={card.icon} />
+                        <StepIcon index={index} />
                       </div>
                     </div>
 

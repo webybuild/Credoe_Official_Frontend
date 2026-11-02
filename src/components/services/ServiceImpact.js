@@ -2,66 +2,71 @@
 
 const GOLD = "#F4A019";
 
-function ImpactIcon({ type }) {
-  const iconType = String(type || "")
-    .toLowerCase()
-    .trim();
+function ImpactIcon({ index }) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.45,
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+  };
+
+  const iconIndex =
+    Number.isInteger(index) && index >= 0 && index <= 3 ? index : 0;
 
   return (
     <svg
       viewBox="0 0 48 48"
-      className="h-6 w-6 shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      className="h-7 w-7 shrink-0"
       aria-hidden="true"
       focusable="false"
+      {...common}
     >
-      {iconType === "growth" && (
+      {/* 01. GROWTH: Ascending progress and measurable value */}
+      {iconIndex === 0 && (
         <>
-          <path d="M7 39h35" />
-          <path d="M11 35V25h8v10M23 35V17h8v18M35 35V9h7v26" />
-          <path d="m8 19 11-8 8 3L41 3" />
-          <path d="M33 3h8v8" />
+          <circle cx="24" cy="24" r="18" opacity="0.55" />
+          <circle cx="24" cy="24" r="13" opacity="0.35" />
+          <path d="M12 32h5V25h5v-7h5v-5h5" />
+          <path d="m27 13 5 0v5" />
+          <path d="m12 36 9-9 6-2 9-11" />
+          <path d="M31 14h5v5" />
         </>
       )}
 
-      {iconType === "teams" && (
+      {/* 02. TEAMS: Collective strength and alignment */}
+      {iconIndex === 1 && (
         <>
-          <circle cx="24" cy="12" r="6" />
-          <circle cx="10" cy="20" r="4" />
-          <circle cx="38" cy="20" r="4" />
-          <path d="M12 39v-6a12 12 0 0 1 24 0v6" />
-          <path d="M2 38v-5a8 8 0 0 1 7-8" />
-          <path d="M46 38v-5a8 8 0 0 0-7-8" />
+          <circle cx="24" cy="24" r="18" opacity="0.55" />
+          <circle cx="24" cy="17" r="4" />
+          <circle cx="14" cy="27" r="3.5" />
+          <circle cx="34" cy="27" r="3.5" />
+          <path d="M17 36v-2a7 7 0 0 1 14 0v2" />
+          <path d="M7 36v-2a7 7 0 0 1 6-7" />
+          <path d="M41 36v-2a7 7 0 0 0-6-7" />
+          <path d="M18 23l3-2M30 21l3 2" opacity="0.7" />
         </>
       )}
 
-      {iconType === "future" && (
+      {/* 03. FUTURE: Vision and forward readiness */}
+      {iconIndex === 2 && (
         <>
-          <path d="M24 6a12 12 0 0 0-7 21.7c2 1.5 3 3.2 3 5.3h8c0-2.1 1-3.8 3-5.3A12 12 0 0 0 24 6Z" />
-          <path d="M19 39h10M21 43h6" />
-          <path d="M24 1V3M5 20h3M40 20h3M10 7l3 3M38 7l-3 3" />
+          <circle cx="24" cy="24" r="18" opacity="0.55" />
+          <circle cx="24" cy="24" r="12" opacity="0.4" />
+          <path d="M24 15v18M15 24h18" />
+          <path d="m18 18 12 12M30 18 18 30" opacity="0.45" />
+          <circle cx="24" cy="24" r="4" />
+          <path d="M24 6v3M24 39v3M6 24h3M39 24h3" />
         </>
       )}
 
-      {iconType === "value" && (
+      {/* 04. VALUE: Protection, trust and enduring impact */}
+      {iconIndex === 3 && (
         <>
-          <path d="M10 10h28v12c0 10-6 16-14 21-8-5-14-11-14-21V10Z" />
-          <path d="m24 15 3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-6Z" />
-        </>
-      )}
-
-      {!["growth", "teams", "future", "value"].includes(iconType) && (
-        <>
-          <circle cx="24" cy="12" r="6" />
-          <circle cx="10" cy="20" r="4" />
-          <circle cx="38" cy="20" r="4" />
-          <path d="M12 39v-6a12 12 0 0 1 24 0v6" />
-          <path d="M2 38v-5a8 8 0 0 1 7-8" />
-          <path d="M46 38v-5a8 8 0 0 0-7-8" />
+          <circle cx="24" cy="24" r="18" opacity="0.55" />
+          <path d="M24 10 36 15v8c0 7-5 12-12 16-7-4-12-9-12-16v-8l12-5Z" />
+          <path d="m18 24 4 4 8-9" />
+          <path d="M24 14v-1M16 18l-2 2" opacity="0.55" />
         </>
       )}
     </svg>
@@ -163,7 +168,7 @@ export default function ServiceImpact({
               className="pointer-events-none absolute -right-24 -top-28 h-64 w-64 rounded-full border border-white/[0.07]"
             />
 
-            {/* Panel heading, no decorative button */}
+            {/* Panel heading */}
             <div className="relative mb-5 border-b border-white/10 pb-5">
               <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#F4A019]">
                 Beyond the placement
@@ -181,9 +186,9 @@ export default function ServiceImpact({
                   key={outcome.number || index}
                   className="group flex items-center gap-4 border-b border-white/10 py-4 last:border-b-0 sm:gap-5 sm:py-[18px]"
                 >
-                  {/* Icon */}
+                  {/* Premium geometric icon */}
                   <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-full border border-[#F4A019]/30 bg-white/[0.035] text-[#F4A019] transition-all duration-300 group-hover:bg-[#F4A019] group-hover:text-[#07172B] sm:h-[54px] sm:w-[54px]">
-                    <ImpactIcon type={outcome.icon} />
+                    <ImpactIcon index={index} />
                   </div>
 
                   {/* Text */}

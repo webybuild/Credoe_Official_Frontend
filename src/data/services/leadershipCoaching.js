@@ -6,7 +6,7 @@ const leadershipCoaching = {
   highlight: "potential and performance.",
   description:
     "We empower executives and emerging leaders to unlock their potential, strengthen leadership capabilities, navigate career transitions, and lead with greater clarity, confidence, and impact.",
-  backgroundImage: "/images/executive-coaching-hero-bg.png",
+  backgroundImage: "/images/cardTwoImg.png",
 
   // 01 CHALLENGE
   challenge: {
@@ -23,24 +23,28 @@ const leadershipCoaching = {
         title: "Leadership Effectiveness Gaps",
         description:
           "As responsibilities grow, leaders must adapt their communication, decision-making, and management approaches to meet increasingly complex demands.",
+        visual: "coaching-effectiveness",
       },
       {
         number: "02",
         title: "Career Direction Uncertainty",
         description:
           "Executives and professionals may struggle to define their next career move, recognize their strengths, or position themselves for new opportunities.",
+        visual: "coaching-direction",
       },
       {
         number: "03",
         title: "Challenges Navigating Change",
         description:
           "New roles, organizational transitions, and increasing expectations can create uncertainty and make it difficult to maintain leadership confidence.",
+        visual: "coaching-change",
       },
       {
         number: "04",
         title: "Untapped Leadership Potential",
         description:
           "Without focused development and constructive guidance, capable leaders may miss opportunities to strengthen their influence and expand their impact.",
+        visual: "coaching-potential",
       },
     ],
   },
