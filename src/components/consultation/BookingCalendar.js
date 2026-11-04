@@ -5,30 +5,26 @@ import { useState } from "react";
 export default function BookingCalendar() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
 
   const calendarUrl =
     "https://cal.com/webybuild-8oyipf/consultation?embed=true&theme=dark&brandColor=%23F5A623";
 
+  const handleRetry = () => {
+    setHasError(false);
+    setIsLoaded(false);
+    setRetryKey((current) => current + 1);
+  };
+
   return (
-    <div className="relative min-h-[1550px] overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)] md:min-h-[850px]">
-      <style jsx>{`
-        .booking-iframe {
-          height: 1550px;
-        }
-
-        @media (min-width: 768px) {
-          .booking-iframe {
-            height: 850px;
-          }
-        }
-      `}</style>
-
+    <div className="relative min-h-[1550px] w-full overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)] md:min-h-[850px]">
       {/* Loading screen */}
       {!isLoaded && !hasError && (
         <div
-          className="absolute inset-0 z-10 flex min-h-[1800px] flex-col items-center justify-center bg-[#071321] px-6 text-center md:min-h-[850px]"
+          className="absolute inset-0 z-10 flex min-h-[1550px] flex-col items-center justify-center bg-[#071321] px-6 text-center md:min-h-[850px]"
           aria-live="polite"
         >
+          {/* Animated gold loader */}
           <div className="relative mb-8 flex h-16 w-16 items-center justify-center">
             <div className="absolute inset-0 animate-spin rounded-full border-2 border-[#F5A623]/15 border-t-[#F5A623]" />
 
@@ -54,7 +50,7 @@ export default function BookingCalendar() {
 
       {/* Error fallback */}
       {hasError && (
-        <div className="flex min-h-[1800px] flex-col items-center justify-center px-6 text-center md:min-h-[850px]">
+        <div className="flex min-h-[1550px] flex-col items-center justify-center px-6 text-center md:min-h-[850px]">
           <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#F5A623]/40 text-[#F5A623]">
             <svg
               viewBox="0 0 24 24"
@@ -92,11 +88,8 @@ export default function BookingCalendar() {
 
           <button
             type="button"
-            onClick={() => {
-              setHasError(false);
-              setIsLoaded(false);
-            }}
-            className="mt-5 text-xs text-gray-400 underline underline-offset-4 transition-colors hover:text-[#F5A623]"
+            onClick={handleRetry}
+            className="mt-5 cursor-pointer text-xs text-gray-400 underline underline-offset-4 transition-colors hover:text-[#F5A623]"
           >
             Try again
           </button>
@@ -105,12 +98,12 @@ export default function BookingCalendar() {
 
       {/* Cal.com iframe */}
       <iframe
-        key={hasError ? "retry" : "calendar"}
+        key={retryKey}
         src={calendarUrl}
         title="Schedule a Confidential Consultation with Credoe Talent"
         width="100%"
-        height="20%"
-        className={`booking-iframe block w-full border-0 transition-opacity duration-500 ${
+        height="1550"
+        className={`block h-[1550px] w-full border-0 transition-opacity duration-500 md:!h-[850px] ${
           isLoaded && !hasError ? "opacity-100" : "opacity-0"
         }`}
         loading="eager"
