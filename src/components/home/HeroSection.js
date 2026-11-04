@@ -135,10 +135,10 @@ export default function HeroSection() {
             {/* Buttons */}
             <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-3">
               <a
-                href="/services"
+                href="/schedule-consultation"
                 className="group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md bg-[#F5A623] px-4 text-[10px] font-bold tracking-wide text-black transition-colors duration-300 hover:bg-white sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
               >
-                OUR SERVICES
+                SCHEDULE A CALL
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   <ArrowRight />
                 </span>
