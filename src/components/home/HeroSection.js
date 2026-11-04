@@ -156,9 +156,9 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* Premium mobile and tablet founder presentation */}
-          <div className="relative mt-3 h-[270px] w-full sm:mt-5 sm:h-[350px] lg:hidden">
-            {/* Warm ambient glow */}
+          {/* Mobile and tablet founder presentation */}
+          <div className="relative -mx-6 mt-3 h-[270px] w-[calc(100%+3rem)] overflow-hidden sm:-mx-10 sm:mt-5 sm:h-[350px] sm:w-[calc(100%+5rem)] lg:hidden">
+            {/* Existing subtle glow */}
             <div
               className="pointer-events-none absolute bottom-0 right-0 h-[90%] w-[85%]"
               style={{
@@ -167,9 +167,9 @@ export default function HeroSection() {
               }}
             />
 
-            {/* Founder portrait, full width retained */}
+            {/* Andre's portrait */}
             <div
-              className="absolute bottom-0 right-[-12px] h-full w-[290px] sm:right-[-15px] sm:w-[370px]"
+              className="absolute -bottom-[20px] right-0 h-[calc(100%+20px)] w-[290px] sm:w-[370px]"
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to bottom, black 0%, black 66%, rgba(0,0,0,0.85) 78%, transparent 100%)",
@@ -182,19 +182,21 @@ export default function HeroSection() {
                 alt="Andre Dyer, Founder and CEO of Credoe Talent"
                 fill
                 sizes="(max-width: 640px) 290px, 370px"
-                className="object-contain object-bottom"
+                className="object-contain object-right-bottom"
               />
             </div>
 
-            {/* Bottom blend into background */}
+            {/* Existing bottom blend */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65px] bg-gradient-to-t from-[#050A18] via-[#050A18]/65 to-transparent" />
 
-            {/* Founder identity */}
-            <div className="absolute bottom-5 left-0 z-10">
+            {/* Founder identity, restored to original content alignment */}
+            <div className="absolute bottom-5 left-6 z-10 sm:left-10">
               <div className="mb-2 h-px w-10 bg-[#F5A623]" />
+
               <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/80">
                 Andre Dyer
               </p>
+
               <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-[#F5A623]">
                 Founder & CEO
               </p>
@@ -202,7 +204,7 @@ export default function HeroSection() {
           </div>
 
           {/* Desktop founder portrait */}
-          <div className="pointer-events-none absolute -bottom-28 -right-16 z-10 hidden h-full w-[50%] lg:block">
+          <div className="pointer-events-none absolute -bottom-30 -right-16 z-10 hidden h-full w-[50%] lg:block">
             <Image
               src="/images/AndreDyer2026.png"
               alt="Credoe Talent founder"

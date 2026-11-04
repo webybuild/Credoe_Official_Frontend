@@ -1,203 +1,36 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const GOLD = "#F4A019";
-const SLIDE_DURATION = 450;
+const SLIDE_DURATION = 6500;
 
-const testimonials = [
+const defaultTestimonials = [
+  {
+    quote:
+      "Andre Dyer of Credo Talent Solutions is an exceptional recruiting partner. His ability to attract top talent, understand business needs, and build lasting relationships has strengthened WC Bradley’s talent acquisition efforts. His professionalism, responsiveness, and commitment to excellence are unmatched.",
+    name: "Fair",
+    role: "Sr. HR. Director, Talent, L&D",
+    company: "W.C. Bradley",
+  },
   {
     quote:
       "Andre invests in people. He took the time to truly understand me, and he does the same with every company he works with, from its culture to what each role requires. When I was deciding between two opportunities, he helped me see which one was the right fit. That trust has lasted long after the search, and he's still the first person I turn to for career advice.",
     name: "L. Raymond",
     role: "Enterprise Marketing & AI, Digital Executive",
-    company: "Formerly at Prudential and Bank of America",
-    logo: "prudential",
-    logoImages: ["/images/prudential.jpeg", "/images/bankofamerica.jpeg"],
+    company: "Formerly Prudential, Bank of America",
   },
   {
     quote:
       "Andre Dyer is an exceptional recruiting partner who combines deep business insight, thoughtful candidate assessment, and genuine commitment to identifying leaders who align with organizational culture, strengthen teams, and deliver lasting business impact.",
     name: "J. Meraz",
     role: "VP, Finance & Accounting",
-    company: "W.C. Bradley Co.",
-    logo: "wcbradley",
-    logoImages: ["/images/bradley.jpeg"],
-  },
-  {
-    quote:
-      "The professionalism, dedication, and strategic approach of Credoe Talent Solutions sets them apart. They are a trusted partner in our leadership journey.",
-    name: "Jennifer Lee",
-    role: "Senior Vice President, Talent Management",
-    company: "PNC Bank",
-    logo: "pnc",
-  },
-  {
-    quote:
-      "Credoe brought a thoughtful, strategic approach to our talent needs. Their understanding of leadership and culture made a meaningful difference.",
-    name: "Michael Roberts",
-    role: "Executive Leadership",
-    company: "Johnson & Johnson",
-    logo: "jnj",
-  },
-  {
-    quote:
-      "The quality of candidates and the care taken throughout the process made Credoe a valuable partner for our organization.",
-    name: "Sarah Williams",
-    role: "Talent Acquisition Leader",
-    company: "AbbVie",
-    logo: "abbvie",
+    company: "W.C. Bradley",
   },
 ];
 
-const trustedCompanies = [
-  { name: "Microsoft", logo: "microsoft" },
-  { name: "Johnson & Johnson", logo: "jnj" },
-  { name: "Verizon", logo: "verizon" },
-  { name: "PNC", logo: "pnc" },
-  { name: "AbbVie", logo: "abbvie" },
-  { name: "Caterpillar", logo: "caterpillar" },
-];
-
-function MicrosoftMark() {
-  return (
-    <span
-      aria-hidden="true"
-      className="inline-grid h-7 w-7 shrink-0 grid-cols-2 grid-rows-2 gap-[2px]"
-    >
-      <span className="bg-[#F25022]" />
-      <span className="bg-[#7FBA00]" />
-      <span className="bg-[#00A4EF]" />
-      <span className="bg-[#F4A019]" />
-    </span>
-  );
-}
-
-function CompanyLogo({ type, compact = false }) {
-  const textSize = compact ? "text-[19px]" : "text-[24px]";
-
-  if (type === "microsoft") {
-    return (
-      <span className="inline-flex items-center gap-2 whitespace-nowrap">
-        <MicrosoftMark />
-        <span
-          className={`${
-            compact ? "text-[14px]" : "text-[22px]"
-          } font-medium tracking-tight text-[#5E6674]`}
-        >
-          Microsoft
-        </span>
-      </span>
-    );
-  }
-
-  if (type === "verizon") {
-    return (
-      <span
-        className={`${textSize} whitespace-nowrap font-extrabold tracking-[-0.07em] text-[#080E20]`}
-      >
-        verizon<span className="text-[#E82127]">✓</span>
-      </span>
-    );
-  }
-
-  if (type === "pnc") {
-    return (
-      <span className="inline-flex items-center gap-1 whitespace-nowrap">
-        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-[#F36C21] text-[16px] font-bold text-white">
-          ◈
-        </span>
-        <span
-          className={`${textSize} font-serif tracking-tight text-[#07519C]`}
-        >
-          PNC
-        </span>
-      </span>
-    );
-  }
-
-  if (type === "jnj") {
-    return (
-      <span
-        className={`${
-          compact ? "text-[15px]" : "text-[19px]"
-        } max-w-[145px] text-center font-serif font-bold leading-[0.95] text-[#E31837]`}
-      >
-        Johnson &amp;
-        <br />
-        Johnson
-      </span>
-    );
-  }
-
-  if (type === "abbvie") {
-    return (
-      <span
-        className={`${textSize} whitespace-nowrap font-medium tracking-[-0.06em] text-[#071E5B]`}
-      >
-        abbVie
-      </span>
-    );
-  }
-
-  return (
-    <span
-      className={`${
-        compact ? "text-[13px]" : "text-[18px]"
-      } whitespace-nowrap font-black uppercase tracking-[-0.06em] text-[#111827]`}
-    >
-      <span style={{ color: GOLD }}>▲</span>
-      CATERPILLAR
-      <sup className="text-[8px]">®</sup>
-    </span>
-  );
-}
-
-function TestimonialBrandLogo({ testimonial, compact = false }) {
-  if (testimonial.logoImages?.length) {
-    return (
-      <span
-        className={`flex items-center justify-center ${
-          compact ? "gap-1" : "gap-2"
-        }`}
-        aria-label={`${testimonial.company} logos`}
-      >
-        {testimonial.logoImages.map((src) => (
-          <img
-            key={src}
-            src={src}
-            alt=""
-            loading="lazy"
-            className={
-              compact
-                ? "h-5 max-w-[38px] object-contain"
-                : "h-7 max-w-[54px] object-contain"
-            }
-          />
-        ))}
-      </span>
-    );
-  }
-
-  if (testimonial.logo === "microsoft") {
-    return <MicrosoftMark />;
-  }
-
-  return <CompanyLogo type={testimonial.logo} compact={compact} />;
-}
-
-function QuoteIcon() {
-  return (
-    <svg
-      viewBox="0 0 44 36"
-      fill="currentColor"
-      aria-hidden="true"
-      className="h-8 w-10 shrink-0"
-      style={{ color: GOLD }}
-    >
-      <path d="M3 17C3 7 9 2 19 1v7c-5 1-7 4-7 8h7v17H2V18zm23 0C26 7 32 2 42 1v7c-5 1-7 4-7 8h7v17H25V18z" />
-    </svg>
-  );
+function formatNumber(number) {
+  return String(number).padStart(2, "0");
 }
 
 function ArrowIcon({ direction = "right" }) {
@@ -206,12 +39,14 @@ function ArrowIcon({ direction = "right" }) {
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
-      className={`h-5 w-5 ${direction === "left" ? "rotate-180" : ""}`}
+      className={`h-[18px] w-[18px] ${
+        direction === "left" ? "rotate-180" : ""
+      }`}
     >
       <path
         d="M5 12h14m-6-7 7 7-7 7"
         stroke="currentColor"
-        strokeWidth="1.8"
+        strokeWidth="1.7"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -219,147 +54,53 @@ function ArrowIcon({ direction = "right" }) {
   );
 }
 
+function QuoteMark() {
+  return (
+    <svg
+      viewBox="0 0 60 48"
+      fill="currentColor"
+      aria-hidden="true"
+      className="h-7 w-9 sm:h-10 sm:w-12"
+      style={{ color: GOLD }}
+    >
+      <path d="M4 23C4 9 12 2 27 0v9C19 11 15 16 15 23h12v25H3V24zm32 0C36 9 44 2 59 0v9c-8 2-12 7-12 14h12v25H35V24z" />
+    </svg>
+  );
+}
+
 function InfoIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-5 w-5">
-      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" />
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
       <path
-        d="M12 11v5m0-8h.01"
+        d="M12 11v5M12 8h.01"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth="1.8"
         strokeLinecap="round"
       />
     </svg>
   );
 }
 
-/* Animated testimonial card */
-function TestimonialCard({
-  testimonial,
-  onViewFull,
-  slideDirection,
-  animationDelay = 0,
-}) {
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const card = cardRef.current;
-
-    if (!card || typeof card.animate !== "function") {
-      return undefined;
-    }
-
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
-    if (prefersReducedMotion) {
-      return undefined;
-    }
-
-    const startX = slideDirection === "previous" ? -48 : 48;
-
-    const animation = card.animate(
-      [
-        {
-          opacity: 0.45,
-          transform: `translate3d(${startX}px, 0, 0)`,
-        },
-        {
-          opacity: 1,
-          transform: "translate3d(0, 0, 0)",
-        },
-      ],
-      {
-        duration: SLIDE_DURATION,
-        delay: animationDelay,
-        easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-        fill: "both",
-      },
-    );
-
-    return () => {
-      animation.cancel();
-    };
-  }, [slideDirection, animationDelay, testimonial.name]);
-
+function CloseIcon() {
   return (
-    <article
-      ref={cardRef}
-      className="flex h-full min-h-[350px] flex-col rounded-[14px] border border-[#E9E9E9] bg-white p-6 shadow-[0_3px_16px_rgba(0,0,0,0.035)] transition-shadow duration-300 hover:shadow-[0_12px_30px_rgba(0,0,0,0.07)]"
-    >
-      <div className="flex items-start justify-between gap-3">
-        <QuoteIcon />
-
-        <button
-          type="button"
-          onClick={() => onViewFull(testimonial)}
-          aria-label={`Read full testimonial from ${testimonial.name}`}
-          title="Read full testimonial"
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#E7E7E7] text-[#536176] transition duration-200 hover:border-[#F4B400] hover:bg-[#FFF8E5] hover:text-[#9B7000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4B400]"
-        >
-          <InfoIcon />
-        </button>
-      </div>
-
-      <div className="mt-4 min-h-[90px]">
-        <p className="line-clamp-3 overflow-hidden text-[15px] leading-[1.8] text-[#17243A] sm:text-[16px]">
-          {testimonial.quote}
-        </p>
-      </div>
-
-      <button
-        type="button"
-        onClick={() => onViewFull(testimonial)}
-        className="mt-2 w-fit text-left text-[12px] font-semibold transition-colors hover:underline"
-        style={{ color: GOLD }}
-      >
-        Read full testimonial
-      </button>
-
-      <div
-        className="mb-5 mt-5 h-px w-[42px] shrink-0"
-        style={{ backgroundColor: GOLD }}
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-5 w-5">
+      <path
+        d="m6 6 12 12M18 6 6 18"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
       />
-
-      <div className="mt-auto flex min-h-[72px] items-center gap-3">
-        <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#EEEEEE] bg-white shadow-[0_2px_10px_rgba(0,0,0,0.04)]">
-          <TestimonialBrandLogo testimonial={testimonial} compact />
-        </div>
-
-        <div className="min-w-0 flex-1">
-          <h3 className="truncate text-[14px] font-semibold text-[#111827]">
-            {testimonial.name}
-          </h3>
-
-          <p
-            className="mt-1 line-clamp-2 min-h-[32px] text-[12px] leading-4 text-[#354158]"
-            title={testimonial.role}
-          >
-            {testimonial.role}
-          </p>
-
-          <p className="mt-1 text-[12px] leading-4 text-[#354158]">
-            {testimonial.company}
-          </p>
-        </div>
-
-        <div className="hidden min-w-[90px] shrink-0 items-center justify-center border-l border-[#D9DDE3] pl-3 md:flex">
-          <TestimonialBrandLogo testimonial={testimonial} compact />
-        </div>
-      </div>
-    </article>
+    </svg>
   );
 }
 
+/* Full testimonial modal */
 function TestimonialModal({ testimonial, onClose }) {
-  const modalRef = useRef(null);
+  const closeButtonRef = useRef(null);
 
   useEffect(() => {
-    if (!testimonial) return undefined;
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
@@ -369,25 +110,18 @@ function TestimonialModal({ testimonial, onClose }) {
 
     document.addEventListener("keydown", handleKeyDown);
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     return () => {
-      document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
     };
-  }, [testimonial, onClose]);
-
-  useEffect(() => {
-    if (!testimonial || !modalRef.current) return undefined;
-
-    modalRef.current.focus();
-
-    return undefined;
-  }, [testimonial]);
-
-  if (!testimonial) return null;
+  }, [onClose]);
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto bg-[#050A18]/70 p-4 backdrop-blur-sm"
+      className="fixed inset-0 z-[100] flex cursor-pointer items-center justify-center overflow-y-auto bg-[#020914]/80 p-3 backdrop-blur-md sm:p-6"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) {
           onClose();
@@ -395,303 +129,440 @@ function TestimonialModal({ testimonial, onClose }) {
       }}
     >
       <div
-        ref={modalRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="testimonial-modal-title"
-        tabIndex={-1}
-        className="relative my-auto w-full max-w-[600px] rounded-2xl bg-white p-6 shadow-2xl outline-none sm:p-9"
+        className="relative my-auto w-full max-w-[680px] cursor-auto overflow-hidden rounded-xl border border-white/10 bg-[#081B30] shadow-[0_25px_100px_rgba(0,0,0,0.5)] sm:rounded-2xl"
       >
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close testimonial"
-          className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-[#E7E7E7] text-2xl text-[#536176] transition hover:bg-[#FFF8E5] hover:text-[#9B7000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4B400]"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#F4A019]/15"
+        />
 
-        <div className="pr-10">
-          <QuoteIcon />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-12 -top-12 h-48 w-48 rounded-full border border-white/[0.06]"
+        />
 
-          <p
-            className="mt-5 text-xs font-semibold uppercase tracking-[0.16em]"
-            style={{ color: "#D98900" }}
-          >
-            Client Success Story
-          </p>
+        {/* Modal header */}
+        <div className="relative flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4 sm:px-8 sm:py-6">
+          <div className="min-w-0">
+            <div className="flex items-center gap-3">
+              <span className="h-[2px] w-7 shrink-0 bg-[#F4A019]" />
 
-          <h2
-            id="testimonial-modal-title"
-            className="mt-2 text-2xl font-semibold leading-tight text-[#0C1A32] sm:text-3xl"
-          >
-            What our client says
-          </h2>
-        </div>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#F4A019] sm:text-[10px]">
+                Client Testimonial
+              </span>
+            </div>
 
-        <p className="mt-6 whitespace-pre-line text-[15px] leading-8 text-[#354158] sm:text-base">
-          {testimonial.quote}
-        </p>
-
-        <div className="my-7 h-px w-full bg-[#EAEAEA]" />
-
-        <div className="flex items-center gap-4">
-          <div className="flex h-[64px] w-[64px] shrink-0 items-center justify-center overflow-hidden rounded-full border border-[#EEEEEE] bg-white p-1">
-            <TestimonialBrandLogo testimonial={testimonial} compact />
+            <h2
+              id="testimonial-modal-title"
+              className="mt-2 font-heading text-[20px] font-medium text-white sm:text-[27px]"
+            >
+              A Client Perspective
+            </h2>
           </div>
 
-          <div className="min-w-0">
-            <p className="font-semibold text-[#111827]">{testimonial.name}</p>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            onClick={onClose}
+            aria-label="Close testimonial"
+            className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] sm:h-10 sm:w-10"
+          >
+            <CloseIcon />
+          </button>
+        </div>
 
-            <p className="mt-1 text-sm text-[#536176]">{testimonial.role}</p>
+        {/* Full testimonial content */}
+        <div className="relative max-h-[65vh] overflow-y-auto px-5 py-6 sm:px-8 sm:py-9">
+          <QuoteMark />
 
-            <p className="mt-1 text-sm font-medium text-[#17243A]">
+          <blockquote className="mt-4 sm:mt-5">
+            <p className="font-heading text-[17px] font-medium leading-[1.65] tracking-[-0.015em] text-white sm:text-[23px] sm:leading-[1.7]">
+              “{testimonial.quote}”
+            </p>
+          </blockquote>
+
+          <div className="mt-6 h-px w-12 bg-[#F4A019] sm:mt-7" />
+
+          {/* Client details */}
+          <div className="mt-5 sm:mt-6">
+            <p className="font-heading text-[21px] font-semibold leading-tight tracking-[-0.02em] text-[#F4A019] sm:text-[28px]">
               {testimonial.company}
             </p>
+
+            <div className="mt-4">
+              <h3 className="font-heading text-[18px] font-medium text-white sm:text-[21px]">
+                {testimonial.name}
+              </h3>
+
+              <p className="mt-1 text-[11px] leading-relaxed text-white/65 sm:text-[12px]">
+                {testimonial.role}
+              </p>
+            </div>
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onClose}
-          className="mt-8 w-full rounded-lg px-5 py-3 text-sm font-semibold text-[#111827] transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4B400]"
-          style={{ backgroundColor: GOLD }}
-        >
-          Close
-        </button>
+        {/* Modal footer */}
+        <div className="relative flex items-center justify-between border-t border-white/10 px-5 py-4 sm:px-8">
+          <span className="text-[8px] font-medium uppercase tracking-[0.15em] text-white/35 sm:text-[9px] sm:tracking-[0.18em]">
+            Credoe Talent Solutions
+          </span>
+
+          <button
+            type="button"
+            onClick={onClose}
+            className="cursor-pointer text-[10px] font-semibold uppercase tracking-[0.12em] text-[#F4A019] transition-colors hover:text-white sm:text-[11px]"
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
 }
 
-export default function ClientSuccessSection() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [selectedTestimonial, setSelectedTestimonial] = useState(null);
-  const [slideDirection, setSlideDirection] = useState("next");
+function AnimatedTestimonial({ testimonial, slideDirection, onReadFull }) {
+  const contentRef = useRef(null);
 
   useEffect(() => {
-    if (isPaused || selectedTestimonial) return undefined;
+    const element = contentRef.current;
 
-    const interval = setInterval(() => {
-      setSlideDirection("next");
-      setActiveIndex((current) => (current + 1) % testimonials.length);
-    }, 5000);
+    if (!element || typeof element.animate !== "function") return;
 
-    return () => clearInterval(interval);
-  }, [isPaused, selectedTestimonial]);
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-  const next = () => {
-    setSlideDirection("next");
-    setActiveIndex((current) => (current + 1) % testimonials.length);
-  };
+    if (reducedMotion) return;
 
-  const previous = () => {
-    setSlideDirection("previous");
-    setActiveIndex(
-      (current) => (current - 1 + testimonials.length) % testimonials.length,
+    const startX = slideDirection === "previous" ? -24 : 24;
+
+    const animation = element.animate(
+      [
+        {
+          opacity: 0,
+          transform: `translate3d(${startX}px, 8px, 0)`,
+        },
+        {
+          opacity: 1,
+          transform: "translate3d(0, 0, 0)",
+        },
+      ],
+      {
+        duration: 550,
+        easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+        fill: "both",
+      },
     );
-  };
 
-  const goToTestimonial = (index) => {
-    setSlideDirection(index >= activeIndex ? "next" : "previous");
-    setActiveIndex(index);
-  };
-
-  const visibleTestimonials = [0, 1, 2].map(
-    (offset) => testimonials[(activeIndex + offset) % testimonials.length],
-  );
+    return () => animation.cancel();
+  }, [testimonial, slideDirection]);
 
   return (
-    <section
-      id="testimonials"
-      className="relative isolate overflow-hidden bg-[#FCFCFB] text-[#0D1B32]"
+    <div
+      ref={contentRef}
+      className="grid h-full min-h-0 grid-rows-[minmax(0,1fr)_auto] items-center gap-4 sm:gap-6 lg:grid-cols-[minmax(0,1fr)_280px] lg:grid-rows-1 lg:gap-10 xl:grid-cols-[minmax(0,1fr)_320px] xl:gap-14"
     >
-      {/* Decorative background circles */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-[300px] top-[120px] -z-10 h-[550px] w-[550px] rounded-full border"
-        style={{ borderColor: `${GOLD}26` }}
-      />
+      {/* Main testimonial */}
+      <div className="flex min-h-0 min-w-0 flex-col justify-center">
+        <QuoteMark />
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-[240px] top-[180px] -z-10 h-[430px] w-[430px] rounded-full border"
-        style={{ borderColor: `${GOLD}26` }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-[300px] top-0 -z-10 h-[650px] w-[650px] rounded-full border"
-        style={{ borderColor: `${GOLD}33` }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-[230px] top-[60px] -z-10 h-[510px] w-[510px] rounded-full border"
-        style={{ borderColor: `${GOLD}26` }}
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-[160px] top-[120px] -z-10 h-[370px] w-[370px] rounded-full border"
-        style={{ borderColor: `${GOLD}26` }}
-      />
-
-      {/* Main testimonial content */}
-      <div className="mx-auto max-w-[1600px] px-5 pb-10 pt-12 sm:px-8 sm:pb-12 sm:pt-14 lg:px-12 lg:pb-9 lg:pt-[50px]">
-        <header className="mx-auto max-w-[900px] text-center">
-          <div className="flex items-center justify-center gap-4">
-            <span className="h-px w-10" style={{ backgroundColor: GOLD }} />
-
-            <p
-              className="text-[13px] font-medium uppercase tracking-wide sm:text-[15px]"
-              style={{ color: "#D98900" }}
-            >
-              Client Success Stories
-            </p>
-
-            <span className="h-px w-10" style={{ backgroundColor: GOLD }} />
-          </div>
-
-          <h2 className="mt-4 font-heading text-[36px] font-semibold leading-[1.15] tracking-[-0.025em] text-[#0C1A32] sm:text-[44px] lg:text-[52px]">
-            What Leaders Say
-            <br />
-            About Working with <span style={{ color: "#D98900" }}>Credoe.</span>
-          </h2>
-
-          <div
-            className="mx-auto mt-5 h-px w-[42px]"
-            style={{ backgroundColor: GOLD }}
-          />
-
-          <p className="mx-auto mt-4 max-w-[800px] text-[15px] leading-[1.75] text-[#18253A] sm:text-[18px]">
-            We partner with organizations to deliver exceptional talent and
-            measurable impact.
-            <br className="hidden sm:block" />
-            Here’s what our clients have to say about their experience with us.
+        <blockquote className="mt-3 sm:mt-4">
+          <p className="line-clamp-7 font-heading text-[17px] font-medium leading-[1.48] tracking-[-0.02em] text-white sm:line-clamp-5 sm:text-[25px] sm:leading-[1.45] lg:text-[30px] xl:text-[34px]">
+            “{testimonial.quote}”
           </p>
-        </header>
+        </blockquote>
 
-        {/* Animated testimonial carousel */}
+        <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:mt-5 sm:gap-4">
+          <span className="h-[2px] w-7 shrink-0 bg-[#F4A019] sm:w-12" />
+
+          <span className="text-[8px] font-medium uppercase tracking-[0.15em] text-white/45 sm:text-[10px] sm:tracking-[0.24em]">
+            A Client Perspective
+          </span>
+
+          <button
+            type="button"
+            onClick={onReadFull}
+            aria-label="Read full testimonial"
+            title="Read full testimonial"
+            className="group inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-[#F4A019]/40 bg-[#F4A019]/[0.08] px-2.5 text-[8px] font-semibold uppercase tracking-[0.1em] text-[#F4A019] transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] sm:gap-2 sm:px-3 sm:text-[9px] sm:tracking-[0.12em]"
+          >
+            <InfoIcon />
+            <span>Read full</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Client identity */}
+      <aside className="relative flex min-h-[125px] min-w-0 flex-col justify-center gap-3 overflow-hidden rounded-lg border border-white/10 bg-white/[0.045] p-4 sm:min-h-[150px] sm:gap-5 sm:p-5 lg:min-h-[260px] lg:justify-between lg:rounded-xl lg:p-6">
         <div
-          className="relative mt-8 sm:mt-10 lg:mt-9"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onFocusCapture={() => setIsPaused(true)}
-          onBlurCapture={(event) => {
-            if (!event.currentTarget.contains(event.relatedTarget)) {
-              setIsPaused(false);
-            }
-          }}
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full border border-[#F4A019]/20"
+        />
+
+        {/* Company name */}
+        <div className="relative min-w-0 border-b border-white/10 pb-3 sm:pb-4 lg:pb-5">
+          <div className="mb-2 text-[8px] font-semibold uppercase tracking-[0.18em] text-[#F4A019] sm:text-[9px] sm:tracking-[0.2em]">
+            Client Recognition
+          </div>
+
+          <p className="break-words font-heading text-[19px] font-semibold leading-[1.2] tracking-[-0.025em] text-[#F4A019] sm:text-[25px] lg:text-[28px]">
+            {testimonial.company}
+          </p>
+        </div>
+
+        {/* Client details */}
+        <div className="relative min-w-0 lg:mt-5">
+          <h3 className="line-clamp-2 font-heading text-[18px] font-medium leading-tight text-white sm:text-[23px] lg:text-[25px]">
+            {testimonial.name}
+          </h3>
+
+          <p className="mt-1.5 line-clamp-2 break-words text-[10px] leading-[1.6] text-white/65 sm:text-[12px] sm:leading-5">
+            {testimonial.role}
+          </p>
+
+          <div className="mt-3 h-px w-8 bg-[#F4A019] lg:mt-4 lg:w-10" />
+        </div>
+      </aside>
+    </div>
+  );
+}
+
+export default function ClientSuccessSection({
+  testimonials: testimonialItems = defaultTestimonials,
+}) {
+  const testimonials = Array.isArray(testimonialItems)
+    ? testimonialItems.filter((item) => item && item.quote && item.name)
+    : [];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [slideDirection, setSlideDirection] = useState("next");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const progressRef = useRef(null);
+
+  const totalTestimonials = testimonials.length;
+
+  // Keep the active index valid if CMS content changes.
+  useEffect(() => {
+    setActiveIndex((current) =>
+      totalTestimonials === 0 ? 0 : current % totalTestimonials,
+    );
+  }, [totalTestimonials]);
+
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+  }, []);
+
+  const openModal = useCallback(() => {
+    setIsModalOpen(true);
+  }, []);
+
+  const next = useCallback(() => {
+    if (totalTestimonials <= 1) return;
+
+    setSlideDirection("next");
+    setActiveIndex((current) => (current + 1) % totalTestimonials);
+  }, [totalTestimonials]);
+
+  const previous = useCallback(() => {
+    if (totalTestimonials <= 1) return;
+
+    setSlideDirection("previous");
+    setActiveIndex(
+      (current) => (current - 1 + totalTestimonials) % totalTestimonials,
+    );
+  }, [totalTestimonials]);
+
+  // Automatic testimonial rotation.
+  useEffect(() => {
+    if (isPaused || isModalOpen || totalTestimonials <= 1) {
+      return undefined;
+    }
+
+    const timer = setTimeout(next, SLIDE_DURATION);
+
+    return () => clearTimeout(timer);
+  }, [activeIndex, isPaused, isModalOpen, next, totalTestimonials]);
+
+  // Animated progress indicator.
+  useEffect(() => {
+    const bar = progressRef.current;
+
+    if (!bar || typeof bar.animate !== "function") return undefined;
+
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (reducedMotion) {
+      bar.style.transform = "scaleX(1)";
+      return undefined;
+    }
+
+    const animation = bar.animate(
+      [{ transform: "scaleX(0)" }, { transform: "scaleX(1)" }],
+      {
+        duration: SLIDE_DURATION,
+        easing: "linear",
+        fill: "forwards",
+      },
+    );
+
+    if (isPaused || isModalOpen) animation.pause();
+
+    return () => animation.cancel();
+  }, [activeIndex, isPaused, isModalOpen]);
+
+  if (totalTestimonials === 0) return null;
+
+  const activeTestimonial = testimonials[activeIndex] || testimonials[0];
+
+  return (
+    <>
+      <section
+        id="testimonials"
+        className="relative isolate overflow-hidden bg-[#061426] text-white"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onFocusCapture={() => setIsPaused(true)}
+        onBlurCapture={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) {
+            setIsPaused(false);
+          }
+        }}
+      >
+        {/* Background atmosphere */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -z-10"
         >
-          <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5 xl:gap-6">
-            {visibleTestimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={`${activeIndex}-${testimonial.name}`}
-                testimonial={testimonial}
-                onViewFull={setSelectedTestimonial}
-                slideDirection={slideDirection}
-                animationDelay={index * 65}
-              />
-            ))}
-          </div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_15%_45%,rgba(25,56,88,0.55),transparent_55%)]" />
 
-          <button
-            type="button"
-            onClick={previous}
-            aria-label="Previous testimonials"
-            className="absolute -left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#E9E9E9] bg-white text-[#536176] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition duration-300 hover:scale-105 hover:border-[#F4B400] hover:text-[#9B7000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4B400] sm:-left-5 sm:h-[54px] sm:w-[54px] lg:-left-6 cursor-pointer"
-          >
-            <ArrowIcon direction="left" />
-          </button>
+          <div className="absolute -right-[220px] -top-[200px] h-[500px] w-[500px] rounded-full border border-white/[0.045] sm:h-[600px] sm:w-[600px]" />
 
-          <button
-            type="button"
-            onClick={next}
-            aria-label="Next testimonials"
-            className="absolute -right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-[#E9E9E9] bg-white text-[#536176] shadow-[0_3px_15px_rgba(0,0,0,0.08)] transition duration-300 hover:scale-105 hover:border-[#F4B400] hover:text-[#9B7000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4B400] sm:-right-5 sm:h-[54px] sm:w-[54px] lg:-right-6 cursor-pointer"
-          >
-            <ArrowIcon direction="right" />
-          </button>
+          <div className="absolute -right-[150px] -top-[140px] h-[390px] w-[390px] rounded-full border border-[#F4A019]/[0.09] sm:h-[460px] sm:w-[460px]" />
+
+          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#F4A019]/40 to-transparent" />
         </div>
 
-        {/* Pagination */}
-        <div className="mt-7 flex items-center justify-center gap-3">
-          {testimonials.map((testimonial, index) => (
-            <button
-              key={testimonial.name}
-              type="button"
-              onClick={() => goToTestimonial(index)}
-              aria-label={`Show testimonial ${index + 1}`}
-              aria-current={activeIndex === index ? "true" : undefined}
-              className={`h-[11px] w-[11px] rounded-full transition-colors duration-200 ${
-                activeIndex === index ? "" : "bg-[#D6D7D9] hover:bg-[#B6B8BC]"
-              }`}
-              style={
-                activeIndex === index ? { backgroundColor: GOLD } : undefined
-              }
-            />
-          ))}
-        </div>
+        {/* Main content */}
+        <div className="mx-auto max-w-[1500px] px-6 pb-8 pt-9 sm:px-8 sm:pb-12 sm:pt-12 lg:px-12 lg:pb-14 lg:pt-14">
+          {/* Header */}
+          <header className="mb-6 flex flex-col justify-between gap-4 sm:mb-9 sm:gap-5 lg:mb-10 lg:flex-row lg:items-end">
+            <div className="max-w-[760px] min-w-0">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <span className="h-[2px] w-7 shrink-0 bg-[#F4A019] sm:w-10" />
 
-        {/* View all testimonials */}
-        <div className="mt-7 flex justify-center">
-          <a
-            href="/testimonials"
-            className="group inline-flex min-h-[54px] items-center justify-center gap-4 rounded-[11px] border px-7 py-3 text-[13px] font-medium uppercase tracking-wide transition-colors duration-200 hover:bg-[#F4B400] hover:text-[#111827] sm:px-8 sm:text-[14px]"
-            style={{ borderColor: GOLD, color: "black" }}
-          >
-            View All Testimonials
-            <span className="transition-transform duration-200 group-hover:translate-x-1">
-              <ArrowIcon direction="right" />
-            </span>
-          </a>
-        </div>
-      </div>
-
-      {/* Trusted organizations */}
-      <div className="border-t border-[#EAEAEA]">
-        <div className="mx-auto max-w-[1450px] px-5 pb-10 pt-6 sm:px-8 sm:pb-12">
-          <div className="flex items-center justify-center gap-5">
-            <span
-              className="hidden h-px w-16 sm:block"
-              style={{ backgroundColor: `${GOLD}B3` }}
-            />
-
-            <h3
-              className="text-center text-[12px] font-medium uppercase tracking-wide sm:text-[14px]"
-              style={{ color: "#D98900" }}
-            >
-              Trusted by Leading Organizations
-            </h3>
-
-            <span
-              className="hidden h-px w-16 sm:block"
-              style={{ backgroundColor: `${GOLD}B3` }}
-            />
-          </div>
-
-          <div className="mt-7 grid grid-cols-2 items-center gap-x-5 gap-y-7 sm:grid-cols-3 lg:grid-cols-6 lg:gap-0">
-            {trustedCompanies.map((company, index) => (
-              <div
-                key={company.name}
-                className={`flex min-h-[42px] items-center justify-center px-3 ${
-                  index !== 0 ? "lg:border-l lg:border-[#D9DDE3]" : ""
-                }`}
-              >
-                <CompanyLogo type={company.logo} />
+                <p className="text-[8px] font-semibold uppercase tracking-[0.17em] text-[#F4A019] sm:text-[11px] sm:tracking-[0.24em]">
+                  Client Success Stories
+                </p>
               </div>
-            ))}
+
+              <h2 className="mt-4 font-heading text-[29px] font-medium leading-[1.14] tracking-[-0.035em] text-white sm:mt-5 sm:text-[42px] lg:text-[52px] xl:text-[58px]">
+                Trust is built
+                <br />
+                through <span className="text-[#F4A019]">results.</span>
+              </h2>
+
+              <p className="mt-3 max-w-[540px] text-[11px] leading-[1.75] text-white/60 sm:mt-4 sm:text-[14px] sm:leading-[1.8] lg:text-[15px]">
+                We partner with organizations to deliver exceptional talent and
+                measurable impact. Here’s what our clients have to say about
+                their experience with us.
+              </p>
+            </div>
+
+            {/* Dynamic testimonial count */}
+            <div className="flex w-[120px] shrink-0 items-end gap-2 lg:pb-1">
+              <span className="w-[3ch] font-heading text-[40px] leading-none tabular-nums text-[#F4A019] sm:text-[54px]">
+                {formatNumber(activeIndex + 1)}
+              </span>
+
+              <div className="mb-1 min-w-0">
+                <div className="h-px w-9 bg-white/30" />
+
+                <p className="mt-1.5 whitespace-nowrap text-[8px] uppercase tracking-[0.15em] text-white/45 sm:text-[9px] sm:tracking-[0.18em]">
+                  Of {formatNumber(totalTestimonials)} Stories
+                </p>
+              </div>
+            </div>
+          </header>
+
+          {/* Featured testimonial */}
+          <div className="relative h-[520px] border-y border-white/10 py-5 sm:h-[590px] sm:py-8 lg:h-[380px] lg:py-10 xl:h-[400px]">
+            <AnimatedTestimonial
+              key={activeTestimonial.name}
+              testimonial={activeTestimonial}
+              slideDirection={slideDirection}
+              onReadFull={openModal}
+            />
+          </div>
+
+          {/* Navigation */}
+          <div className="mt-5 flex items-center justify-between gap-3 sm:mt-7">
+            {/* Dynamic current position */}
+            <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
+              <span className="font-heading text-[14px] tabular-nums text-[#F4A019] sm:text-[17px]">
+                {formatNumber(activeIndex + 1)}
+              </span>
+
+              <div className="h-px w-7 bg-white/20 sm:w-12" />
+
+              <span className="font-heading text-[12px] tabular-nums text-white/45 sm:text-[15px]">
+                {formatNumber(totalTestimonials)}
+              </span>
+
+              <span className="hidden text-[9px] uppercase tracking-[0.16em] text-white/35 sm:inline">
+                Client stories
+              </span>
+            </div>
+
+            {/* Progress and controls */}
+            <div className="flex shrink-0 items-center gap-3 sm:gap-5">
+              <div className="h-[2px] w-10 overflow-hidden bg-white/15 sm:w-24 lg:w-28">
+                <div
+                  ref={progressRef}
+                  className="h-full origin-left bg-[#F4A019]"
+                  style={{ transform: "scaleX(0)" }}
+                />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={previous}
+                  disabled={totalTestimonials <= 1}
+                  aria-label="Previous testimonial"
+                  className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
+                >
+                  <ArrowIcon direction="left" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={next}
+                  disabled={totalTestimonials <= 1}
+                  aria-label="Next testimonial"
+                  className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
+                >
+                  <ArrowIcon />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Full testimonial popup */}
-      <TestimonialModal
-        testimonial={selectedTestimonial}
-        onClose={() => setSelectedTestimonial(null)}
-      />
-    </section>
+      {/* Full testimonial modal */}
+      {isModalOpen && (
+        <TestimonialModal
+          testimonial={activeTestimonial}
+          onClose={closeModal}
+        />
+      )}
+    </>
   );
 }

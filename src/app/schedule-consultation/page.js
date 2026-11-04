@@ -1,3 +1,5 @@
+import BookingCalendar from "@/components/consultation/BookingCalendar";
+
 export const metadata = {
   title: "Schedule a Consultation | Credoe Talent",
   description:
@@ -28,17 +30,7 @@ export default function ScheduleConsultationPage() {
 
       {/* Cal.com Booking Calendar */}
       <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="overflow-hidden rounded-xl border border-white/10 bg-[#111827] shadow-2xl">
-          <iframe
-            src="https://cal.com/webybuild-8oyipf/consultation?embed=true"
-            title="Schedule a Confidential Consultation with Credoe Talent"
-            width="100%"
-            height="850"
-            frameBorder="0"
-            className="block w-full"
-            loading="lazy"
-          />
-        </div>
+        <BookingCalendar />
       </section>
     </main>
   );

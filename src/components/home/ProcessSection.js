@@ -6,49 +6,28 @@ const processSteps = [
   {
     number: "01",
     title: "Discover",
-    description: (
-      <>
-        We learn about your
-        <br className="hidden xl:block" /> organization, goals, and
-        <br className="hidden xl:block" /> talent challenges.
-      </>
-    ),
+    description:
+      "We learn about your organization, goals, and talent challenges.",
     icon: "discover",
   },
   {
     number: "02",
     title: "Strategize",
-    description: (
-      <>
-        We craft a customized
-        <br className="hidden xl:block" /> talent strategy tailored
-        <br className="hidden xl:block" /> to your unique needs.
-      </>
-    ),
+    description:
+      "We craft a customized talent strategy tailored to your unique needs.",
     icon: "strategize",
   },
   {
     number: "03",
     title: "Deliver",
-    description: (
-      <>
-        We identify and present
-        <br className="hidden xl:block" /> top talent that drives
-        <br className="hidden xl:block" /> real impact.
-      </>
-    ),
+    description: "We identify and present top talent that drives real impact.",
     icon: "deliver",
   },
   {
     number: "04",
     title: "Support",
-    description: (
-      <>
-        We partner with you beyond
-        <br className="hidden xl:block" /> placement to ensure
-        <br className="hidden xl:block" /> long term success.
-      </>
-    ),
+    description:
+      "We partner with you beyond placement to ensure long-term success.",
     icon: "support",
   },
 ];
@@ -65,7 +44,7 @@ function ProcessIcon({ type }) {
   return (
     <svg
       viewBox="0 0 64 64"
-      className="h-11 w-11 sm:h-12 sm:w-12"
+      className="h-9 w-9 sm:h-10 sm:w-10"
       aria-hidden="true"
       {...common}
     >
@@ -120,8 +99,8 @@ function ProcessIcon({ type }) {
           <path d="m34 29 10 10c2 2 5-1 3-3l-8-10" />
           <path d="m41 27 7 7c3 2 6-2 3-4L39 19" />
           <path d="m20 34-5 6c-2 3 2 6 4 3l5-5" />
-          <path d="m27 39-5 6c-2 3 2 6 4 3l6-6" />
-          <path d="m34 43-4 5c-2 3 2 5 4 2l5-5" />
+          <path d="m27 39-5 6c-2 3 2 5 4 3l6-6" />
+          <path d="m34 43-4 5c-2 2 2 5 4 2l5-5" />
         </>
       )}
     </svg>
@@ -132,7 +111,7 @@ function GrowthIcon() {
   return (
     <svg
       viewBox="0 0 64 64"
-      className="h-14 w-14 sm:h-[68px] sm:w-[68px]"
+      className="h-9 w-9"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -154,7 +133,7 @@ function ArrowRight() {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-6 w-6"
+      className="h-5 w-5"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.8"
@@ -168,208 +147,135 @@ function ArrowRight() {
   );
 }
 
-function StepArrow() {
-  return (
-    <div
-      className="flex w-[74px] items-center text-[#F4A019]"
-      aria-hidden="true"
-    >
-      <span className="flex-1 border-t border-dashed border-[#F4A019]/80" />
-      <svg
-        viewBox="0 0 24 24"
-        className="h-4 w-4 shrink-0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M4 12h15" />
-        <path d="m13 6 6 6-6 6" />
-      </svg>
-    </div>
-  );
-}
-
 export default function ProcessSection() {
   return (
     <section
       id="our-process"
-      className="relative isolate overflow-hidden bg-[#020D19] text-white"
+      className="relative overflow-hidden bg-[#FAF9F6] text-[#07172B]"
     >
-      {/* Background image: anchored to the top, with controlled height */}
+      {/* Subtle decorative details */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 -z-20 h-[510px] bg-cover bg-no-repeat sm:h-[560px] lg:h-[620px]"
-        style={{
-          backgroundImage: "url('/images/ProcessBg.png')",
-          backgroundPosition: "center top",
-        }}
-      />
-
-      {/* Dark overlay blends the image into the process area */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-[#020D19]/10 via-[#020D19]/35 to-[#020D19] sm:via-[#020D19]/30"
-      />
-
-      {/* Decorative gold rings */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -left-[300px] top-[170px] -z-10 h-[550px] w-[550px] rounded-full border border-[#F4A019]/15"
+        className="pointer-events-none absolute -right-32 -top-40 h-[420px] w-[420px] rounded-full border border-[#F4A019]/10"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[280px] top-[-100px] -z-10 h-[600px] w-[600px] rounded-full border border-[#F4A019]/20"
+        className="pointer-events-none absolute -right-20 -top-28 h-[300px] w-[300px] rounded-full border border-[#F4A019]/10"
       />
 
-      <div className="mx-auto max-w-[1600px] px-5 pb-8 pt-12 sm:px-8 sm:pt-16 lg:px-12 lg:pt-[68px]">
-        {/* Hero heading */}
-        <div className="min-h-[350px] sm:min-h-[380px] lg:min-h-[450px]">
-          <div className="flex items-center gap-3">
-            <span className="h-px w-6" style={{ backgroundColor: GOLD }} />
+      <div className="relative mx-auto max-w-[1450px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-[76px]">
+        {/* Section heading */}
+        <div className="mb-9 flex flex-col justify-between gap-5 sm:mb-11 lg:flex-row lg:items-end lg:gap-12">
+          <div className="max-w-[650px]">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-7 bg-[#F4A019]" />
 
-            <p
-              className="text-[13px] font-medium uppercase tracking-[0.06em] sm:text-[16px]"
-              style={{ color: GOLD }}
-            >
-              Our Proven Approach
-            </p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[#B77A19] sm:text-xs">
+                Our Proven Approach
+              </p>
+            </div>
+
+            <h2 className="mt-4 font-heading text-[34px] font-medium leading-[1.12] tracking-[-0.035em] text-[#07172B] sm:text-[43px] lg:text-[50px]">
+              Strategic Thinking.
+              <br className="hidden sm:block" />
+              Measurable <span className="text-[#D99522]">Results.</span>
+            </h2>
+
+            <div className="mt-5 h-[2px] w-12 bg-[#F4A019]" />
           </div>
 
-          <h2 className="mt-5 max-w-[680px] font-heading text-[38px] font-medium leading-[1.12] tracking-[-0.035em] text-white sm:text-[52px] lg:text-[64px]">
-            Strategic Thinking.
-            <br />
-            Measurable <span style={{ color: GOLD }}>Results.</span>
-          </h2>
-
-          <div
-            className="mt-7 h-[2px] w-[57px]"
-            style={{ backgroundColor: GOLD }}
-          />
-
-          <p className="mt-7 max-w-[540px] text-[16px] leading-[1.8] text-white/90 sm:text-[19px]">
+          <p className="max-w-[440px] text-[14px] leading-[1.8] text-[#5D6875] sm:text-[15px] lg:mb-1">
             Our consultative, data-driven approach ensures we deliver the right
             talent and solutions aligned with your goals.
           </p>
         </div>
 
         {/* Four-step process */}
-        <div className="rounded-xl bg-[#031321]/80 px-5 py-7 backdrop-blur-[2px] sm:px-7 sm:py-8 lg:px-5 lg:py-8">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
-            {processSteps.map((step, index) => (
-              <div
-                key={step.number}
-                className={`relative min-w-0 ${
-                  index !== 0
-                    ? "lg:border-l lg:border-white/15 lg:pl-7 xl:pl-8"
-                    : "lg:pr-7 xl:pr-8"
-                } ${index < 2 ? "sm:pb-2 lg:pb-0" : ""}`}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full border border-white/55 text-[#F4A019] transition duration-300 hover:border-[#F4A019] hover:bg-[#F4A019]/10 sm:h-[82px] sm:w-[82px]">
-                    <ProcessIcon type={step.icon} />
-                  </div>
-
-                  <div className="min-w-0">
-                    <p
-                      className="text-[21px] font-semibold leading-none sm:text-[23px]"
-                      style={{ color: GOLD }}
-                    >
-                      {step.number}
-                    </p>
-
-                    <h3 className="mt-3 text-[21px] font-semibold leading-tight text-white sm:text-[24px]">
-                      {step.title}
-                    </h3>
-
-                    <div
-                      className="mt-3 h-px w-10"
-                      style={{ backgroundColor: GOLD }}
-                    />
-                  </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          {processSteps.map((step, index) => (
+            <article
+              key={step.number}
+              className="group relative min-w-0 rounded-xl border border-[#E9E5DC] bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#E6C58C] hover:shadow-[0_12px_35px_rgba(7,23,43,0.07)] sm:p-6 lg:p-5 xl:p-6"
+            >
+              {/* Card top row */}
+              <div className="flex items-start justify-between">
+                <div className="flex h-[62px] w-[62px] items-center justify-center rounded-full bg-[#FBF4E8] text-[#C88B26] transition-colors duration-300 group-hover:bg-[#F8EBD4]">
+                  <ProcessIcon type={step.icon} />
                 </div>
 
-                <p className="mt-5 max-w-[290px] text-[15px] leading-[1.8] text-white/95 sm:pl-2 sm:text-[17px]">
+                <span className="font-heading text-[27px] font-medium leading-none text-[#E6D9C2] transition-colors duration-300 group-hover:text-[#DDAA55]">
+                  {step.number}
+                </span>
+              </div>
+
+              {/* Card content */}
+              <div className="mt-6">
+                <h3 className="font-heading text-[22px] font-semibold tracking-[-0.02em] text-[#07172B] sm:text-[23px]">
+                  {step.title}
+                </h3>
+
+                <div className="mt-3 h-[2px] w-8 bg-[#F4A019] transition-all duration-300 group-hover:w-12" />
+
+                <p className="mt-4 max-w-[280px] text-[13px] leading-[1.8] text-[#68727E] sm:text-[14px]">
                   {step.description}
                 </p>
-
-                {/* Arrow is centered on the column boundary */}
-                {index < processSteps.length - 1 && (
-                  <div className="pointer-events-none absolute right-0 top-[42px] z-20 hidden translate-x-1/2 xl:block">
-                    <StepArrow />
-                  </div>
-                )}
               </div>
-            ))}
-          </div>
+
+              {/* Subtle bottom accent */}
+              <div className="absolute bottom-0 left-5 right-5 h-px bg-gradient-to-r from-transparent via-[#F4A019]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:left-6 sm:right-6" />
+            </article>
+          ))}
         </div>
 
-        {/* Bottom call-to-action */}
-        <div className="mt-8 rounded-xl border border-white/25 bg-[#061426]/90 p-6 backdrop-blur-sm sm:p-8 lg:mt-9 lg:px-10 lg:py-8">
-          <div className="grid items-center gap-7 lg:grid-cols-[150px_minmax(0,1fr)_1px_360px] lg:gap-8">
-            {/* Growth illustration */}
-            <div className="flex justify-center lg:justify-start">
-              <div className="relative flex h-[132px] w-[132px] items-center justify-center rounded-full border border-[#F4A019]/20">
-                <div className="absolute inset-[12px] rounded-full border border-[#F4A019]/35" />
-                <div className="absolute inset-[22px] rounded-full border border-[#F4A019]/60" />
-                <div className="relative flex h-[88px] w-[88px] items-center justify-center rounded-full border-2 border-[#F4A019] text-[#F4A019]">
-                  <GrowthIcon />
-                </div>
-              </div>
+        {/* Compact call to action */}
+        <div className="mt-7 flex flex-col gap-5 rounded-xl border border-[#E9E1D3] bg-[#F5F0E7] px-5 py-6 sm:px-7 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:px-9 lg:py-6">
+          <div className="flex items-center gap-4 sm:gap-5">
+            <div className="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-full border border-[#E5C58E] bg-white text-[#C88B26] sm:h-[62px] sm:w-[62px]">
+              <GrowthIcon />
             </div>
 
-            {/* CTA text */}
-            <div className="text-center lg:text-left">
-              <h3 className="font-heading text-[27px] font-medium leading-tight tracking-[-0.02em] text-white sm:text-[32px]">
+            <div>
+              <h3 className="font-heading text-[20px] font-medium leading-tight tracking-[-0.02em] text-[#07172B] sm:text-[23px]">
                 Let’s Build What’s Next Together.
               </h3>
 
-              <p className="mx-auto mt-3 max-w-[600px] text-[15px] leading-[1.8] text-white/90 sm:text-[17px] lg:mx-0">
-                Partner with Creode Talent Solutions to transform your talent
+              <p className="mt-1.5 max-w-[580px] text-[12px] leading-[1.7] text-[#68727E] sm:text-[13px]">
+                Partner with Credoe Talent Solutions to transform your talent
                 strategy into a competitive advantage.
               </p>
             </div>
+          </div>
 
-            <div className="hidden h-[120px] w-px bg-white/20 lg:block" />
+          <div className="flex shrink-0 flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4 lg:flex-col lg:items-end">
+            <a
+              href="/contact"
+              className="group inline-flex min-h-[48px] w-full items-center justify-between gap-6 rounded-md bg-[#07172B] px-5 text-[12px] font-bold uppercase tracking-[0.09em] text-white transition-colors duration-300 hover:bg-[#F4A019] sm:w-auto"
+            >
+              <span>Let’s Connect</span>
 
-            {/* CTA button and confidentiality note */}
-            <div className="flex flex-col items-center gap-4 lg:items-stretch">
-              <a
-                href="/contact"
-                className="group flex min-h-[64px] w-full max-w-[340px] items-center justify-between overflow-hidden rounded-lg bg-[#D98B25] text-[#07111D] transition duration-300 hover:bg-[#F4A019] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A019] focus-visible:ring-offset-2 focus-visible:ring-offset-[#061426]"
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <ArrowRight />
+              </span>
+            </a>
+
+            <p className="flex items-center gap-1.5 text-[11px] text-[#737C85]">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-3.5 w-3.5 shrink-0"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
               >
-                <span className="flex-1 px-5 text-center text-[15px] font-bold uppercase sm:text-[17px]">
-                  Let’s Connect
-                </span>
-
-                <span className="flex h-[64px] w-[66px] shrink-0 items-center justify-center bg-black/5 transition duration-300 group-hover:bg-black/10">
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    <ArrowRight />
-                  </span>
-                </span>
-              </a>
-
-              <p className="flex items-center justify-center gap-2 text-center text-[12px] text-white/85 sm:text-[14px] lg:justify-start">
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-[18px] w-[18px] shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <rect x="5" y="10" width="14" height="11" rx="2" />
-                  <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-                  <path d="m11 15 1 1 2-3" />
-                </svg>
-                Your information is always confidential.
-              </p>
-            </div>
+                <rect x="5" y="10" width="14" height="11" rx="2" />
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                <path d="m11 15 1 1 2-3" />
+              </svg>
+              Your information is always confidential.
+            </p>
           </div>
         </div>
       </div>
