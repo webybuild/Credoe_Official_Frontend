@@ -54,7 +54,6 @@ export default function BookingCalendar() {
       subtree: true,
     });
 
-    // Initialize Cal.com embed only once.
     const initializeCalendar = () => {
       if (!isActive || !window.Cal || hasInitialized) return;
 
@@ -71,7 +70,7 @@ export default function BookingCalendar() {
         config: {
           layout: "month_view",
           useSlotsViewOnSmallScreen: true,
-          disableMobileScroll: true,
+          disableMobileScroll: false,
         },
       });
 
@@ -87,11 +86,9 @@ export default function BookingCalendar() {
       watchForCalendar();
     };
 
-    // Reuse the SDK if it is already loaded.
     if (window.Cal && window.Cal.loaded) {
       initializeCalendar();
     } else {
-      // Create the official Cal.com embed loader.
       (function (C, A, L) {
         const p = function (a, ar) {
           a.q.push(ar);
@@ -113,7 +110,6 @@ export default function BookingCalendar() {
               script.src = A;
               script.async = true;
 
-              // Initialize once the SDK has loaded.
               script.onload = initializeCalendar;
 
               script.onerror = () => {
@@ -148,13 +144,9 @@ export default function BookingCalendar() {
           };
       })(window, CAL_SCRIPT_URL, "init");
 
-      // Initialize the embed namespace.
       window.Cal("init", CAL_NAMESPACE, {
         origin: "https://app.cal.com",
       });
-
-      // No second script load listener is needed.
-      // The SDK loader already calls initializeCalendar on load.
     }
 
     return () => {
@@ -173,92 +165,122 @@ export default function BookingCalendar() {
   }, [retryKey]);
 
   return (
-    <div className="relative overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
-      {/* Loading screen */}
-      {!isLoaded && !hasError && (
-        <div
-          className="absolute inset-0 z-10 flex min-h-[850px] flex-col items-center justify-center bg-[#071321] px-5 py-12 text-center"
-          aria-live="polite"
-        >
-          <div className="relative mb-8 flex h-16 w-16 items-center justify-center">
-            <div className="absolute inset-0 animate-spin rounded-full border-2 border-[#F5A623]/15 border-t-[#F5A623]" />
+    <>
+      <style jsx global>{`
+        #credoe-cal-inline {
+          width: 100%;
+        }
 
-            <div className="h-2 w-2 rounded-full bg-[#F5A623] shadow-[0_0_15px_rgba(245,166,35,0.8)]" />
+        #credoe-cal-inline iframe {
+          display: block !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          border: 0 !important;
+        }
+
+        @media (max-width: 767px) {
+          #credoe-cal-inline {
+            min-height: 900px;
+            touch-action: pan-y;
+            overscroll-behavior-y: auto;
+          }
+        }
+
+        @media (min-width: 768px) {
+          #credoe-cal-inline {
+            min-height: 600px;
+          }
+        }
+      `}</style>
+
+      <div className="relative mx-auto w-full max-w-[1100px] rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
+        {/* Loading screen */}
+        {!isLoaded && !hasError && (
+          <div
+            className="absolute inset-0 z-10 flex min-h-[600px] flex-col items-center justify-center rounded-xl bg-[#071321] px-5 py-12 text-center"
+            aria-live="polite"
+          >
+            <div className="relative mb-8 flex h-16 w-16 items-center justify-center">
+              <div className="absolute inset-0 animate-spin rounded-full border-2 border-[#F5A623]/15 border-t-[#F5A623]" />
+
+              <div className="h-2 w-2 rounded-full bg-[#F5A623] shadow-[0_0_15px_rgba(245,166,35,0.8)]" />
+            </div>
+
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#F5A623]">
+              Credoe Talent Solutions
+            </p>
+
+            <h2 className="mt-4 font-heading text-2xl text-white sm:text-3xl">
+              Preparing Your Consultation Calendar
+            </h2>
+
+            <p className="mt-3 max-w-md text-sm leading-7 text-gray-400">
+              Please wait while we connect to our scheduling system and prepare
+              your available consultation times.
+            </p>
+
+            <div className="mt-8 h-px w-20 bg-gradient-to-r from-transparent via-[#F5A623] to-transparent" />
           </div>
+        )}
 
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#F5A623]">
-            Credoe Talent Solutions
-          </p>
+        {/* Error fallback */}
+        {hasError && (
+          <div className="flex min-h-[600px] flex-col items-center justify-center rounded-xl px-5 py-12 text-center">
+            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#F5A623]/40 text-[#F5A623]">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-7 w-7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 8v4m0 4h.01" />
+                <circle cx="12" cy="12" r="9" />
+              </svg>
+            </div>
 
-          <h2 className="mt-4 font-heading text-2xl text-white sm:text-3xl">
-            Preparing Your Consultation Calendar
-          </h2>
+            <h2 className="font-heading text-2xl text-white">
+              Calendar Unavailable
+            </h2>
 
-          <p className="mt-3 max-w-md text-sm leading-7 text-gray-400">
-            Please wait while we connect to our scheduling system and prepare
-            your available consultation times.
-          </p>
+            <p className="mt-3 max-w-md text-sm leading-7 text-gray-400">
+              We're having trouble displaying the booking calendar. You can
+              still schedule your consultation directly through our booking
+              page.
+            </p>
 
-          <div className="mt-8 h-px w-20 bg-gradient-to-r from-transparent via-[#F5A623] to-transparent" />
-        </div>
-      )}
-
-      {/* Error fallback */}
-      {hasError && (
-        <div className="flex min-h-[600px] flex-col items-center justify-center px-5 py-12 text-center sm:min-h-[700px]">
-          <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#F5A623]/40 text-[#F5A623]">
-            <svg
-              viewBox="0 0 24 24"
-              className="h-7 w-7"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.6"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
+            <a
+              href="https://cal.com/webybuild-8oyipf/consultation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-7 inline-flex min-h-[46px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-6 text-xs font-bold uppercase tracking-wider text-[#061426] transition-colors hover:bg-white"
             >
-              <path d="M12 8v4m0 4h.01" />
-              <circle cx="12" cy="12" r="9" />
-            </svg>
+              Open Booking Calendar
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setRetryKey((current) => current + 1)}
+              className="mt-5 cursor-pointer text-xs text-gray-400 underline underline-offset-4 transition-colors hover:text-[#F5A623]"
+            >
+              Try again
+            </button>
           </div>
+        )}
 
-          <h2 className="font-heading text-2xl text-white">
-            Calendar Unavailable
-          </h2>
-
-          <p className="mt-3 max-w-md text-sm leading-7 text-gray-400">
-            We're having trouble displaying the booking calendar. You can still
-            schedule your consultation directly through our booking page.
-          </p>
-
-          <a
-            href="https://cal.com/webybuild-8oyipf/consultation"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-7 inline-flex min-h-[46px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-6 text-xs font-bold uppercase tracking-wider text-[#061426] transition-colors hover:bg-white"
-          >
-            Open Booking Calendar
-            <span aria-hidden="true">↗</span>
-          </a>
-
-          <button
-            type="button"
-            onClick={() => setRetryKey((current) => current + 1)}
-            className="mt-5 cursor-pointer text-xs text-gray-400 underline underline-offset-4 transition-colors hover:text-[#F5A623]"
-          >
-            Try again
-          </button>
-        </div>
-      )}
-
-      {/* Cal.com inline embed */}
-      <div
-        id="credoe-cal-inline"
-        ref={calendarRef}
-        className={`min-h-[850px] w-full transition-opacity duration-500 ${
-          isLoaded && !hasError ? "opacity-100" : "opacity-0"
-        }`}
-      />
-    </div>
+        {/* Cal.com inline embed */}
+        <div
+          id="credoe-cal-inline"
+          ref={calendarRef}
+          className={`min-h-[900px] w-full transition-opacity duration-500 md:min-h-[600px] ${
+            isLoaded && !hasError ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </div>
+    </>
   );
 }
