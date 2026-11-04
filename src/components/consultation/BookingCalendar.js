@@ -20,6 +20,7 @@ export default function BookingCalendar() {
     let isActive = true;
     let observer;
     let loadHandler;
+    let hasInitialized = false;
 
     setIsLoaded(false);
     setHasError(false);
@@ -53,9 +54,11 @@ export default function BookingCalendar() {
       subtree: true,
     });
 
-    // Initialize Cal.com embed
+    // Initialize Cal.com embed only once.
     const initializeCalendar = () => {
-      if (!isActive || !window.Cal) return;
+      if (!isActive || !window.Cal || hasInitialized) return;
+
+      hasInitialized = true;
 
       window.Cal("init", CAL_NAMESPACE, {
         origin: "https://app.cal.com",
@@ -110,6 +113,7 @@ export default function BookingCalendar() {
               script.src = A;
               script.async = true;
 
+              // Initialize once the SDK has loaded.
               script.onload = initializeCalendar;
 
               script.onerror = () => {
@@ -149,24 +153,8 @@ export default function BookingCalendar() {
         origin: "https://app.cal.com",
       });
 
-      // Wait for the SDK script to finish loading.
-      const script = document.querySelector(`script[src="${CAL_SCRIPT_URL}"]`);
-
-      if (script?.dataset.calInitialized === "true") {
-        initializeCalendar();
-      } else if (script) {
-        script.addEventListener("load", initializeCalendar, {
-          once: true,
-        });
-
-        script.addEventListener(
-          "error",
-          () => {
-            if (isActive) setHasError(true);
-          },
-          { once: true },
-        );
-      }
+      // No second script load listener is needed.
+      // The SDK loader already calls initializeCalendar on load.
     }
 
     return () => {
