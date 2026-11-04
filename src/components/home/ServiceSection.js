@@ -10,6 +10,7 @@ const coreSolutions = [
     image: "/images/cardOneImg.png",
     icon: "/icons/find-professional-man-icon.svg",
     alt: "Executive chess strategy",
+    number: "01",
   },
   {
     title: "Talent Advisory",
@@ -19,6 +20,7 @@ const coreSolutions = [
     image: "/images/cardTwoImg.png",
     icon: "/icons/business-team-icon.svg",
     alt: "Business professionals collaborating",
+    number: "02",
   },
   {
     title: "Succession Planning",
@@ -28,6 +30,7 @@ const coreSolutions = [
     image: "/images/cardThreeImg.png",
     icon: "/icons/personal-development-icon.svg",
     alt: "Modern bridge representing future growth",
+    number: "03",
   },
   {
     title: "Executive and Leadership Career Coaching",
@@ -37,6 +40,7 @@ const coreSolutions = [
     image: "/images/cardFourImg.png",
     icon: "/icons/men-suit-tuxedo-icon.svg",
     alt: "Executive and Leadership Career Coaching",
+    number: "04",
   },
 ];
 
@@ -74,55 +78,74 @@ function ArrowIcon({ className = "" }) {
   );
 }
 
+// Gold icon with explicit width and height to prevent Next.js warnings
+function GoldIcon({ src, size = 42 }) {
+  return (
+    <Image
+      src={src}
+      alt=""
+      width={size}
+      height={size}
+      className="object-contain"
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        filter:
+          "brightness(0) saturate(100%) invert(63%) sepia(99%) saturate(1623%) hue-rotate(2deg) brightness(103%) contrast(103%)",
+      }}
+    />
+  );
+}
+
 function SolutionCard({ solution }) {
   return (
     <Link
       href={solution.href}
       aria-label={`Learn more about ${solution.title}`}
-      className="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-black/[0.06] bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A000] focus-visible:ring-offset-2"
+      className="group relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#D9D5CC] bg-[#071426] shadow-[0_8px_30px_rgba(6,20,38,0.07)] transition-all duration-500 hover:-translate-y-2 hover:border-[#D99A26]/60 hover:shadow-[0_20px_45px_rgba(6,20,38,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-4"
     >
-      {/* Card image */}
-      <div className="relative h-[150px] overflow-hidden sm:h-[165px] lg:h-[150px] xl:h-[165px]">
+      {/* Image */}
+      <div className="relative h-[190px] overflow-hidden sm:h-[210px] xl:h-[195px]">
         <Image
           src={solution.image}
           alt={solution.alt}
           fill
-          loading="eager"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
         />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[#061426]/65 via-transparent to-[#061426]/10" />
+
+        <span className="absolute right-5 top-5 font-heading text-3xl font-medium text-white/75">
+          {solution.number}
+        </span>
       </div>
 
-      {/* Overlapping icon */}
-      <div className="absolute left-[18px] top-[105px] z-10 flex h-[72px] w-[72px] items-center justify-center rounded-full border-[3px] border-[#F5A000] bg-black sm:top-[120px] lg:top-[108px] xl:top-[120px]">
-        <Image
-          src={solution.icon}
-          alt=""
-          width={42}
-          height={42}
-          className="h-10 w-10 object-contain"
-          style={{
-            filter:
-              "brightness(0) saturate(100%) invert(63%) sepia(99%) saturate(1623%) hue-rotate(2deg) brightness(103%) contrast(103%)",
-          }}
-        />
+      {/* Gold icon, positioned outside the clipped image */}
+      <div className="absolute left-6 top-[152px] z-20 flex h-[76px] w-[76px] items-center justify-center rounded-full border-[3px] border-[#F5A623] bg-[#071426] shadow-[0_8px_25px_rgba(0,0,0,0.25)] sm:top-[172px] xl:top-[157px]">
+        <GoldIcon src={solution.icon} size={43} />
       </div>
 
       {/* Card content */}
-      <div className="flex flex-1 flex-col px-[18px] pb-5 pt-[40px] sm:px-5 sm:pb-6">
-        <h3 className="font-heading text-[19px] font-semibold leading-snug text-[#111111] sm:text-[20px]">
+      <div className="flex flex-1 flex-col px-6 pb-6 pt-[58px] sm:px-6 sm:pb-7">
+        <h3 className="min-h-[54px] font-heading text-[20px] font-medium leading-snug text-white transition-colors duration-300 group-hover:text-[#F5B94F] sm:text-[21px]">
           {solution.title}
         </h3>
 
-        <div className="mt-2 h-[2px] w-10 bg-[#F5A000] transition-all duration-300 group-hover:w-16" />
+        <div className="mt-3 h-px w-12 bg-[#F5A623] transition-all duration-500 group-hover:w-20" />
 
-        <p className="mt-5 flex-1 text-[12px] leading-[1.8] tracking-[0.025em] text-[#252525] sm:text-[13px]">
+        <p className="mt-5 flex-1 text-[13px] leading-[1.9] tracking-[0.015em] text-white/65">
           {solution.description}
         </p>
 
-        {/* Arrow */}
-        <div className="mt-4 inline-flex w-fit items-center text-[#F5A000] transition-transform duration-300 group-hover:translate-x-2">
-          <ArrowIcon className="h-6 w-9" />
+        <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#F5A623]">
+            Explore Solution
+          </span>
+
+          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F5A623]/40 text-[#F5A623] transition-all duration-300 group-hover:border-[#F5A623] group-hover:bg-[#F5A623] group-hover:text-[#071426]">
+            <ArrowIcon className="h-4 w-5" />
+          </span>
         </div>
       </div>
     </Link>
@@ -131,48 +154,39 @@ function SolutionCard({ solution }) {
 
 function EmergingSolutionCard({ solution }) {
   return (
-    <a
+    <Link
       href="/coming-soon"
-      className="group flex min-w-0 items-center gap-4 rounded-xl border border-black/10 bg-white px-4 py-5 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-md sm:gap-5 sm:px-6 sm:py-5 lg:px-5 xl:px-6"
+      className="group flex min-w-0 items-center gap-5 rounded-lg border border-[#DCD7CC] bg-white p-5 shadow-[0_5px_25px_rgba(6,20,38,0.035)] transition-all duration-300 hover:-translate-y-1 hover:border-[#E7AE47]/70 hover:shadow-[0_15px_35px_rgba(6,20,38,0.09)] sm:gap-6 sm:p-7"
     >
-      {/* Icon circle */}
-      <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full bg-black sm:h-[82px] sm:w-[82px]">
-        <Image
-          src={solution.icon}
-          alt=""
-          width={48}
-          height={48}
-          className="h-11 w-11 object-contain sm:h-12 sm:w-12"
-          style={{
-            filter:
-              "brightness(0) saturate(100%) invert(63%) sepia(99%) saturate(1623%) hue-rotate(2deg) brightness(103%) contrast(103%)",
-          }}
-        />
+      {/* Icon */}
+      <div className="flex h-[66px] w-[66px] shrink-0 items-center justify-center rounded-full bg-[#071426] transition-colors duration-300 group-hover:bg-[#10243B] sm:h-[76px] sm:w-[76px]">
+        <GoldIcon src={solution.icon} size={43} />
       </div>
 
       {/* Divider */}
-      <div className="h-[76px] w-[2px] shrink-0 bg-[#F5A000]/40" />
+      <div className="h-[75px] w-px shrink-0 bg-gradient-to-b from-transparent via-[#D99A26] to-transparent" />
 
       {/* Text */}
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-          <h3 className="font-heading text-[17px] font-semibold leading-snug text-[#111111] sm:text-[19px]">
+          <h3 className="font-heading text-[18px] font-medium leading-snug text-[#071426] sm:text-[20px]">
             {solution.title}
           </h3>
 
-          <span className="inline-flex shrink-0 items-center rounded-full border border-[#F5A000]/70 px-3 py-[3px] text-[8px] font-medium uppercase tracking-wide text-[#E68A00]">
+          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#E5AD48]/50 bg-[#F5A623]/10 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.1em] text-[#A66B0C]">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#D99A26]" />
             Coming Soon
           </span>
         </div>
 
-        <p className="mt-2 text-[11px] leading-[1.8] tracking-[0.02em] text-[#252525] sm:text-[12px]">
+        <p className="mt-2 text-[12px] leading-[1.85] tracking-[0.015em] text-[#646464] sm:text-[13px]">
           {solution.description}
         </p>
       </div>
 
       {/* Arrow */}
-      <ArrowIcon className="h-6 w-7 shrink-0 text-[#F5A000] transition-transform duration-300 group-hover:translate-x-1" />
-    </a>
+      <ArrowIcon className="hidden h-6 w-7 shrink-0 text-[#D99A26] transition-transform duration-300 group-hover:translate-x-2 sm:block" />
+    </Link>
   );
 }
 
@@ -180,28 +194,40 @@ export default function ServiceSection() {
   return (
     <section
       id="services"
-      className="bg-[#F8F8F8] px-5 py-16 text-[#111111] sm:px-8 sm:py-20 lg:px-12 lg:py-20 xl:px-[5%]"
+      className="relative overflow-hidden bg-[#F8F7F3] px-5 py-20 text-[#071426] sm:px-8 sm:py-24 lg:px-12 lg:py-28 xl:px-[5%]"
     >
-      <div className="mx-auto max-w-[1600px]">
+      {/* Subtle background detail */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-48 top-20 h-[500px] w-[500px] rounded-full border border-[#D99A26]/[0.08]"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-32 top-36 h-[350px] w-[350px] rounded-full border border-[#D99A26]/[0.08]"
+      />
+
+      <div className="relative z-10 mx-auto max-w-[1600px]">
         {/* Section heading */}
-        <div className="grid grid-cols-1 gap-7 lg:grid-cols-[1.15fr_1fr] lg:items-center lg:gap-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-end lg:gap-16">
           <div>
-            <div className="mb-4 flex items-center gap-3">
-              <span className="text-[13px] font-semibold uppercase tracking-wide text-[#E68A00] sm:text-sm">
+            <div className="mb-5 flex items-center gap-4">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#B47A19] sm:text-xs">
                 Our Solutions
               </span>
-              <span className="h-[2px] w-[52px] bg-[#F5A000]" />
+
+              <span className="h-px w-14 bg-[#D99A26]" />
             </div>
 
-            <h2 className="max-w-[680px] font-heading text-[34px] font-semibold leading-[1.15] tracking-[0.01em] text-black sm:text-[42px] lg:text-[42px] xl:text-[44px]">
+            <h2 className="max-w-[760px] font-heading text-[36px] font-medium leading-[1.17] tracking-[-0.025em] text-[#071426] sm:text-[46px] lg:text-[50px] xl:text-[55px]">
               Strategic Talent Solutions.
               <br />
-              Measurable <span className="text-[#D98900]">Impact.</span>
+              Measurable <span className="text-[#C58A25]">Impact.</span>
             </h2>
           </div>
 
-          <div className="border-l-[3px] border-[#E89A00] py-2 pl-5 sm:pl-7 lg:ml-2 lg:pl-10">
-            <p className="max-w-[510px] text-[15px] leading-[1.65] tracking-[0.035em] text-[#666666] sm:text-[16px] lg:text-[17px]">
+          <div className="relative border-l border-[#D99A26] py-2 pl-6 sm:pl-8 lg:mb-2 lg:ml-4 lg:pl-9">
+            <p className="max-w-[490px] text-[14px] leading-[1.9] tracking-[0.015em] text-[#62666C] sm:text-[15px] lg:text-[16px]">
               We partner with organizations to attract, develop, and retain
               exceptional talent that drives growth and builds lasting
               competitive advantage.
@@ -210,12 +236,22 @@ export default function ServiceSection() {
         </div>
 
         {/* Core solutions */}
-        <div className="mt-7">
-          <h3 className="mb-7 text-[13px] font-semibold uppercase tracking-wide text-[#E68A00] sm:text-sm">
-            Core Solutions
-          </h3>
+        <div className="mt-16 sm:mt-20">
+          <div className="mb-7 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#A66B0C] sm:text-xs">
+                Core Solutions
+              </h3>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5 xl:gap-8">
+              <span className="h-px w-10 bg-[#D99A26]/60" />
+            </div>
+
+            <span className="text-[10px] font-medium tracking-[0.12em] text-[#92918B]">
+              01 / 04
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5 xl:gap-7">
             {coreSolutions.map((solution) => (
               <SolutionCard key={solution.title} solution={solution} />
             ))}
@@ -223,12 +259,16 @@ export default function ServiceSection() {
         </div>
 
         {/* Emerging solutions */}
-        <div className="mt-7 sm:mt-8">
-          <h3 className="mb-7 text-[13px] font-semibold uppercase tracking-wide text-[#E68A00] sm:text-sm">
-            Emerging Solutions
-          </h3>
+        <div className="mt-16 sm:mt-20">
+          <div className="mb-7 flex items-center gap-4">
+            <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#A66B0C] sm:text-xs">
+              Emerging Solutions
+            </h3>
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-8">
+            <span className="h-px w-10 bg-[#D99A26]/60" />
+          </div>
+
+          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-7">
             {emergingSolutions.map((solution) => (
               <EmergingSolutionCard key={solution.title} solution={solution} />
             ))}
@@ -236,58 +276,54 @@ export default function ServiceSection() {
         </div>
 
         {/* Consultation banner */}
-        <div className="relative mt-12 overflow-hidden rounded-xl bg-black px-6 py-8 text-white shadow-md sm:mt-14 sm:px-10 sm:py-10 lg:mt-[60px] lg:px-14 lg:py-12">
+        <div className="relative mt-16 overflow-hidden rounded-lg border border-[#D99A26]/30 bg-[#071426] px-6 py-9 shadow-[0_20px_60px_rgba(6,20,38,0.12)] sm:mt-20 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
           {/* Decorative gold circles */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -right-[80px] -top-[300px] h-[550px] w-[550px] rounded-full border border-[#D99500]/50 sm:-right-[10px] lg:right-[20px]"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-[30px] -top-[245px] h-[450px] w-[450px] rounded-full border border-[#D99500]/35 sm:right-[35px] lg:right-[75px]"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute right-[20px] -top-[195px] h-[350px] w-[350px] rounded-full border border-[#D99500]/25 sm:right-[80px] lg:right-[130px]"
+            className="pointer-events-none absolute -right-32 -top-64 h-[500px] w-[500px] rounded-full border border-[#D99A26]/25"
           />
 
-          <div className="relative z-10 flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-52 h-[400px] w-[400px] rounded-full border border-[#D99A26]/20"
+          />
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute right-0 top-[-150px] h-[300px] w-[300px] rounded-full border border-[#D99A26]/15"
+          />
+
+          <div className="relative z-10 flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
             {/* Banner message */}
-            <div className="flex items-center gap-4 sm:gap-6">
-              <div className="flex h-[76px] w-[76px] shrink-0 items-center justify-center rounded-full border-[3px] border-[#F5A000] sm:h-[84px] sm:w-[84px]">
-                <Image
-                  src="/icons/schedule-calendar-icon.svg"
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="h-11 w-11 object-contain sm:h-12 sm:w-12"
-                  style={{
-                    filter:
-                      "brightness(0) saturate(100%) invert(63%) sepia(99%) saturate(1623%) hue-rotate(2deg) brightness(103%) contrast(103%)",
-                  }}
-                />
+            <div className="flex items-center gap-5 sm:gap-7">
+              <div className="flex h-[68px] w-[68px] shrink-0 items-center justify-center rounded-full border border-[#D99A26] bg-white/[0.03] sm:h-[82px] sm:w-[82px]">
+                <GoldIcon src="/icons/schedule-calendar-icon.svg" size={45} />
               </div>
 
               <div className="min-w-0">
-                <h3 className="font-heading text-[23px] font-semibold leading-tight sm:text-[27px]">
+                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#F5A623]">
+                  Let's Connect
+                </span>
+
+                <h3 className="mt-2 font-heading text-[24px] font-medium leading-tight text-white sm:text-[30px] lg:text-[34px]">
                   Let’s Build What’s Next.
                 </h3>
 
-                <p className="mt-2 max-w-[390px] text-[12px] leading-[1.8] tracking-[0.025em] text-gray-300 sm:text-[13px]">
+                <p className="mt-3 max-w-[440px] text-[12px] leading-[1.85] tracking-[0.015em] text-white/60 sm:text-[13px]">
                   Schedule a confidential consultation and discover how we can
                   help you achieve your talent goals.
                 </p>
               </div>
             </div>
 
-            {/* CTA button */}
-            <a
+            {/* CTA */}
+            <Link
               href="/schedule-consultation"
-              className="group inline-flex min-h-[54px] shrink-0 items-center justify-center gap-5 rounded-md bg-[#F5A623] px-6 py-4 text-center text-[12px] font-bold uppercase text-black transition-colors duration-300 hover:bg-white sm:px-8 sm:text-sm lg:min-w-[300px]"
+              className="group inline-flex min-h-[54px] w-full shrink-0 items-center justify-center gap-5 rounded-sm bg-[#F5A623] px-7 py-4 text-center text-[11px] font-bold uppercase tracking-[0.12em] text-[#071426] transition-all duration-300 hover:bg-white sm:w-fit sm:px-9 sm:text-xs lg:min-w-[285px]"
             >
               Schedule a Consultation
-              <ArrowIcon className="h-5 w-7 text-black transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
+              <ArrowIcon className="h-5 w-7 transition-transform duration-300 group-hover:translate-x-2" />
+            </Link>
           </div>
         </div>
       </div>
