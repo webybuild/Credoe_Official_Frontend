@@ -1,23 +1,197 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const CAL_NAMESPACE = "credoeConsultation";
+const CAL_SCRIPT_URL = "https://app.cal.com/embed/embed.js";
 
 export default function BookingCalendar() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const [retryKey, setRetryKey] = useState(0);
 
-  const calendarUrl =
-    "https://cal.com/webybuild-8oyipf/consultation?embed=true&theme=dark&brandColor=%23F5A623";
+  const calendarRef = useRef(null);
+
+  useEffect(() => {
+    const container = calendarRef.current;
+
+    if (!container) return;
+
+    let isActive = true;
+    let observer;
+    let loadHandler;
+
+    setIsLoaded(false);
+    setHasError(false);
+
+    const handleIframeLoad = () => {
+      if (isActive) {
+        setIsLoaded(true);
+        setHasError(false);
+      }
+    };
+
+    const watchForCalendar = () => {
+      const iframe = container.querySelector("iframe");
+
+      if (iframe) {
+        if (observer) observer.disconnect();
+
+        if (iframe.contentDocument?.readyState === "complete") {
+          handleIframeLoad();
+        } else {
+          loadHandler = handleIframeLoad;
+          iframe.addEventListener("load", loadHandler, { once: true });
+        }
+      }
+    };
+
+    observer = new MutationObserver(watchForCalendar);
+
+    observer.observe(container, {
+      childList: true,
+      subtree: true,
+    });
+
+    // Initialize Cal.com embed
+    const initializeCalendar = () => {
+      if (!isActive || !window.Cal) return;
+
+      window.Cal("init", CAL_NAMESPACE, {
+        origin: "https://app.cal.com",
+      });
+
+      window.Cal.ns[CAL_NAMESPACE]("inline", {
+        elementOrSelector: "#credoe-cal-inline",
+        calLink: "webybuild-8oyipf/consultation",
+
+        config: {
+          layout: "month_view",
+          useSlotsViewOnSmallScreen: true,
+          disableMobileScroll: true,
+        },
+      });
+
+      window.Cal.ns[CAL_NAMESPACE]("ui", {
+        theme: "dark",
+        styles: {
+          branding: {
+            brandColor: "#F5A623",
+          },
+        },
+      });
+
+      watchForCalendar();
+    };
+
+    // Reuse the SDK if it is already loaded.
+    if (window.Cal && window.Cal.loaded) {
+      initializeCalendar();
+    } else {
+      // Create the official Cal.com embed loader.
+      (function (C, A, L) {
+        const p = function (a, ar) {
+          a.q.push(ar);
+        };
+
+        const d = C.document;
+
+        C.Cal =
+          C.Cal ||
+          function () {
+            const cal = C.Cal;
+            const ar = arguments;
+
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+
+              const script = d.createElement("script");
+              script.src = A;
+              script.async = true;
+
+              script.onload = initializeCalendar;
+
+              script.onerror = () => {
+                if (isActive) setHasError(true);
+              };
+
+              d.head.appendChild(script);
+              cal.loaded = true;
+            }
+
+            if (ar[0] === L) {
+              const api = function () {
+                p(api, arguments);
+              };
+
+              const namespace = ar[1];
+
+              api.q = api.q || [];
+
+              if (typeof namespace === "string") {
+                cal.ns[namespace] = api;
+                p(api, ar);
+                p(cal, ["initNamespace", namespace]);
+              } else {
+                p(cal, ar);
+              }
+
+              return;
+            }
+
+            p(cal, ar);
+          };
+      })(window, CAL_SCRIPT_URL, "init");
+
+      // Initialize the embed namespace.
+      window.Cal("init", CAL_NAMESPACE, {
+        origin: "https://app.cal.com",
+      });
+
+      // Wait for the SDK script to finish loading.
+      const script = document.querySelector(`script[src="${CAL_SCRIPT_URL}"]`);
+
+      if (script?.dataset.calInitialized === "true") {
+        initializeCalendar();
+      } else if (script) {
+        script.addEventListener("load", initializeCalendar, {
+          once: true,
+        });
+
+        script.addEventListener(
+          "error",
+          () => {
+            if (isActive) setHasError(true);
+          },
+          { once: true },
+        );
+      }
+    }
+
+    return () => {
+      isActive = false;
+
+      if (observer) observer.disconnect();
+
+      const iframe = container.querySelector("iframe");
+
+      if (iframe && loadHandler) {
+        iframe.removeEventListener("load", loadHandler);
+      }
+
+      container.innerHTML = "";
+    };
+  }, [retryKey]);
 
   return (
-    <div className="relative min-h-[850px] overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
+    <div className="relative overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)]">
       {/* Loading screen */}
       {!isLoaded && !hasError && (
         <div
-          className="absolute inset-0 z-10 flex min-h-[850px] flex-col items-center justify-center bg-[#071321] px-6 text-center"
+          className="absolute inset-0 z-10 flex min-h-[850px] flex-col items-center justify-center bg-[#071321] px-5 py-12 text-center"
           aria-live="polite"
         >
-          {/* Animated gold loader */}
           <div className="relative mb-8 flex h-16 w-16 items-center justify-center">
             <div className="absolute inset-0 animate-spin rounded-full border-2 border-[#F5A623]/15 border-t-[#F5A623]" />
 
@@ -43,7 +217,7 @@ export default function BookingCalendar() {
 
       {/* Error fallback */}
       {hasError && (
-        <div className="flex min-h-[850px] flex-col items-center justify-center px-6 text-center">
+        <div className="flex min-h-[600px] flex-col items-center justify-center px-5 py-12 text-center sm:min-h-[700px]">
           <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#F5A623]/40 text-[#F5A623]">
             <svg
               viewBox="0 0 24 24"
@@ -81,36 +255,21 @@ export default function BookingCalendar() {
 
           <button
             type="button"
-            onClick={() => {
-              setHasError(false);
-              setIsLoaded(false);
-            }}
-            className="mt-5 text-xs text-gray-400 underline underline-offset-4 transition-colors hover:text-[#F5A623]"
+            onClick={() => setRetryKey((current) => current + 1)}
+            className="mt-5 cursor-pointer text-xs text-gray-400 underline underline-offset-4 transition-colors hover:text-[#F5A623]"
           >
             Try again
           </button>
         </div>
       )}
 
-      {/* Cal.com iframe */}
-      <iframe
-        key={hasError ? "retry" : "calendar"}
-        src={calendarUrl}
-        title="Schedule a Confidential Consultation with Credoe Talent"
-        width="100%"
-        height="850"
-        className={`block w-full border-0 transition-opacity duration-500 ${
+      {/* Cal.com inline embed */}
+      <div
+        id="credoe-cal-inline"
+        ref={calendarRef}
+        className={`min-h-[850px] w-full transition-opacity duration-500 ${
           isLoaded && !hasError ? "opacity-100" : "opacity-0"
         }`}
-        loading="eager"
-        onLoad={() => {
-          setIsLoaded(true);
-          setHasError(false);
-        }}
-        onError={() => {
-          setHasError(true);
-        }}
-        allow="payment"
       />
     </div>
   );
