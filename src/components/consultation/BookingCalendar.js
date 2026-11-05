@@ -8,7 +8,7 @@ export default function BookingCalendar() {
   const [retryKey, setRetryKey] = useState(0);
 
   const calendarUrl =
-    "https://cal.com/webybuild-8oyipf/consultation?embed=true&theme=dark&brandColor=%23F5A623";
+    "https://credoe-talent-solutions.cal.com/adyer2/consultation?embed=true&theme=dark&brandColor=%23F5A623";
 
   const handleRetry = () => {
     setHasError(false);
@@ -77,7 +77,7 @@ export default function BookingCalendar() {
           </p>
 
           <a
-            href="https://cal.com/webybuild-8oyipf/consultation"
+            href="https://credoe-talent-solutions.cal.com/adyer2/consultation"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-7 inline-flex min-h-[46px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-6 text-xs font-bold uppercase tracking-wider text-[#061426] transition-colors hover:bg-white"
