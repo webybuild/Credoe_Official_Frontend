@@ -2,7 +2,8 @@ import ClientSuccessSection from "@/components/home/ClientSuccessSection";
 import ContactCTASection from "@/components/home/ContactCTASection";
 import HeroSection from "@/components/home/HeroSection";
 import ProcessSection from "@/components/home/ProcessSection";
-import ResourcesSection from "@/components/home/ResourcesSection";
+import ResourcesComingSoon from "@/components/home/ResourcesComingSoon";
+// import ResourcesSection from "@/components/home/ResourcesSection";
 import ServiceSection from "@/components/home/ServiceSection";
 
 export default function Home() {
@@ -12,7 +13,8 @@ export default function Home() {
       <ServiceSection />
       <ClientSuccessSection />
       <ProcessSection />
-      <ResourcesSection />
+      {/* <ResourcesSection /> */}
+      <ResourcesComingSoon />
       <ContactCTASection />
     </main>
   );

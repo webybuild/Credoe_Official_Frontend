@@ -15,6 +15,11 @@ export const metadata = {
   title: "Credoe Talent Solutions",
   description:
     "Executive search and talent acquisition solutions for exceptional organizations.",
+  icons: {
+    icon: "/logos/Golden%20C%20with%20Swoosh%20Logo.png",
+    shortcut: "/logos/Golden%20C%20with%20Swoosh%20Logo.png",
+    apple: "/logos/Golden%20C%20with%20Swoosh%20Logo.png",
+  },
 };
 
 export default function RootLayout({ children }) {

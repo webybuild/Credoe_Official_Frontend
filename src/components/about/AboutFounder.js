@@ -61,7 +61,7 @@ const credentials = [
     type: "leadership",
     title: "Former Leadership Roles",
     subtitle: "",
-    description: "Deloitte and Accenture.",
+    description: "Deloitte, Accenture, and HCA.",
   },
   {
     type: "university",
@@ -112,6 +112,20 @@ export default function AboutFounder() {
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 580px"
                 className="object-cover object-[center_22%] lg:translate-y-[100px]"
               />
+              {/* <Image
+                src="/images/adnbv1.png"
+                alt="Andre Dyer, Founder of Credoe Talent Solutions"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 580px"
+                className="object-cover object-[center_22%]"
+              /> */}
+              {/* <Image
+                src="/images/adnbv2.png"
+                alt="Andre Dyer, Founder of Credoe Talent Solutions"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 580px"
+                className="object-cover object-[center_22%]"
+              /> */}
 
               {/* Image bottom gradient */}
               <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#061426]/25 to-transparent" />

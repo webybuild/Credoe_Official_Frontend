@@ -1,9 +1,13 @@
 import Image from "next/image";
 
 const stats = [
-  { number: "500+", label: "Successful Placements", icon: "people" },
-  { number: "100+", label: "Companies Served", icon: "compass" },
-  { number: "18+", label: "Years of Experience", icon: "building" },
+  { number: "500+", label: "Successful Placements", icon: "placements" },
+  {
+    number: "C-Suite",
+    label: "Executive and Leadership Expertise",
+    icon: "leadership",
+  },
+  { number: "20+", label: "Years of Experience", icon: "building" },
   { number: "Proven", label: "Track Record", icon: "chart" },
   {
     number: "Trusted By",
@@ -28,20 +32,31 @@ function StatIcon({ type }) {
       aria-hidden="true"
       {...common}
     >
-      {type === "people" && (
+      {type === "placements" && (
         <>
-          <circle cx="24" cy="13" r="6" />
-          <circle cx="10" cy="19" r="4.5" />
-          <circle cx="38" cy="19" r="4.5" />
-          <path d="M13 39v-5c0-7 5-11 11-11s11 4 11 11v5z" />
-          <path d="M3 38v-4c0-5 3-8 8-8m34 12v-4c0-5-3-8-8-8" />
+          {/* Briefcase */}
+          <rect x="5" y="15" width="38" height="27" rx="3" />
+          <path d="M17 15V10a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v5" />
+          <path d="M5 25h38" />
+          <path d="M20 25v4h8v-4" />
+
+          {/* Success checkmark */}
+          <circle cx="35" cy="35" r="8" fill="#050A18" />
+          <path d="m31.5 35 2.3 2.3 4.2-4.6" />
         </>
       )}
 
-      {type === "compass" && (
+      {type === "leadership" && (
         <>
-          <circle cx="24" cy="24" r="21" />
-          <path d="m31 13-5 13-13 9 5-13z" />
+          {/* Central leader */}
+          <circle cx="24" cy="13" r="6" />
+          <path d="M13 39v-5c0-7 5-11 11-11s11 4 11 11v5z" />
+
+          {/* Supporting team members */}
+          <circle cx="8" cy="21" r="4" />
+          <circle cx="40" cy="21" r="4" />
+          <path d="M2 39v-4c0-5 2-8 7-9" />
+          <path d="M46 39v-4c0-5-2-8-7-9" />
         </>
       )}
 
@@ -189,7 +204,7 @@ export default function HeroSection() {
             {/* Existing bottom blend */}
             <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[65px] bg-gradient-to-t from-[#050A18] via-[#050A18]/65 to-transparent" />
 
-            {/* Founder identity, restored to original content alignment */}
+            {/* Founder identity */}
             <div className="absolute bottom-5 left-6 z-10 sm:left-10">
               <div className="mb-2 h-px w-10 bg-[#F5A623]" />
 

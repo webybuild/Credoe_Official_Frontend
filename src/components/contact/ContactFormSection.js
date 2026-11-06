@@ -187,7 +187,8 @@ function InquiryDropdown({ value, onChange }) {
         </option>
         <option value="Executive Search">Executive Search</option>
         <option value="Leadership Advisory">Leadership Advisory</option>
-        <option value="Talent Strategy">Talent Strategy</option>
+        <option value="Leadership Recruiting">Leadership Recruiting</option>
+        <option value="Workforce Planning">Workforce Planning</option>
         <option value="Interim Leadership">Interim Leadership</option>
         <option value="Career Opportunity">Career Opportunity</option>
         <option value="General Inquiry">General Inquiry</option>

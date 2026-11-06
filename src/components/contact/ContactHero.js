@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function ContactHero() {
   return (
-    <section className="relative isolate min-h-[720px] overflow-hidden bg-[#061426] text-white sm:min-h-[700px] lg:min-h-[620px] xl:min-h-[640px]">
+    <section className="relative isolate min-h-[540px] overflow-hidden bg-[#061426] text-white sm:min-h-[560px] lg:min-h-[540px] xl:min-h-[560px]">
       {/* Responsive background image */}
       <div
         aria-hidden="true"
@@ -14,7 +14,7 @@ export default function ContactHero() {
           alt=""
           fill
           priority
-          sizes="(max-width: 1023px) calc(100vw - 16px), (max-width: 1693px) 62vw, 1050px"
+          sizes="(max-width: 1023px) 100vw, (max-width: 1693px) 62vw, 1050px"
           className="object-cover object-center lg:object-[center_35%]"
         />
       </div>
@@ -50,18 +50,18 @@ export default function ContactHero() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_10%_45%,rgba(24,49,75,0.38),transparent_55%)]" />
 
-        <div className="absolute -left-[250px] top-[100px] h-[500px] w-[500px] rounded-full border border-white/[0.035]" />
+        <div className="absolute -left-[250px] top-[80px] h-[500px] w-[500px] rounded-full border border-white/[0.035]" />
 
-        <div className="absolute -left-[190px] top-[160px] h-[380px] w-[380px] rounded-full border border-[#F4A019]/[0.08]" />
+        <div className="absolute -left-[190px] top-[140px] h-[380px] w-[380px] rounded-full border border-[#F4A019]/[0.08]" />
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 mx-auto flex min-h-[720px] max-w-[1600px] items-center px-5 pb-12 pt-28 sm:min-h-[700px] sm:px-8 sm:pb-14 sm:pt-32 lg:min-h-[620px] lg:px-12 lg:pb-16 lg:pt-32 xl:min-h-[640px]">
+      <div className="relative z-10 mx-auto flex min-h-[540px] max-w-[1600px] items-center px-5 pb-10 pt-24 sm:min-h-[560px] sm:px-8 sm:pb-12 sm:pt-28 lg:min-h-[540px] lg:px-12 lg:pb-12 lg:pt-28 xl:min-h-[560px]">
         <div className="relative w-full max-w-[790px] lg:w-[62%]">
           {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
-            className="mb-8 flex flex-wrap items-center gap-3 text-[10px] tracking-[0.12em] text-white/60 sm:mb-9 sm:text-[11px] lg:mb-10 lg:text-[12px]"
+            className="mb-6 flex flex-wrap items-center gap-3 text-[10px] tracking-[0.12em] text-white/60 sm:mb-7 sm:text-[11px] lg:mb-8 lg:text-[12px]"
           >
             <Link
               href="/"
@@ -78,7 +78,7 @@ export default function ContactHero() {
           </nav>
 
           {/* Eyebrow */}
-          <div className="mb-5 flex items-center gap-4 sm:mb-6">
+          <div className="mb-4 flex items-center gap-4 sm:mb-5">
             <span className="h-[2px] w-10 shrink-0 bg-[#F4A019] sm:w-12" />
 
             <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#F4A019] sm:text-[11px] sm:tracking-[0.25em] lg:text-[12px]">
@@ -87,26 +87,23 @@ export default function ContactHero() {
           </div>
 
           {/* Heading */}
-          <h1 className="font-heading max-w-[760px] text-[36px] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[46px] lg:text-[52px] xl:text-[58px] 2xl:text-[62px]">
-            <span className="block">Let&apos;s Start a</span>
-
-            <span className="mt-1 block text-[#F4A019]">Conversation.</span>
+          <h1 className="max-w-[760px] font-heading text-[40px] font-medium leading-[1.08] tracking-[-0.035em] sm:text-[48px] lg:text-[54px] xl:text-[58px]">
+            Let&apos;s <span className="text-[#F4A019]">Talk.</span>
           </h1>
 
           {/* Gold accent */}
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-5 flex items-center gap-3">
             <span className="h-[2px] w-10 rounded-full bg-[#F4A019]" />
-            <span className="h-px w-14 bg-white/25" />
+            <span className="h-px w-12 bg-white/25" />
           </div>
 
           {/* Description */}
-          <p className="mt-5 max-w-[570px] text-[13px] leading-[1.8] text-white/85 sm:text-[14px] sm:leading-[1.9] lg:text-[15px]">
-            Tell us what you&apos;re building. We&apos;ll help you find the
-            leaders who move it forward.
+          <p className="mt-4 max-w-[500px] text-[13px] leading-[1.8] text-white/85 sm:text-[14px] sm:leading-[1.9] lg:text-[15px]">
+            Tell us what you need. We&apos;ll help you find the right leaders.
           </p>
 
           {/* Brand detail */}
-          <div className="mt-8 flex items-center gap-3">
+          <div className="mt-6 flex items-center gap-3">
             <span className="h-1.5 w-1.5 rounded-full bg-[#F4A019] shadow-[0_0_10px_rgba(244,160,25,0.5)]" />
 
             <span className="text-[9px] font-medium uppercase tracking-[0.22em] text-white/55 sm:text-[10px]">

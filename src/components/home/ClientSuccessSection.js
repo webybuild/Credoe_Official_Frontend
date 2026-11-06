@@ -270,7 +270,7 @@ function AnimatedTestimonial({ testimonial, slideDirection, onReadFull }) {
         <QuoteMark />
 
         <blockquote className="mt-3 sm:mt-4">
-          <p className="line-clamp-7 font-heading text-[17px] font-medium leading-[1.48] tracking-[-0.02em] text-white sm:line-clamp-5 sm:text-[25px] sm:leading-[1.45] lg:text-[30px] xl:text-[34px]">
+          <p className="line-clamp-4 font-heading text-[15px] font-medium leading-[1.5] tracking-[-0.015em] text-white sm:line-clamp-3 sm:text-[19px] sm:leading-[1.5] lg:text-[22px] xl:text-[24px]">
             “{testimonial.quote}”
           </p>
         </blockquote>

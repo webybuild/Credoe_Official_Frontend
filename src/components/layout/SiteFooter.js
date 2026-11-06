@@ -8,7 +8,6 @@ const industries = [
   { name: "Healthcare", icon: "healthcare" },
   { name: "Financial Services", icon: "finance" },
   { name: "Professional Services", icon: "professional" },
-  { name: "Nonprofit", icon: "nonprofit" },
 ];
 
 const quickLinks = [
@@ -91,15 +90,6 @@ function IndustryIcon({ type }) {
           <path d="M19 31c0-7 5-11 13-11s13 4 13 11" />
           <path d="M7 42c0-6 4-9 10-9M47 33c7 0 10 3 10 9" />
           <path d="M8 54c0-8 5-12 12-12m8 12c0-9 5-13 12-13s12 4 12 13z" />
-        </>
-      )}
-
-      {type === "nonprofit" && (
-        <>
-          <path d="M32 29 17 15C8 7 17-1 25 6l7 7 7-7c8-7 17 1 8 9z" />
-          <path d="M12 28 5 35l8 15 10 7h18l10-7 8-15-7-7-12 13-8-5-8 5z" />
-          <path d="M12 28 23 39M52 28 41 39" />
-          <path d="M24 43l8 6 8-6" />
         </>
       )}
     </svg>
@@ -220,7 +210,7 @@ export default function SiteFooter() {
 
       <div className="relative mx-auto max-w-[1600px] px-5 pb-8 pt-10 sm:px-8 sm:pt-12 lg:px-11 lg:pt-14">
         {/* Industries strip */}
-        <div className="grid overflow-hidden rounded-[4px] border border-white/10 bg-[#071321]/60 lg:grid-cols-[1.35fr_repeat(6,minmax(0,1fr))]">
+        <div className="grid overflow-hidden rounded-[4px] border border-white/10 bg-[#071321]/60 lg:grid-cols-[1.35fr_repeat(5,minmax(0,1fr))]">
           <div className="px-6 py-6 sm:px-8 lg:flex lg:min-h-[148px] lg:flex-col lg:justify-center lg:px-8">
             <div className="flex items-center gap-3">
               <span className="h-[2px] w-[30px] shrink-0 bg-[#F4A019]" />
