@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Cal, { getCalApi } from "@calcom/embed-react";
 
 export default function BookingCalendar() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
 
-  const calendarUrl =
-    "https://credoe-talent-solutions.cal.com/adyer2/consultation?embed=true&theme=dark&brandColor=%23F5A623";
+  const embedContainerRef = useRef(null);
 
   const handleRetry = () => {
     setHasError(false);
@@ -16,15 +16,113 @@ export default function BookingCalendar() {
     setRetryKey((current) => current + 1);
   };
 
+  // Disable the iframe's internal scrollbar.
+  // Cal.com continues to manage the iframe height dynamically.
+  useEffect(() => {
+    const container = embedContainerRef.current;
+
+    if (!container) return;
+
+    const disableIframeScrolling = () => {
+      const iframes = container.querySelectorAll("iframe");
+
+      iframes.forEach((iframe) => {
+        iframe.setAttribute("scrolling", "no");
+        iframe.style.overflow = "hidden";
+      });
+    };
+
+    disableIframeScrolling();
+
+    const observer = new MutationObserver(() => {
+      disableIframeScrolling();
+    });
+
+    observer.observe(container, {
+      childList: true,
+      subtree: true,
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [retryKey]);
+
+  useEffect(() => {
+    let isActive = true;
+    let errorTimer;
+
+    const initializeCalendar = async () => {
+      try {
+        const cal = await getCalApi({
+          namespace: "consultation",
+        });
+
+        if (!isActive) return;
+
+        cal("ui", {
+          hideEventTypeDetails: false,
+          layout: "month_view",
+        });
+
+        cal("on", {
+          action: "linkReady",
+          callback: () => {
+            if (!isActive) return;
+
+            clearTimeout(errorTimer);
+            setIsLoaded(true);
+            setHasError(false);
+          },
+        });
+
+        cal("on", {
+          action: "linkFailed",
+          callback: () => {
+            if (!isActive) return;
+
+            clearTimeout(errorTimer);
+            setIsLoaded(false);
+            setHasError(true);
+          },
+        });
+
+        errorTimer = setTimeout(() => {
+          if (!isActive) return;
+
+          setIsLoaded(false);
+          setHasError(true);
+        }, 25000);
+      } catch (error) {
+        console.error("Cal.com initialization failed:", error);
+
+        if (!isActive) return;
+
+        setIsLoaded(false);
+        setHasError(true);
+      }
+    };
+
+    initializeCalendar();
+
+    return () => {
+      isActive = false;
+      clearTimeout(errorTimer);
+    };
+  }, [retryKey]);
+
   return (
-    <div className="relative min-h-[1550px] w-full overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)] md:min-h-[850px]">
+    <div
+      className={`relative w-full overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)] ${
+        isLoaded && !hasError ? "min-h-0" : "min-h-[600px]"
+      }`}
+    >
       {/* Loading screen */}
       {!isLoaded && !hasError && (
         <div
-          className="absolute inset-0 z-10 flex min-h-[1550px] flex-col items-center justify-center bg-[#071321] px-6 text-center md:min-h-[850px]"
+          className="absolute inset-0 z-10 flex min-h-[600px] flex-col items-center justify-center bg-[#071321] px-6 text-center"
           aria-live="polite"
         >
-          {/* Animated gold loader */}
           <div className="relative mb-8 flex h-16 w-16 items-center justify-center">
             <div className="absolute inset-0 animate-spin rounded-full border-2 border-[#F5A623]/15 border-t-[#F5A623]" />
 
@@ -50,7 +148,7 @@ export default function BookingCalendar() {
 
       {/* Error fallback */}
       {hasError && (
-        <div className="flex min-h-[1550px] flex-col items-center justify-center px-6 text-center md:min-h-[850px]">
+        <div className="flex min-h-[600px] flex-col items-center justify-center px-6 text-center">
           <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#F5A623]/40 text-[#F5A623]">
             <svg
               viewBox="0 0 24 24"
@@ -96,26 +194,30 @@ export default function BookingCalendar() {
         </div>
       )}
 
-      {/* Cal.com iframe */}
-      <iframe
-        key={retryKey}
-        src={calendarUrl}
-        title="Schedule a Confidential Consultation with Credoe Talent"
-        width="100%"
-        height="1550"
-        className={`block h-[1550px] w-full border-0 transition-opacity duration-500 md:!h-[850px] ${
+      {/* Cal.com React embed */}
+      <div
+        ref={embedContainerRef}
+        className={`w-full overflow-hidden transition-opacity duration-500 ${
           isLoaded && !hasError ? "opacity-100" : "opacity-0"
         }`}
-        loading="eager"
-        onLoad={() => {
-          setIsLoaded(true);
-          setHasError(false);
-        }}
-        onError={() => {
-          setHasError(true);
-        }}
-        allow="payment"
-      />
+      >
+        <Cal
+          key={retryKey}
+          namespace="consultation"
+          calLink="adyer2/consultation"
+          calOrigin="https://credoe-talent-solutions.cal.com"
+          style={{
+            width: "100%",
+            height: "100%",
+            overflow: "hidden",
+          }}
+          config={{
+            layout: "month_view",
+            useSlotsViewOnSmallScreen: "true",
+            theme: "dark",
+          }}
+        />
+      </div>
     </div>
   );
 }
