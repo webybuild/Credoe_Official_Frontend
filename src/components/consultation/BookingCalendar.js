@@ -17,7 +17,6 @@ export default function BookingCalendar() {
   };
 
   // Disable the iframe's internal scrollbar.
-  // Cal.com continues to manage the iframe height dynamically.
   useEffect(() => {
     const container = embedContainerRef.current;
 
@@ -113,7 +112,7 @@ export default function BookingCalendar() {
 
   return (
     <div
-      className={`relative w-full overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)] ${
+      className={`relative mx-auto w-full overflow-hidden rounded-xl border border-[#F5A623]/20 bg-[#071321] shadow-[0_20px_70px_rgba(0,0,0,0.35)] lg:max-w-[1100px] ${
         isLoaded && !hasError ? "min-h-0" : "min-h-[600px]"
       }`}
     >
@@ -197,7 +196,7 @@ export default function BookingCalendar() {
       {/* Cal.com React embed */}
       <div
         ref={embedContainerRef}
-        className={`w-full overflow-hidden transition-opacity duration-500 ${
+        className={`w-full overflow-hidden transition-opacity duration-500 lg:py-[30px] ${
           isLoaded && !hasError ? "opacity-100" : "opacity-0"
         }`}
       >
