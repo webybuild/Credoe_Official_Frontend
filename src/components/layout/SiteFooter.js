@@ -39,7 +39,7 @@ function IndustryIcon({ type }) {
   return (
     <svg
       viewBox="0 0 64 64"
-      className="h-12 w-12 sm:h-[54px] sm:w-[54px]"
+      className="h-7 w-7 sm:h-9 sm:w-9 lg:h-[54px] lg:w-[54px]"
       aria-hidden="true"
       {...common}
     >
@@ -96,7 +96,7 @@ function IndustryIcon({ type }) {
   );
 }
 
-function FooterIcon({ type, className = "h-6 w-6" }) {
+function FooterIcon({ type, className = "h-5 w-5 sm:h-6 sm:w-6" }) {
   const common = {
     fill: "none",
     stroke: "currentColor",
@@ -138,7 +138,7 @@ function SocialIcon({ type }) {
     return (
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5"
+        className="h-[17px] w-[17px] sm:h-5 sm:w-5"
         fill="currentColor"
         aria-hidden="true"
       >
@@ -151,7 +151,7 @@ function SocialIcon({ type }) {
     return (
       <svg
         viewBox="0 0 24 24"
-        className="h-5 w-5"
+        className="h-[17px] w-[17px] sm:h-5 sm:w-5"
         fill="currentColor"
         aria-hidden="true"
       >
@@ -163,7 +163,7 @@ function SocialIcon({ type }) {
   return (
     <svg
       viewBox="0 0 24 24"
-      className="h-5 w-5"
+      className="h-[17px] w-[17px] sm:h-5 sm:w-5"
       fill="currentColor"
       aria-hidden="true"
     >
@@ -175,10 +175,10 @@ function SocialIcon({ type }) {
 function SectionHeading({ children }) {
   return (
     <div>
-      <h3 className="text-[15px] font-semibold uppercase tracking-[0.015em] text-white sm:text-[16px]">
+      <h3 className="text-[14px] font-semibold uppercase tracking-[0.015em] text-white sm:text-[16px]">
         {children}
       </h3>
-      <span className="mt-4 block h-[2px] w-[35px] bg-[#F4A019]" />
+      <span className="mt-3 block h-[2px] w-[35px] bg-[#F4A019] sm:mt-4" />
     </div>
   );
 }
@@ -208,33 +208,37 @@ export default function SiteFooter() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1600px] px-5 pb-8 pt-10 sm:px-8 sm:pt-12 lg:px-11 lg:pt-14">
+      <div className="relative mx-auto max-w-[1600px] px-5 pb-7 pt-9 sm:px-8 sm:pb-8 sm:pt-12 lg:px-11 lg:pt-14">
         {/* Industries strip */}
-        <div className="grid overflow-hidden rounded-[4px] border border-white/10 bg-[#071321]/60 lg:grid-cols-[1.35fr_repeat(5,minmax(0,1fr))]">
-          <div className="px-6 py-6 sm:px-8 lg:flex lg:min-h-[148px] lg:flex-col lg:justify-center lg:px-8">
+        <div className="grid grid-cols-2 overflow-hidden rounded-xl border border-white/10 bg-[#071321]/60 lg:grid-cols-[1.35fr_repeat(5,minmax(0,1fr))] lg:rounded-[4px]">
+          <div className="col-span-2 px-5 py-6 sm:px-8 lg:col-span-1 lg:flex lg:min-h-[148px] lg:flex-col lg:justify-center lg:px-8">
             <div className="flex items-center gap-3">
               <span className="h-[2px] w-[30px] shrink-0 bg-[#F4A019]" />
-              <h2 className="whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.025em] text-[#F4A019] sm:text-[15px]">
+              <h2 className="whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.025em] text-[#F4A019] sm:text-[15px]">
                 Industries We Serve
               </h2>
             </div>
 
-            <p className="mt-4 max-w-[260px] text-[14px] leading-[1.7] text-white/90 sm:text-[15px]">
+            <p className="mt-3 max-w-[300px] text-[13px] leading-[1.7] text-white/75 sm:mt-4 sm:text-[15px] sm:text-white/90">
               From startups to enterprise, we help organizations in diverse
               industries thrive.
             </p>
           </div>
 
-          {industries.map((industry) => (
+          {industries.map((industry, index) => (
             <div
               key={industry.name}
-              className="flex min-h-[128px] flex-col items-center justify-center gap-3 border-t border-white/10 px-3 py-5 text-center sm:min-h-[140px] lg:border-l lg:border-t-0 lg:border-white/10 lg:px-2"
+              className={`flex min-h-[100px] flex-col items-center justify-center gap-2 border-t border-white/10 px-2 py-4 text-center sm:min-h-[115px] sm:gap-3 lg:min-h-[148px] lg:border-l lg:border-t-0 lg:border-white/10 lg:px-2 ${
+                index === industries.length - 1
+                  ? "col-span-2 mx-auto w-1/2 lg:col-span-1 lg:mx-0 lg:w-full"
+                  : ""
+              }`}
             >
-              <span className="text-white">
+              <span className="text-[#F4A019]">
                 <IndustryIcon type={industry.icon} />
               </span>
 
-              <span className="text-[13px] leading-tight text-white/95 sm:text-[14px]">
+              <span className="max-w-[145px] text-[11px] leading-[1.35] text-white/90 sm:text-[13px] lg:text-[14px]">
                 {industry.name}
               </span>
             </div>
@@ -242,9 +246,9 @@ export default function SiteFooter() {
         </div>
 
         {/* Main footer columns */}
-        <div className="mt-16 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:mt-[104px] lg:grid-cols-[1.3fr_0.8fr_1.1fr_1.25fr] lg:gap-0">
+        <div className="mt-12 grid grid-cols-1 gap-9 sm:grid-cols-2 sm:gap-10 lg:mt-[104px] lg:grid-cols-[1.3fr_0.8fr_1.1fr_1.25fr] lg:gap-0">
           {/* Brand column */}
-          <div className="border-white/15 sm:col-span-2 lg:col-span-1 lg:border-r lg:pr-8">
+          <div className="border-b border-white/10 pb-8 sm:col-span-2 lg:col-span-1 lg:border-r lg:border-b-0 lg:pb-0 lg:pr-8">
             <a
               href="/"
               aria-label="Credoe Talent Solutions home"
@@ -253,16 +257,16 @@ export default function SiteFooter() {
               <img
                 src="/logos/logo.png"
                 alt="Credoe Talent Solutions"
-                className="h-auto w-[245px] max-w-full object-contain object-left"
+                className="h-auto w-[190px] max-w-full object-contain object-left sm:w-[220px] lg:w-[245px]"
               />
             </a>
 
-            <p className="mt-8 max-w-[300px] text-[15px] leading-[1.95] text-white/85">
+            <p className="mt-5 max-w-[300px] text-[13px] leading-[1.85] text-white/75 sm:mt-8 sm:text-[15px] sm:text-white/85">
               Connecting exceptional talent with extraordinary organizations to
               drive meaningful impact.
             </p>
 
-            <div className="mt-8 flex items-center gap-6">
+            <div className="mt-6 flex items-center gap-4 sm:mt-8 sm:gap-6">
               {socialLinks.map((social) => (
                 <a
                   key={social.type}
@@ -270,7 +274,7 @@ export default function SiteFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="flex h-[44px] w-[44px] items-center justify-center rounded-full border border-[#F4A019]/60 text-white transition-colors hover:bg-[#F4A019] hover:text-[#020D19]"
+                  className="flex h-[38px] w-[38px] items-center justify-center rounded-full border border-[#F4A019]/50 text-white transition-colors hover:bg-[#F4A019] hover:text-[#020D19] sm:h-[44px] sm:w-[44px] sm:border-[#F4A019]/60"
                 >
                   <SocialIcon type={social.type} />
                 </a>
@@ -282,7 +286,7 @@ export default function SiteFooter() {
           <div className="lg:border-r lg:border-white/15 lg:px-8">
             <SectionHeading>Quick Links</SectionHeading>
 
-            <ul className="mt-7">
+            <ul className="mt-5 sm:mt-7">
               {quickLinks.map((link) => (
                 <li
                   key={link.label}
@@ -290,10 +294,10 @@ export default function SiteFooter() {
                 >
                   <a
                     href={link.href}
-                    className="group flex min-h-[45px] items-center justify-between gap-3 text-[14px] text-white/95 transition-colors hover:text-[#F4A019] sm:text-[15px]"
+                    className="group flex min-h-[42px] items-center justify-between gap-3 text-[13px] text-white/90 transition-colors hover:text-[#F4A019] sm:min-h-[45px] sm:text-[15px]"
                   >
                     {link.label}
-                    <span className="text-[25px] leading-none text-[#F4A019] transition-transform group-hover:translate-x-1">
+                    <span className="text-[19px] leading-none text-[#F4A019] transition-transform group-hover:translate-x-1 sm:text-[22px]">
                       ›
                     </span>
                   </a>
@@ -306,10 +310,10 @@ export default function SiteFooter() {
           <div className="lg:border-r lg:border-white/15 lg:px-8">
             <SectionHeading>Contact</SectionHeading>
 
-            <div className="mt-7">
+            <div className="mt-5 sm:mt-7">
               <a
                 href="tel:+16788660962"
-                className="flex items-center gap-4 border-b border-white/10 pb-5 text-[14px] text-white/95 transition-colors hover:text-[#F4A019] sm:text-[15px]"
+                className="flex items-center gap-3 border-b border-white/10 pb-4 text-[13px] text-white/90 transition-colors hover:text-[#F4A019] sm:gap-4 sm:pb-5 sm:text-[15px]"
               >
                 <span className="shrink-0 text-[#F4A019]">
                   <FooterIcon type="phone" />
@@ -319,7 +323,7 @@ export default function SiteFooter() {
 
               <a
                 href="mailto:adyer@credoetalent.com"
-                className="flex items-center gap-4 border-b border-white/10 py-5 text-[13px] text-white/95 transition-colors hover:text-[#F4A019] sm:text-[14px] xl:text-[15px]"
+                className="flex items-center gap-3 border-b border-white/10 py-4 text-[12px] text-white/90 transition-colors hover:text-[#F4A019] sm:gap-4 sm:py-5 sm:text-[14px] xl:text-[15px]"
               >
                 <span className="shrink-0 text-[#F4A019]">
                   <FooterIcon type="email" />
@@ -327,8 +331,8 @@ export default function SiteFooter() {
                 <span className="break-all">adyer@credoetalent.com</span>
               </a>
 
-              <div className="flex items-center gap-4 py-5 text-[14px] text-white/95 sm:text-[15px]">
-                <span className="shrink-0 text-[#F4A019]">
+              <div className="flex items-start gap-3 py-4 text-[13px] leading-[1.6] text-white/90 sm:gap-4 sm:py-5 sm:text-[15px]">
+                <span className="mt-0.5 shrink-0 text-[#F4A019]">
                   <FooterIcon type="location" />
                 </span>
                 <span>730 Peachtree Street NE, #570 Atlanta, GA 30308</span>
@@ -340,16 +344,19 @@ export default function SiteFooter() {
           <div className="lg:pl-10">
             <SectionHeading>Stay Connected</SectionHeading>
 
-            <p className="mt-7 max-w-[290px] text-[14px] leading-[1.8] text-white/85 sm:text-[15px]">
+            <p className="mt-5 max-w-[290px] text-[13px] leading-[1.8] text-white/75 sm:mt-7 sm:text-[15px] sm:text-white/85">
               Subscribe to our newsletter for insights and industry updates.
             </p>
 
-            <form onSubmit={handleSubscribe} className="mt-7 max-w-[360px]">
+            <form
+              onSubmit={handleSubscribe}
+              className="mt-5 max-w-[360px] sm:mt-7"
+            >
               <label htmlFor="footer-newsletter-email" className="sr-only">
                 Your email address
               </label>
 
-              <div className="flex min-h-[52px] overflow-hidden rounded-[5px] border border-white/15 bg-[#081523] focus-within:border-[#F4A019]">
+              <div className="flex min-h-[48px] overflow-hidden rounded-[5px] border border-white/15 bg-[#081523] focus-within:border-[#F4A019] sm:min-h-[52px]">
                 <input
                   id="footer-newsletter-email"
                   type="email"
@@ -360,17 +367,17 @@ export default function SiteFooter() {
                   }}
                   required
                   placeholder="Your email address"
-                  className="min-w-0 flex-1 bg-transparent px-4 text-[14px] text-white outline-none placeholder:text-white/65"
+                  className="min-w-0 flex-1 bg-transparent px-3 text-[13px] text-white outline-none placeholder:text-white/55 sm:px-4 sm:text-[14px] sm:placeholder:text-white/65"
                 />
 
                 <button
                   type="submit"
                   aria-label="Subscribe to newsletter"
-                  className="flex w-[58px] shrink-0 items-center justify-center bg-[#F4A019] text-[#071321] transition-colors hover:bg-[#FFB83E]"
+                  className="flex w-[48px] shrink-0 items-center justify-center bg-[#F4A019] text-[#071321] transition-colors hover:bg-[#FFB83E] sm:w-[58px]"
                 >
                   <svg
                     viewBox="0 0 24 24"
-                    className="h-6 w-6"
+                    className="h-5 w-5 sm:h-6 sm:w-6"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="1.8"
@@ -395,11 +402,11 @@ export default function SiteFooter() {
         </div>
 
         {/* Bottom legal bar */}
-        <div className="mt-12 border-t border-white/10 pt-6 sm:mt-14 sm:pt-8 lg:mt-14">
-          <div className="flex flex-col gap-5 text-[13px] text-white/90 sm:flex-row sm:items-center sm:justify-between sm:text-[14px]">
+        <div className="mt-9 border-t border-white/10 pt-5 sm:mt-14 sm:pt-8 lg:mt-14">
+          <div className="flex flex-col gap-4 text-[12px] text-white/75 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:text-[14px] sm:text-white/90">
             <p>© 2026 Credoe Talent Solutions. All rights reserved.</p>
 
-            <div className="flex flex-wrap items-center gap-5 sm:gap-8">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-8">
               <a
                 href="/privacy-policy"
                 className="transition-colors hover:text-[#F4A019]"
@@ -420,7 +427,7 @@ export default function SiteFooter() {
         </div>
 
         {/* Bottom fine rule */}
-        <div className="mt-8 h-px bg-white/[0.07]" />
+        <div className="mt-7 h-px bg-white/[0.07] sm:mt-8" />
       </div>
     </footer>
   );
