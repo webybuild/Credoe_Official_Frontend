@@ -213,7 +213,7 @@ export default function BookingCalendar() {
           }}
           config={{
             layout: "month_view",
-            useSlotsViewOnSmallScreen: "true",
+            useSlotsViewOnSmallScreen: "false",
             theme: "dark",
           }}
         />
