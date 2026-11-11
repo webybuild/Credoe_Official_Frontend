@@ -790,6 +790,286 @@ function CoachingPotential() {
 }
 
 /* -------------------------------------------------------
+   EXECUTIVE TALENT MAPPING & BENCHMARKING VISUALS
+------------------------------------------------------- */
+
+// 01. Executive Talent Mapping
+function TalentMappingLandscape() {
+  return (
+    <>
+      <Ring className="-right-16 top-[6%] h-[360px] w-[360px]" />
+      <Ring className="right-[6%] top-[18%] h-[255px] w-[255px]" gold />
+      <Ring className="right-[21%] top-[33%] h-[125px] w-[125px]" />
+
+      <svg
+        className="absolute right-[3%] top-[9%] h-[72%] w-[72%] opacity-85 transition-transform duration-1000 group-hover:scale-105"
+        viewBox="0 0 480 320"
+        fill="none"
+      >
+        <path
+          d="M240 48 L115 118 L55 230 M240 48 L365 118 L425 230 M115 118 L240 185 L365 118 M240 185 L155 275 M240 185 L325 275"
+          stroke="white"
+          strokeOpacity=".22"
+        />
+        <path
+          d="M240 48 L240 185 M115 118 L365 118 M240 185 L325 275"
+          stroke="#F4A019"
+          strokeOpacity=".55"
+          strokeWidth="1.3"
+        />
+        {[
+          [240, 48],
+          [115, 118],
+          [365, 118],
+          [55, 230],
+          [425, 230],
+          [240, 185],
+          [155, 275],
+          [325, 275],
+        ].map(([cx, cy], i) => (
+          <g key={i}>
+            <circle
+              cx={cx}
+              cy={cy}
+              r={i === 5 ? 15 : 9}
+              fill={i === 5 ? "#F4A019" : "#10243A"}
+              fillOpacity={i === 5 ? ".15" : "1"}
+              stroke={i === 5 ? "#F4A019" : "white"}
+              strokeOpacity={i === 5 ? ".8" : ".35"}
+            />
+            <circle
+              cx={cx}
+              cy={cy}
+              r="3"
+              fill={i === 5 ? "#F4A019" : "#A5B3C3"}
+            />
+          </g>
+        ))}
+        <circle cx="240" cy="48" r="20" stroke="#F4A019" strokeOpacity=".25" />
+      </svg>
+
+      <div className="absolute right-[13%] top-[18%] flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#F4A019]" />
+        <span className="text-[8px] uppercase tracking-[0.2em] text-white/45">
+          Executive / Network
+        </span>
+      </div>
+
+      <Node gold className="right-[31%] top-[39%]" />
+      <ArchitectureGrid />
+    </>
+  );
+}
+
+// 02. Leadership Benchmarking
+function TalentBenchmarking() {
+  return (
+    <>
+      <Ring className="-right-12 top-[8%] h-[350px] w-[350px]" />
+      <Ring className="right-[8%] top-[20%] h-[245px] w-[245px]" gold />
+
+      <svg
+        className="absolute right-[4%] top-[10%] h-[73%] w-[72%] opacity-85 transition-transform duration-1000 group-hover:translate-y-[-5px]"
+        viewBox="0 0 460 320"
+        fill="none"
+      >
+        <path
+          d="M35 250 H430 M35 185 H430 M35 120 H430 M35 55 H430"
+          stroke="white"
+          strokeOpacity=".12"
+          strokeDasharray="4 7"
+        />
+        <path
+          d="M75 250 V145 H125 V250 M155 250 V95 H205 V250 M235 250 V165 H285 V250"
+          stroke="white"
+          strokeOpacity=".35"
+          strokeWidth="1.2"
+          fill="white"
+          fillOpacity=".025"
+        />
+        <path
+          d="M315 250 V75 H365 V250 M395 250 V115 H445 V250"
+          stroke="#F4A019"
+          strokeOpacity=".65"
+          strokeWidth="1.3"
+          fill="#F4A019"
+          fillOpacity=".07"
+        />
+        <path
+          d="M100 145 H340 M180 95 H340 M260 165 H340"
+          stroke="#F4A019"
+          strokeOpacity=".45"
+          strokeDasharray="3 5"
+        />
+        <circle cx="100" cy="145" r="5" fill="white" fillOpacity=".65" />
+        <circle cx="180" cy="95" r="5" fill="#F4A019" />
+        <circle cx="260" cy="165" r="5" fill="white" fillOpacity=".65" />
+        <circle cx="340" cy="75" r="6" fill="#F4A019" />
+      </svg>
+
+      <div className="absolute right-[12%] top-[19%] flex items-center gap-2">
+        <span className="h-px w-5 bg-[#F4A019]" />
+        <span className="text-[8px] uppercase tracking-[0.2em] text-white/45">
+          Internal / External
+        </span>
+      </div>
+
+      <ArchitectureGrid size="40px" />
+    </>
+  );
+}
+
+// 03. Market & Competitive Intelligence
+function TalentMarketIntelligence() {
+  return (
+    <>
+      <Ring className="-right-12 top-[7%] h-[350px] w-[350px]" />
+      <Ring className="right-[7%] top-[20%] h-[250px] w-[250px]" gold />
+      <Ring className="right-[22%] top-[35%] h-[120px] w-[120px]" />
+
+      <svg
+        className="absolute right-[3%] top-[10%] h-[72%] w-[72%] opacity-85 transition-transform duration-1000 group-hover:rotate-2"
+        viewBox="0 0 480 320"
+        fill="none"
+      >
+        <path
+          d="M65 215 L150 105 L255 155 L365 65 L430 190"
+          stroke="white"
+          strokeOpacity=".22"
+        />
+        <path
+          d="M65 215 L150 105 L255 155 L365 65"
+          stroke="#F4A019"
+          strokeOpacity=".6"
+          strokeWidth="1.4"
+        />
+        <path
+          d="M150 105 L170 260 L300 245 L430 190 M255 155 L300 245 M365 65 L390 145"
+          stroke="white"
+          strokeOpacity=".2"
+        />
+        {[
+          [65, 215],
+          [150, 105],
+          [255, 155],
+          [365, 65],
+          [430, 190],
+          [170, 260],
+          [300, 245],
+          [390, 145],
+        ].map(([cx, cy], i) => (
+          <g key={i}>
+            <circle
+              cx={cx}
+              cy={cy}
+              r={i === 2 ? 8 : 5}
+              fill={i === 2 || i === 3 ? "#F4A019" : "#10243A"}
+              stroke={i === 2 || i === 3 ? "#F4A019" : "white"}
+              strokeOpacity=".65"
+            />
+            {i === 2 && (
+              <circle
+                cx={cx}
+                cy={cy}
+                r="17"
+                stroke="#F4A019"
+                strokeOpacity=".3"
+              />
+            )}
+          </g>
+        ))}
+        <path
+          d="M255 155 L330 110 L390 145"
+          stroke="#F4A019"
+          strokeOpacity=".35"
+          strokeDasharray="3 5"
+        />
+      </svg>
+
+      <div className="absolute right-[12%] top-[17%] flex items-center gap-2">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#F4A019]" />
+        <span className="text-[8px] uppercase tracking-[0.2em] text-white/45">
+          Market / Intelligence
+        </span>
+      </div>
+
+      <Node gold className="right-[37%] top-[42%]" />
+      <ArchitectureGrid size="42px" />
+    </>
+  );
+}
+
+// 04. Succession & Pipeline Development
+function TalentPipeline() {
+  return (
+    <>
+      <Ring className="-right-16 top-[8%] h-[350px] w-[350px]" />
+      <Ring className="right-[5%] top-[20%] h-[250px] w-[250px]" gold />
+
+      <svg
+        className="absolute right-[3%] top-[10%] h-[73%] w-[75%] opacity-85 transition-transform duration-1000 group-hover:translate-x-2"
+        viewBox="0 0 500 320"
+        fill="none"
+      >
+        <path
+          d="M45 240 H130 L190 175 H275 L340 105 H455"
+          stroke="white"
+          strokeOpacity=".22"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M45 260 H130 L190 195 H275 L340 125 H455"
+          stroke="#F4A019"
+          strokeOpacity=".65"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M130 240 V260 M190 175 V195 M275 175 V195 M340 105 V125"
+          stroke="white"
+          strokeOpacity=".2"
+        />
+        {[
+          [45, 250],
+          [130, 250],
+          [190, 185],
+          [275, 185],
+          [340, 115],
+          [455, 115],
+        ].map(([cx, cy], i) => (
+          <g key={i}>
+            <circle
+              cx={cx}
+              cy={cy}
+              r={i === 4 ? 11 : 6}
+              fill={i === 4 ? "#F4A019" : "#10243A"}
+              fillOpacity={i === 4 ? ".2" : "1"}
+              stroke={i === 4 ? "#F4A019" : "white"}
+              strokeOpacity={i === 4 ? ".85" : ".4"}
+            />
+            <circle cx={cx} cy={cy} r="2.5" fill="#F4A019" />
+          </g>
+        ))}
+        <circle cx="340" cy="115" r="23" stroke="#F4A019" strokeOpacity=".3" />
+        <path
+          d="M340 77 V55 M302 115 H280 M378 115 H400"
+          stroke="#F4A019"
+          strokeOpacity=".3"
+        />
+      </svg>
+
+      <div className="absolute right-[12%] top-[18%] flex items-center gap-2">
+        <span className="h-px w-5 bg-[#F4A019]" />
+        <span className="text-[8px] uppercase tracking-[0.2em] text-white/45">
+          Pipeline / Readiness
+        </span>
+      </div>
+
+      <ArchitectureGrid />
+    </>
+  );
+}
+
+/* -------------------------------------------------------
    VISUAL REGISTRY
    Each card receives its own visual key from its data.
 ------------------------------------------------------- */
@@ -812,6 +1092,12 @@ const visualRegistry = {
   "succession-dependency": SuccessionDependency,
   "succession-visibility": SuccessionVisibility,
   "succession-transition": SuccessionTransition,
+
+  // Executive Talent Mapping & Benchmarking
+  "mapping-landscape": TalentMappingLandscape,
+  "mapping-benchmarking": TalentBenchmarking,
+  "mapping-intelligence": TalentMarketIntelligence,
+  "mapping-pipeline": TalentPipeline,
 
   // Executive & Leadership Career Coaching
   "coaching-effectiveness": CoachingEffectiveness,

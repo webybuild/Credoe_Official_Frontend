@@ -41,6 +41,13 @@ const services = [
     path: "/services/leadership-coaching",
     number: "04",
   },
+  {
+    title: "Executive Talent Mapping & Benchmarking",
+    description:
+      "Mapping executive talent and benchmarking leadership capabilities for future readiness.",
+    path: "/services/executive-talent-mapping",
+    number: "05",
+  },
 ];
 
 export default function UserNav() {

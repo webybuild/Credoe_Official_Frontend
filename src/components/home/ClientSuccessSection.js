@@ -9,7 +9,7 @@ const defaultTestimonials = [
   {
     quote:
       "Andre Dyer of Credo Talent Solutions is an exceptional recruiting partner. His ability to attract top talent, understand business needs, and build lasting relationships has strengthened WC Bradley’s talent acquisition efforts. His professionalism, responsiveness, and commitment to excellence are unmatched.",
-    name: "Fair",
+    name: "A. Fair",
     role: "Sr. HR. Director, Talent, L&D",
     company: "W.C. Bradley",
   },

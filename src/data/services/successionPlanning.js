@@ -2,10 +2,10 @@ const successionPlanning = {
   serviceName: "Succession Planning",
 
   // HERO
-  title: "Preparing tomorrow's",
-  highlight: "leaders, today.",
+  title: "Prepare future leaders.",
+  highlight: "Secure continuity.",
   description:
-    "We help organizations identify, develop, and prepare future leaders through thoughtful succession strategies that strengthen leadership continuity, reduce transition risks, and support long-term business success.",
+    "We help organizations identify and develop future leaders to ensure smoother transitions and long-term business continuity.",
   backgroundImage: "/images/cardThreeImg.png",
 
   // 01. THE CHALLENGE

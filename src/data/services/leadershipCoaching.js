@@ -2,10 +2,10 @@ const leadershipCoaching = {
   serviceName: "Executive and Leadership Career Coaching",
 
   // HERO
-  title: "Unlocking leadership",
-  highlight: "potential and performance.",
+  title: "Unlock your potential.",
+  highlight: "Lead with confidence.",
   description:
-    "We empower executives and emerging leaders to unlock their potential, strengthen leadership capabilities, navigate career transitions, and lead with greater clarity, confidence, and impact.",
+    "We help executives strengthen leadership skills, navigate career transitions, and achieve their professional goals.",
   backgroundImage: "/images/cardTwoImg.png",
 
   // 01 CHALLENGE

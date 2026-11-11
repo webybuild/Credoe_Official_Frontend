@@ -2,10 +2,10 @@ const executiveSearch = {
   serviceName: "Executive Search",
 
   // HERO
-  title: "Finding the leaders who",
-  highlight: "move your organization forward.",
+  title: "Leaders who move",
+  highlight: "business forward.",
   description:
-    "We identify and secure transformational leaders who align with your vision, culture, and long-term goals, helping you build stronger teams and accelerate sustainable success.",
+    "We find exceptional executives aligned with your vision, culture, and long-term goals.",
   backgroundImage: "/images/cardOneImg.png",
 
   // 01. THE CHALLENGE

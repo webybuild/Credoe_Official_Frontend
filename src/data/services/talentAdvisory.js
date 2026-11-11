@@ -2,10 +2,10 @@ const talentAdvisory = {
   serviceName: "Talent Advisory",
 
   // HERO
-  title: "Building stronger talent",
-  highlight: "strategies for lasting success.",
+  title: "Build stronger talent.",
+  highlight: "Create lasting success.",
   description:
-    "We help organizations attract, engage, and retain exceptional talent through tailored advisory strategies, organizational readiness assessments, and actionable workforce insights that support long-term business success.",
+    "We help organizations make smarter talent decisions, strengthen workforce readiness, and build strategies for long-term success.",
   backgroundImage: "/images/cardFourImg.png",
 
   // 01. THE CHALLENGE

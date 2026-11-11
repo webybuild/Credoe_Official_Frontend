@@ -4,43 +4,53 @@ import Link from "next/link";
 const coreSolutions = [
   {
     title: "Executive Search",
+    category: "Leadership Recruitment",
     href: "/services/executive-search",
     description:
       "We identify and secure transformational leaders who align with your vision and accelerate success.",
     image: "/images/cardOneImg.png",
-    icon: "/icons/find-professional-man-icon.svg",
     alt: "Executive chess strategy",
     number: "01",
   },
   {
     title: "Talent Advisory",
+    category: "Talent Strategy",
     href: "/services/talent-advisory",
     description:
       "Custom strategies to attract, engage, and retain top talent across every level of your organization.",
     image: "/images/cardTwoImg.png",
-    icon: "/icons/business-team-icon.svg",
     alt: "Business professionals collaborating",
     number: "02",
   },
   {
     title: "Succession Planning",
+    category: "Leadership Continuity",
     href: "/services/succession-planning",
     description:
       "Build strong leadership pipelines and future-ready teams to ensure business continuity.",
     image: "/images/cardThreeImg.png",
-    icon: "/icons/personal-development-icon.svg",
     alt: "Modern bridge representing future growth",
     number: "03",
   },
   {
     title: "Executive and Leadership Career Coaching",
+    category: "Leadership Development",
     href: "/services/leadership-coaching",
     description:
       "Empower leaders to unlock potential, enhance performance, and lead with confidence.",
     image: "/images/cardFourImg.png",
-    icon: "/icons/men-suit-tuxedo-icon.svg",
     alt: "Executive and Leadership Career Coaching",
     number: "04",
+  },
+  {
+    title: "Executive Talent Mapping & Benchmarking",
+    category: "Market Intelligence",
+    href: "/services/executive-talent-mapping",
+    description:
+      "Gain visibility into the executive talent market, benchmark leadership capabilities, and build stronger future leadership pipelines.",
+    image: "/images/cardFiveImg.png",
+    alt: "Executive talent mapping and leadership benchmarking",
+    number: "05",
   },
 ];
 
@@ -78,7 +88,7 @@ function ArrowIcon({ className = "" }) {
   );
 }
 
-// Gold icon with explicit width and height to prevent Next.js warnings
+// Gold icon with explicit dimensions
 function GoldIcon({ src, size = 42 }) {
   return (
     <Image
@@ -97,60 +107,88 @@ function GoldIcon({ src, size = 42 }) {
   );
 }
 
+/* =========================================================
+   CORE SOLUTION CARD
+   Refined image-and-content layout
+========================================================= */
+
 function SolutionCard({ solution }) {
   return (
     <Link
       href={solution.href}
       aria-label={`Learn more about ${solution.title}`}
-      className="group relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-[#D9D5CC] bg-[#071426] shadow-[0_8px_30px_rgba(6,20,38,0.07)] transition-all duration-500 hover:-translate-y-2 hover:border-[#D99A26]/60 hover:shadow-[0_20px_45px_rgba(6,20,38,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-4"
+      className="group relative flex h-full min-h-[320px] min-w-0 flex-col overflow-hidden rounded-xl border border-[#D9D5CC] bg-[#071426] shadow-[0_12px_35px_rgba(6,20,38,0.07)] transition-all duration-500 hover:-translate-y-1.5 hover:border-[#D99A26]/60 hover:shadow-[0_22px_50px_rgba(6,20,38,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-4 sm:min-h-[330px] lg:min-h-[320px]"
     >
-      {/* Image */}
-      <div className="relative h-[190px] overflow-hidden sm:h-[210px] xl:h-[195px]">
+      {/* Image area */}
+      <div className="relative h-[165px] w-full shrink-0 overflow-hidden sm:h-[180px] lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-[43%]">
         <Image
           src={solution.image}
           alt={solution.alt}
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+          sizes="(max-width: 640px) 100vw, (max-width: 1023px) 50vw, 43vw"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#061426]/65 via-transparent to-[#061426]/10" />
+        {/* Image blending */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#071426]/45 via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#071426] lg:via-[#071426]/35 lg:to-transparent" />
 
-        <span className="absolute right-5 top-5 font-heading text-3xl font-medium text-white/75">
-          {solution.number}
-        </span>
+        {/* Subtle image shading */}
+        <div className="absolute inset-0 bg-[#071426]/[0.04] transition-colors duration-500 group-hover:bg-transparent" />
       </div>
 
-      {/* Gold icon, positioned outside the clipped image */}
-      <div className="absolute left-6 top-[152px] z-20 flex h-[76px] w-[76px] items-center justify-center rounded-full border-[3px] border-[#F5A623] bg-[#071426] shadow-[0_8px_25px_rgba(0,0,0,0.25)] sm:top-[172px] xl:top-[157px]">
-        <GoldIcon src={solution.icon} size={43} />
-      </div>
+      {/* Content */}
+      <div className="relative z-10 flex min-w-0 flex-1 flex-col p-6 sm:p-7 lg:w-[76%] lg:p-7 xl:p-8">
+        {/* Category and mobile number */}
+        <div className="flex items-start justify-between gap-3">
+          <span className="pt-1 text-[9px] font-semibold uppercase tracking-[0.19em] text-[#F5A623]">
+            {solution.category}
+          </span>
 
-      {/* Card content */}
-      <div className="flex flex-1 flex-col px-6 pb-6 pt-[58px] sm:px-6 sm:pb-7">
-        <h3 className="min-h-[54px] font-heading text-[20px] font-medium leading-snug text-white transition-colors duration-300 group-hover:text-[#F5B94F] sm:text-[21px]">
+          <span className="shrink-0 font-heading text-[32px] font-medium leading-none text-white/75 lg:hidden">
+            {solution.number}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 className="mt-4 max-w-[420px] font-heading text-[22px] font-medium leading-[1.2] text-white transition-colors duration-300 group-hover:text-[#F5B94F] sm:text-[24px] lg:mt-5 xl:text-[26px]">
           {solution.title}
         </h3>
 
-        <div className="mt-3 h-px w-12 bg-[#F5A623] transition-all duration-500 group-hover:w-20" />
+        {/* Gold accent */}
+        <span className="mt-4 h-px w-10 bg-[#F5A623] transition-all duration-500 group-hover:w-16" />
 
-        <p className="mt-5 flex-1 text-[13px] leading-[1.9] tracking-[0.015em] text-white/65">
+        {/* Description */}
+        <p className="mt-4 max-w-[480px] text-[12px] leading-[1.85] tracking-[0.01em] text-white/65 sm:text-[13px]">
           {solution.description}
         </p>
 
-        <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#F5A623]">
+        {/* Explore link */}
+        <div className="mt-auto flex items-center justify-between gap-3 pt-6">
+          <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#F5A623] transition-colors duration-300 group-hover:text-white">
             Explore Solution
           </span>
 
-          <span className="flex h-9 w-9 items-center justify-center rounded-full border border-[#F5A623]/40 text-[#F5A623] transition-all duration-300 group-hover:border-[#F5A623] group-hover:bg-[#F5A623] group-hover:text-[#071426]">
-            <ArrowIcon className="h-4 w-5" />
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D99A26]/60 transition-all duration-300 group-hover:border-[#F5A623] group-hover:bg-[#F5A623] group-hover:text-[#071426]">
+            <ArrowIcon className="h-4 w-5 text-[#F5A623] transition-all duration-300 group-hover:text-[#071426] group-hover:translate-x-0.5" />
           </span>
         </div>
       </div>
+
+      {/* Desktop number */}
+      <span className="absolute right-5 top-5 z-10 hidden font-heading text-[38px] font-medium leading-none text-white/75 lg:block">
+        {solution.number}
+      </span>
+
+      {/* Subtle gold corner accent */}
+      <span className="pointer-events-none absolute bottom-0 left-0 h-[2px] w-0 bg-[#F5A623] transition-all duration-500 group-hover:w-full" />
     </Link>
   );
 }
+
+/* =========================================================
+   EMERGING SOLUTION CARD
+   Original design preserved
+========================================================= */
 
 function EmergingSolutionCard({ solution }) {
   return (
@@ -189,6 +227,10 @@ function EmergingSolutionCard({ solution }) {
     </Link>
   );
 }
+
+/* =========================================================
+   MAIN SERVICE SECTION
+========================================================= */
 
 export default function ServiceSection() {
   return (
@@ -247,18 +289,26 @@ export default function ServiceSection() {
             </div>
 
             <span className="text-[10px] font-medium tracking-[0.12em] text-[#92918B]">
-              01 / 04
+              01 / 05
             </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5 xl:gap-7">
-            {coreSolutions.map((solution) => (
-              <SolutionCard key={solution.title} solution={solution} />
+          {/* Five-card layout */}
+          <div className="grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-6 lg:gap-5 xl:gap-7">
+            {coreSolutions.map((solution, index) => (
+              <div
+                key={solution.title}
+                className={`min-w-0 ${
+                  index < 3 ? "lg:col-span-2" : "lg:col-span-3"
+                }`}
+              >
+                <SolutionCard solution={solution} />
+              </div>
             ))}
           </div>
         </div>
 
-        {/* Emerging solutions */}
+        {/* Emerging solutions, unchanged */}
         <div className="mt-16 sm:mt-20">
           <div className="mb-7 flex items-center gap-4">
             <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#A66B0C] sm:text-xs">
@@ -275,7 +325,7 @@ export default function ServiceSection() {
           </div>
         </div>
 
-        {/* Consultation banner */}
+        {/* Consultation banner, unchanged */}
         <div className="relative mt-16 overflow-hidden rounded-lg border border-[#D99A26]/30 bg-[#071426] px-6 py-9 shadow-[0_20px_60px_rgba(6,20,38,0.12)] sm:mt-20 sm:px-10 sm:py-12 lg:px-14 lg:py-14">
           {/* Decorative gold circles */}
           <div
