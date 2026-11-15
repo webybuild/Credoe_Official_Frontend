@@ -1,13 +1,11 @@
 import Image from "next/image";
 
-const GOLD = "#E2A32F";
-
 const pillars = [
   {
     number: "01",
     title: "Leadership Alignment & Clarity",
     description:
-      "Ensures stakeholders are unified in vision, goals, and expectations for new talent.",
+      "Looks at whether key stakeholders share a clear understanding of the role, its priorities, and the expectations for a new leader, helping everyone work toward the same goals from the start.",
     image: "/images/leadership-alignment.png",
     icon: "users",
   },
@@ -15,7 +13,7 @@ const pillars = [
     number: "02",
     title: "Organizational Infrastructure",
     description:
-      "Assesses systems, reporting structures, and role definitions to support a new hire.",
+      "Reviews the systems, reporting structures, decision making processes, and role definitions a new leader will rely on to work effectively and make a meaningful contribution.",
     image: "/images/organizational-infrastructure.png",
     icon: "structure",
   },
@@ -23,7 +21,7 @@ const pillars = [
     number: "03",
     title: "Culture & Leadership Environment",
     description:
-      "Examines internal culture and management style for talent success and fit.",
+      "Considers the organization's culture, leadership style, and working environment, and how well they support a new leader in building relationships, earning trust, and working with the team.",
     image: "/images/culture-leadership-environment.png",
     icon: "users",
   },
@@ -31,15 +29,15 @@ const pillars = [
     number: "04",
     title: "Talent Value Proposition",
     description:
-      "Analyzes market competitiveness and the organization's ability to attract top talent.",
+      "Looks at what the organization can offer prospective leaders, from its reputation and growth opportunities to the scope of the role and its ability to attract and retain strong talent.",
     image: "/images/talent-value-proposition.png",
     icon: "chart",
   },
   {
     number: "05",
-    title: "Adaptability to Diverse Talent",
+    title: "Adaptability to Talent",
     description:
-      "Measures flexibility to integrate diverse backgrounds and professional approaches.",
+      "Evaluates the ability to collaborate effectively with individuals from different professional backgrounds, experiences, perspectives, and working styles while supporting team effectiveness and organizational success.",
     image: "/images/adaptability-diverse-talent.png",
     icon: "globe",
   },
@@ -101,9 +99,9 @@ function PillarIcon({ type }) {
 
 function PillarCard({ pillar }) {
   return (
-    <article className="group relative flex h-full w-[84vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-[#EAEAEA] bg-white shadow-[0_5px_18px_rgba(3,16,30,0.055)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(3,16,30,0.10)] sm:w-auto sm:max-w-none sm:shrink">
+    <article className="group relative flex h-[510px] w-[84vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-xl border border-[#EAEAEA] bg-white shadow-[0_5px_18px_rgba(3,16,30,0.055)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(3,16,30,0.10)] sm:h-full sm:w-auto sm:max-w-none sm:shrink">
       {/* Card image */}
-      <div className="relative h-[175px] overflow-hidden sm:h-[180px] xl:h-[150px] 2xl:h-[165px]">
+      <div className="relative h-[175px] shrink-0 overflow-hidden sm:h-[180px] xl:h-[150px] 2xl:h-[165px]">
         <Image
           src={pillar.image}
           alt={pillar.title}
@@ -247,7 +245,7 @@ export default function TalentReadinessSection() {
           {/* Mobile horizontal carousel, tablet and desktop grid */}
           <div
             aria-label="Five pillars of the Talent Readiness Assessment"
-            className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-5 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 2xl:grid-cols-5"
+            className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain px-5 pb-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:auto-rows-fr sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3 2xl:grid-cols-5"
           >
             {pillars.map((pillar) => (
               <PillarCard key={pillar.number} pillar={pillar} />

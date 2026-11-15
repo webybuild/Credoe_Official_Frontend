@@ -1,11 +1,11 @@
 const executiveSearch = {
-  serviceName: "Executive Search",
+  serviceName: "Executive Search and Leadership Recruiting",
 
   // HERO
   title: "Leaders who move",
   highlight: "business forward.",
   description:
-    "We find exceptional executives aligned with your vision, culture, and long-term goals.",
+    "We identify and recruit exceptional executives and leaders who align with your vision, culture, and long-term goals, helping your organization build stronger leadership teams and achieve lasting success.",
   backgroundImage: "/images/cardOneImg.png",
 
   // 01. THE CHALLENGE
@@ -17,7 +17,7 @@ const executiveSearch = {
     highlight: "faster than ever.",
 
     description:
-      "Organizations face unprecedented complexity, making it increasingly difficult to find and secure leaders who can navigate change, drive growth, and create lasting value.",
+      "Organizations face unprecedented complexity, making it increasingly difficult to find and secure the right executives and leadership talent who can navigate change, drive growth, and create lasting value.",
 
     cards: [
       {
@@ -31,7 +31,7 @@ const executiveSearch = {
         number: "02",
         title: "Talent Scarcity",
         description:
-          "High-caliber executives are limited, highly sought after, and increasingly selective about their next move.",
+          "High-caliber executives and experienced leaders are limited, highly sought after, and increasingly selective about their next move.",
         visual: "executive-scarcity",
       },
       {
@@ -60,21 +60,21 @@ const executiveSearch = {
     highlight: "to lasting impact.",
 
     description:
-      "We combine deep market insight, a rigorous search process, and a partnership-led mindset to deliver leaders who create lasting impact.",
+      "We combine deep market insight, a rigorous search process, and a partnership-led mindset to identify and recruit exceptional executives and leaders who create lasting impact.",
 
     cards: [
       {
         number: "01",
         title: "Deep Discovery",
         description:
-          "We immerse ourselves in your business, culture, and leadership needs to define a precise mandate.",
+          "We immerse ourselves in your business, culture, and leadership needs to define a precise recruitment mandate.",
         icon: "discovery",
       },
       {
         number: "02",
         title: "Targeted Engagement",
         description:
-          "We leverage deep networks, market intelligence, and specialized research to identify exceptional, often hard-to-reach talent.",
+          "We leverage deep networks, market intelligence, and specialized research to identify exceptional, often hard-to-reach executive and leadership talent.",
         icon: "engagement",
       },
       {
@@ -103,12 +103,12 @@ const executiveSearch = {
     highlight: "exceptional outcomes.",
 
     description:
-      "A structured, insight-led process designed to identify, engage, and secure leaders who create lasting impact.",
+      "A structured, insight-led process designed to identify, engage, and secure exceptional executives and leadership talent who create lasting impact.",
 
     supportingLabel: "RIGOR. INSIGHT. PARTNERSHIP.",
 
     supportingDescription:
-      "We combine deep market expertise with a disciplined process and a partnership mindset to deliver leaders who drive real, measurable change.",
+      "We combine deep market expertise with a disciplined recruitment process and a partnership mindset to deliver leaders who drive real, measurable change.",
 
     steps: [
       {
@@ -124,7 +124,7 @@ const executiveSearch = {
         category: "Connect",
         title: "Map & Engage",
         description:
-          "We leverage deep networks and market intelligence to identify and engage exceptional talent.",
+          "We leverage deep networks and market intelligence to identify and engage exceptional executive and leadership talent.",
         icon: "engagement",
       },
       {
@@ -163,7 +163,7 @@ const executiveSearch = {
     highlight: "Greater possibilities.",
 
     description:
-      "We help organizations build leadership teams that drive growth, navigate complexity, and create long-term value.",
+      "We help organizations build stronger executive and leadership teams that drive growth, navigate complexity, and create long-term value.",
 
     metrics: [
       {
@@ -223,7 +223,7 @@ const executiveSearch = {
     highlight: "the right leaders?",
 
     description:
-      "Partner with Credoe to access exceptional talent, build future-ready leadership, and drive lasting impact.",
+      "Partner with Credoe to access exceptional executive and leadership talent, build future-ready leadership teams, and drive lasting impact.",
 
     buttonText: "Get in Touch",
     buttonHref: "/contact",

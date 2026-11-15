@@ -16,7 +16,7 @@ const menuItems = [
 
 const services = [
   {
-    title: "Executive Search",
+    title: "Executive Search and Leadership Recruiting",
     description: "Finding exceptional leaders who move organizations forward.",
     path: "/services/executive-search",
     number: "01",

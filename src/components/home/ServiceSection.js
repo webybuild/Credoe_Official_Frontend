@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const coreSolutions = [
   {
-    title: "Executive Search",
+    title: "Executive Search and Leadership Recruiting",
     category: "Leadership Recruitment",
     href: "/services/executive-search",
     description:

@@ -78,17 +78,17 @@ export default function AboutHero() {
           </nav>
 
           {/* Eyebrow */}
-          <div className="mb-4 flex items-center gap-4 sm:mb-5">
+          {/* <div className="mb-4 flex items-center gap-4 sm:mb-5">
             <span className="h-[2px] w-10 shrink-0 bg-[#F4A019] sm:w-12" />
 
             <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#F4A019] sm:text-[11px] sm:tracking-[0.25em] lg:text-[12px]">
               About Credoe Talent Solutions
             </span>
-          </div>
+          </div> */}
 
           {/* Heading */}
           <h1 className="max-w-[760px] font-heading text-[34px] font-medium leading-[1.1] tracking-[-0.035em] sm:text-[44px] lg:text-[52px] xl:text-[56px]">
-            <span className="block">Beyond Executive Search.</span>
+            <span className="block">Beyond Identifying Talent ,</span>
 
             <span className="mt-1 block text-[#F4A019]">
               Building Organizational Readiness.
