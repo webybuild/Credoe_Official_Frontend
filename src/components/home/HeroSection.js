@@ -163,7 +163,7 @@ export default function HeroSection() {
             <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-3">
               <a
                 href="/schedule-consultation"
-                className="cta-button group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md bg-[var(--brand-gold)] px-4 text-[10px] font-bold tracking-wide text-black transition-colors duration-300 hover:bg-white sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
+                className="cta-button group inline-flex min-h-[40px] w-[260px] items-center justify-center gap-2 rounded-md bg-[var(--brand-gold)] px-4 text-[10px] font-bold tracking-wide text-black transition-colors duration-300 hover:bg-white sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
               >
                 SCHEDULE A CONSULTATION
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -173,7 +173,7 @@ export default function HeroSection() {
 
               <a
                 href="/about"
-                className="cta-button group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md border border-white/65 px-4 text-[10px] font-bold tracking-wide text-white transition-colors duration-300 hover:border-[var(--brand-gold)] hover:text-[var(--brand-gold)] sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
+                className="cta-button group inline-flex min-h-[40px] w-[260px] items-center justify-center gap-2 rounded-md border border-white/65 px-4 text-[10px] font-bold tracking-wide text-white transition-colors duration-300 hover:border-[var(--brand-gold)] hover:text-[var(--brand-gold)] sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
               >
                 ABOUT CREDOE
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
