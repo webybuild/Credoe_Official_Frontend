@@ -1,6 +1,7 @@
 "use client";
 
 const GOLD = "#F4A019";
+const EYEBROW_GOLD = "#F5A623";
 
 function ImpactIcon({ index }) {
   const common = {
@@ -79,7 +80,7 @@ export default function ServiceImpact({
   outcomes = [],
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[#FAF9F6] py-12 text-[#07172B] sm:py-16 lg:py-[76px]">
+    <section className="relative isolate overflow-hidden bg-[#ffffff] py-12 text-[#07172B] sm:py-16 lg:py-[76px]">
       {/* Background details */}
       <div
         aria-hidden="true"
@@ -98,20 +99,20 @@ export default function ServiceImpact({
             {/* Eyebrow */}
             <div className="mb-5 flex items-center gap-3 sm:mb-6 sm:gap-4">
               <span
-                className="h-[2px] w-8 shrink-0 sm:w-10"
-                style={{ backgroundColor: GOLD }}
+                aria-hidden="true"
+                className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
               />
 
               <span
-                className="shrink-0 font-heading text-[14px] font-medium sm:text-[15px]"
-                style={{ color: GOLD }}
+                className="shrink-0 font-heading text-[16px] font-medium"
+                style={{ color: EYEBROW_GOLD }}
               >
                 {sectionNumber}
               </span>
 
-              <span className="h-7 w-px shrink-0 bg-[#D99B27]/30 sm:h-8" />
+              <span className="h-9 w-px shrink-0 bg-[#F5A623]/30" />
 
-              <span className="min-w-0 text-[9px] font-semibold uppercase tracking-[0.18em] text-[#788194] sm:text-[11px] sm:tracking-[0.22em]">
+              <span className="min-w-0 text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
                 {eyebrow}
               </span>
             </div>

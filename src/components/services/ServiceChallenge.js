@@ -1151,7 +1151,7 @@ export default function ServiceChallenge({
   cards = [],
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[#F8F7F3] py-16 text-[#07172B] sm:py-20 lg:py-24">
+    <section className="relative isolate overflow-hidden bg-[#ffffff] py-16 text-[#07172B] sm:py-20 lg:py-24">
       {/* Background detailing */}
       <div
         aria-hidden="true"
@@ -1165,7 +1165,10 @@ export default function ServiceChallenge({
         {/* Editorial introduction */}
         <div className="relative mb-12 lg:mb-[68px]">
           <div className="mb-7 flex items-center gap-4">
-            <span className="h-[2px] w-10" style={{ backgroundColor: GOLD }} />
+            <span
+              aria-hidden="true"
+              className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+            />
 
             <span
               className="font-heading text-[16px] font-medium"
@@ -1176,7 +1179,7 @@ export default function ServiceChallenge({
 
             <span className="h-9 w-px bg-[#D99B27]/30" />
 
-            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#788194] sm:text-[13px]">
+            <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
               {eyebrow}
             </span>
           </div>

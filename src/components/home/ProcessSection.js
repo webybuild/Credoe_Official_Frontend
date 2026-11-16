@@ -1,6 +1,6 @@
 "use client";
 
-const GOLD = "#F4A019";
+const GOLD = "#F5A623";
 
 const processSteps = [
   {
@@ -151,17 +151,17 @@ export default function ProcessSection() {
   return (
     <section
       id="our-process"
-      className="relative overflow-hidden bg-[#FAF9F6] text-[#07172B]"
+      className="relative overflow-hidden bg-white text-[#07172B]"
     >
       {/* Subtle decorative details */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 -top-40 h-[420px] w-[420px] rounded-full border border-[#F4A019]/10"
+        className="pointer-events-none absolute -right-32 -top-40 h-[420px] w-[420px] rounded-full border border-[#F5A623]/10"
       />
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 -top-28 h-[300px] w-[300px] rounded-full border border-[#F4A019]/10"
+        className="pointer-events-none absolute -right-20 -top-28 h-[300px] w-[300px] rounded-full border border-[#F5A623]/10"
       />
 
       <div className="relative mx-auto max-w-[1450px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-[76px]">
@@ -169,9 +169,12 @@ export default function ProcessSection() {
         <div className="mb-9 flex flex-col justify-between gap-5 sm:mb-11 lg:flex-row lg:items-end lg:gap-12">
           <div className="max-w-[650px]">
             <div className="flex items-center gap-3">
-              <span className="h-px w-7 bg-[#F4A019]" />
+              <span
+                aria-hidden="true"
+                className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+              />
 
-              <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[#B77A19] sm:text-xs">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.17em] text-[#F5A623] sm:text-xs">
                 Our Proven Approach
               </p>
             </div>
@@ -179,10 +182,10 @@ export default function ProcessSection() {
             <h2 className="mt-4 font-heading text-[34px] font-medium leading-[1.12] tracking-[-0.035em] text-[#07172B] sm:text-[43px] lg:text-[50px]">
               Strategic Thinking.
               <br className="hidden sm:block" />
-              Measurable <span className="text-[#D99522]">Results.</span>
+              Measurable <span className="text-[#F5A623]">Results.</span>
             </h2>
 
-            <div className="mt-5 h-[2px] w-12 bg-[#F4A019]" />
+            <div className="mt-5 h-[2px] w-12 bg-[#F5A623]" />
           </div>
 
           <p className="max-w-[440px] text-[14px] leading-[1.8] text-[#5D6875] sm:text-[15px] lg:mb-1">
@@ -193,18 +196,18 @@ export default function ProcessSection() {
 
         {/* Four-step process */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
-          {processSteps.map((step, index) => (
+          {processSteps.map((step) => (
             <article
               key={step.number}
-              className="group relative min-w-0 rounded-xl border border-[#E9E5DC] bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#E6C58C] hover:shadow-[0_12px_35px_rgba(7,23,43,0.07)] sm:p-6 lg:p-5 xl:p-6"
+              className="group relative min-w-0 rounded-xl border border-[#E5E5E5] bg-white p-5 shadow-[0_8px_28px_rgba(7,23,43,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:shadow-[0_15px_38px_rgba(7,23,43,0.10)] sm:p-6 lg:p-5 xl:p-6"
             >
               {/* Card top row */}
               <div className="flex items-start justify-between">
-                <div className="flex h-[62px] w-[62px] items-center justify-center rounded-full bg-[#FBF4E8] text-[#C88B26] transition-colors duration-300 group-hover:bg-[#F8EBD4]">
+                <div className="flex h-[62px] w-[62px] items-center justify-center rounded-full bg-[#F5A623]/10 text-[#F5A623] transition-colors duration-300 group-hover:bg-[#F5A623]/20">
                   <ProcessIcon type={step.icon} />
                 </div>
 
-                <span className="font-heading text-[27px] font-medium leading-none text-[#E6D9C2] transition-colors duration-300 group-hover:text-[#DDAA55]">
+                <span className="font-heading text-[27px] font-medium leading-none text-[#F5A623]/35 transition-colors duration-300 group-hover:text-[#F5A623]">
                   {step.number}
                 </span>
               </div>
@@ -215,7 +218,7 @@ export default function ProcessSection() {
                   {step.title}
                 </h3>
 
-                <div className="mt-3 h-[2px] w-8 bg-[#F4A019] transition-all duration-300 group-hover:w-12" />
+                <div className="mt-3 h-[2px] w-8 bg-[#F5A623] transition-all duration-300 group-hover:w-12" />
 
                 <p className="mt-4 max-w-[280px] text-[13px] leading-[1.8] text-[#68727E] sm:text-[14px]">
                   {step.description}
@@ -223,15 +226,15 @@ export default function ProcessSection() {
               </div>
 
               {/* Subtle bottom accent */}
-              <div className="absolute bottom-0 left-5 right-5 h-px bg-gradient-to-r from-transparent via-[#F4A019]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:left-6 sm:right-6" />
+              <div className="absolute bottom-0 left-5 right-5 h-px bg-gradient-to-r from-transparent via-[#F5A623]/30 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:left-6 sm:right-6" />
             </article>
           ))}
         </div>
 
         {/* Compact call to action */}
-        <div className="mt-7 flex flex-col gap-5 rounded-xl border border-[#E9E1D3] bg-[#F5F0E7] px-5 py-6 sm:px-7 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:px-9 lg:py-6">
+        <div className="mt-7 flex flex-col gap-5 rounded-xl border border-[#E5E5E5] bg-white px-5 py-6 shadow-[0_8px_28px_rgba(7,23,43,0.045)] sm:px-7 lg:mt-8 lg:flex-row lg:items-center lg:justify-between lg:px-9 lg:py-6">
           <div className="flex items-center gap-4 sm:gap-5">
-            <div className="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-full border border-[#E5C58E] bg-white text-[#C88B26] sm:h-[62px] sm:w-[62px]">
+            <div className="flex h-[54px] w-[54px] shrink-0 items-center justify-center rounded-full border border-[#F5A623]/50 bg-white text-[#F5A623] sm:h-[62px] sm:w-[62px]">
               <GrowthIcon />
             </div>
 
@@ -250,7 +253,7 @@ export default function ProcessSection() {
           <div className="flex shrink-0 flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4 lg:flex-col lg:items-end">
             <a
               href="/contact"
-              className="group inline-flex min-h-[48px] w-full items-center justify-between gap-6 rounded-md bg-[#07172B] px-5 text-[12px] font-bold uppercase tracking-[0.09em] text-white transition-colors duration-300 hover:bg-[#F4A019] sm:w-auto"
+              className="cta-button group inline-flex min-h-[48px] w-full items-center justify-between gap-6 rounded-md bg-[#07172B] px-5 text-[12px] font-bold uppercase tracking-[0.09em] text-white transition-colors duration-300 hover:bg-[#F5A623] hover:text-[#07172B] sm:w-auto"
             >
               <span>Let’s Connect</span>
 

@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const BRAND_GOLD = "#F5A623";
+
 const stats = [
   { number: "500+", label: "Successful Placements", icon: "placements" },
   {
@@ -28,7 +30,7 @@ function StatIcon({ type }) {
   return (
     <svg
       viewBox="0 0 48 48"
-      className="h-8 w-8 shrink-0 text-[#F5A623] sm:h-12 sm:w-12"
+      className="h-8 w-8 shrink-0 text-[var(--brand-gold)] sm:h-12 sm:w-12"
       aria-hidden="true"
       {...common}
     >
@@ -104,7 +106,10 @@ export default function HeroSection() {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative isolate min-h-0 overflow-hidden lg:h-[min(780px,84vh)] lg:min-h-[680px]">
+      <section
+        className="relative isolate min-h-0 overflow-hidden lg:h-[min(780px,84vh)] lg:min-h-[680px]"
+        style={{ "--brand-gold": BRAND_GOLD }}
+      >
         {/* Background image */}
         <Image
           src="/images/bg-hero.png"
@@ -120,26 +125,33 @@ export default function HeroSection() {
         <div className="absolute inset-0 -z-10 bg-[#050A18]/20" />
 
         {/* Gold decorative circles, desktop only */}
-        <div className="pointer-events-none absolute -right-[120px] top-[108px] -z-10 hidden h-[700px] w-[700px] rounded-full border border-[#F5A623]/35 sm:-right-[60px] lg:right-[-50px] lg:top-[108px] lg:block lg:h-[700px] lg:w-[700px]" />
+        <div className="pointer-events-none absolute -right-[120px] top-[108px] -z-10 hidden h-[700px] w-[700px] rounded-full border border-[color:var(--brand-gold)]/35 sm:-right-[60px] lg:right-[-50px] lg:top-[108px] lg:block lg:h-[700px] lg:w-[700px]" />
 
-        <div className="pointer-events-none absolute -right-[50px] top-[178px] -z-10 hidden h-[560px] w-[560px] rounded-full border border-[#F5A623]/25 sm:right-[10px] lg:right-[20px] lg:top-[178px] lg:block lg:h-[560px] lg:w-[560px]" />
+        <div className="pointer-events-none absolute -right-[50px] top-[178px] -z-10 hidden h-[560px] w-[560px] rounded-full border border-[color:var(--brand-gold)]/25 sm:right-[10px] lg:right-[20px] lg:top-[178px] lg:block lg:h-[560px] lg:w-[560px]" />
 
         {/* Hero content */}
         <div className="relative mx-auto flex max-w-[1800px] flex-col items-stretch px-6 pb-0 pt-32 sm:px-10 sm:pt-36 lg:h-full lg:flex-row lg:items-center lg:px-16 lg:pb-12 lg:pt-28">
           {/* Left content */}
           <div className="relative z-20 w-full max-w-[600px] lg:w-[52%] lg:pb-4">
-            <p className="mb-5 flex items-center gap-3 text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
-              <span className="h-px w-7 shrink-0 bg-[#F5A623] sm:w-8" />
-              Right Talent. Real Leaders. Remarkable Results.
-            </p>
+            {/* Premium brand eyebrow */}
+            <div className="mb-5 flex items-center gap-3 sm:mb-7">
+              <span
+                aria-hidden="true"
+                className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[var(--brand-gold)] shadow-[0_0_10px_rgba(245,166,35,0.35)]"
+              />
+
+              <p className="text-[9px] font-semibold uppercase leading-none tracking-[0.19em] text-[var(--brand-gold)] sm:text-[11px] sm:tracking-[0.23em]">
+                Right Talent. Real Leaders. Remarkable Results.
+              </p>
+            </div>
 
             <h1 className="max-w-[610px] font-serif text-[37px] font-semibold leading-[1.12] tracking-[0.005em] sm:text-5xl lg:text-[52px] lg:tracking-[0.01em] xl:text-[54px]">
               Connecting Exceptional Talent with{" "}
-              <span className="text-[#F5A623]">Extraordinary</span>{" "}
+              <span className="text-[var(--brand-gold)]">Extraordinary</span>{" "}
               Organizations.
             </h1>
 
-            <div className="mt-5 h-px w-16 bg-[#F5A623]/80 sm:mt-6 sm:w-20" />
+            <div className="mt-5 h-px w-16 bg-[var(--brand-gold)]/80 sm:mt-6 sm:w-20" />
 
             <p className="mt-5 max-w-[465px] text-[13px] leading-[25px] tracking-[0.015em] text-gray-200 sm:text-base sm:leading-[30px] sm:tracking-[0.025em]">
               Credoe Talent Solutions delivers executive search and talent
@@ -151,9 +163,9 @@ export default function HeroSection() {
             <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-3">
               <a
                 href="/schedule-consultation"
-                className="group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md bg-[#F5A623] px-4 text-[10px] font-bold tracking-wide text-black transition-colors duration-300 hover:bg-white sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
+                className="cta-button group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md bg-[var(--brand-gold)] px-4 text-[10px] font-bold tracking-wide text-black transition-colors duration-300 hover:bg-white sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
               >
-                SCHEDULE A CALL
+                SCHEDULE A CONSULTATION
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   <ArrowRight />
                 </span>
@@ -161,7 +173,7 @@ export default function HeroSection() {
 
               <a
                 href="/about"
-                className="group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md border border-white/65 px-4 text-[10px] font-semibold tracking-wide text-white transition-colors duration-300 hover:border-[#F5A623] hover:text-[#F5A623] sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
+                className="cta-button group inline-flex min-h-[40px] items-center justify-center gap-2 rounded-md border border-white/65 px-4 text-[10px] font-bold tracking-wide text-white transition-colors duration-300 hover:border-[var(--brand-gold)] hover:text-[var(--brand-gold)] sm:min-h-[44px] sm:gap-2 sm:px-5 sm:text-xs"
               >
                 ABOUT CREDOE
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -177,8 +189,7 @@ export default function HeroSection() {
             <div
               className="pointer-events-none absolute bottom-0 right-0 h-[90%] w-[85%]"
               style={{
-                background:
-                  "radial-gradient(ellipse at 70% 70%, rgba(245,166,35,0.16), transparent 68%)",
+                background: `radial-gradient(ellipse at 70% 70%, color-mix(in srgb, var(--brand-gold) 16%, transparent), transparent 68%)`,
               }}
             />
 
@@ -206,13 +217,13 @@ export default function HeroSection() {
 
             {/* Founder identity */}
             <div className="absolute bottom-5 left-6 z-10 sm:left-10">
-              <div className="mb-2 h-px w-10 bg-[#F5A623]" />
+              <div className="mb-2 h-px w-10 bg-[var(--brand-gold)]" />
 
               <p className="text-[9px] font-medium uppercase tracking-[0.2em] text-white/80">
                 Andre Dyer
               </p>
 
-              <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-[#F5A623]">
+              <p className="mt-1 text-[9px] uppercase tracking-[0.15em] text-[var(--brand-gold)]">
                 Founder & CEO
               </p>
             </div>
@@ -248,7 +259,7 @@ export default function HeroSection() {
               className="h-auto w-full object-contain"
             />
 
-            <div className="mt-2 h-px w-[40%] bg-[#F5A623]/60" />
+            <div className="mt-2 h-px w-[40%] bg-[var(--brand-gold)]/60" />
 
             <div className="mt-2 text-left text-sm tracking-[0.12em] text-white sm:text-base">
               FOUNDER &amp; CEO
@@ -258,7 +269,10 @@ export default function HeroSection() {
       </section>
 
       {/* STATISTICS BAR */}
-      <section className="relative z-20 border-t border-white/10 bg-[#050A18]">
+      <section
+        className="relative z-20 border-t border-white/10 bg-[#050A18]"
+        style={{ "--brand-gold": BRAND_GOLD }}
+      >
         <div className="mx-auto grid max-w-[1800px] grid-cols-2 gap-3 px-4 py-6 sm:gap-x-5 sm:gap-y-8 sm:px-10 sm:py-7 md:grid-cols-3 lg:grid-cols-5 lg:gap-5 lg:px-16 lg:py-7">
           {stats.map((stat, index) => (
             <div

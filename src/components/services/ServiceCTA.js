@@ -1,5 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+
+const GOLD = "#F4A019";
+const EYEBROW_GOLD = "#F5A623";
 
 const IMAGE = "/images/leadership-cta-chess.png";
 
@@ -48,9 +53,12 @@ export default function ServiceCTA({
         <div className="relative z-10 w-[55%] py-12 pl-[9.7%] pr-8 xl:py-16">
           {/* Eyebrow */}
           <div className="mb-7 flex items-center gap-5">
-            <span className="h-[2px] w-12 bg-[#F4A019]" />
+            <span
+              aria-hidden="true"
+              className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+            />
 
-            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#78849B]">
+            <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
               {eyebrow}
             </span>
           </div>
@@ -148,9 +156,12 @@ export default function ServiceCTA({
         <div className="relative z-10 flex min-h-[460px] flex-col justify-start px-5 pb-8 pt-10 sm:min-h-[500px] sm:px-8 sm:pb-9 sm:pt-12">
           {/* Eyebrow */}
           <div className="mb-6 flex items-center gap-4 sm:mb-7">
-            <span className="h-[2px] w-10 shrink-0 bg-[#F4A019]" />
+            <span
+              aria-hidden="true"
+              className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+            />
 
-            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#78849B] sm:text-[11px]">
+            <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
               {eyebrow}
             </span>
           </div>

@@ -145,7 +145,7 @@ export default function TalentReadinessSection() {
   return (
     <section
       id="methodology"
-      className="relative isolate overflow-hidden bg-[#FCFBF9] px-5 py-14 sm:px-8 sm:py-16 lg:px-[5%] lg:py-20"
+      className="relative isolate overflow-hidden bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-[5%] lg:py-20"
     >
       {/* Background decoration */}
       <div
@@ -165,13 +165,16 @@ export default function TalentReadinessSection() {
 
       <div className="relative mx-auto max-w-[1600px]">
         {/* Section introduction */}
-        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 xl:gap-12">
+        <div className="max-w-[1100px]">
           {/* Introduction content */}
           <div>
             <div className="mb-5 flex items-center gap-4">
-              <span className="h-[4px] w-[46px] shrink-0 rounded-full bg-[#DDA32F] sm:w-12" />
+              <span
+                aria-hidden="true"
+                className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+              />
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#C98B19] sm:text-[11px] lg:text-[12px]">
+              <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
                 Our Methodology
               </span>
             </div>
@@ -179,7 +182,7 @@ export default function TalentReadinessSection() {
             {/* Heading */}
             <h2 className="font-serif text-[36px] font-bold leading-[1.1] tracking-[-1px] text-[#091B32] sm:text-[44px] sm:tracking-[-1.3px] lg:text-[48px] xl:text-[54px]">
               The Talent Readiness
-              <span className="block text-[#DCA02E]">
+              <span className="block">
                 Assessment<sup className="text-[0.48em]">TM</sup> Framework.
               </span>
             </h2>
@@ -190,31 +193,13 @@ export default function TalentReadinessSection() {
             </p>
 
             {/* Description */}
-            <p className="mt-5 max-w-[760px] text-[14px] leading-[1.75] text-[#626B7A] sm:text-[15px] lg:text-[16px]">
+            <p className="mt-5 max-w-[900px] text-[14px] leading-[1.75] text-[#626B7A] sm:text-[15px] lg:text-[16px]">
               The Talent Readiness Assessment framework focuses on the
               organizational conditions that influence executive hiring success.
               It examines five critical areas to understand whether an
               organization is positioned to attract, integrate, and support
               high-impact talent.
             </p>
-          </div>
-
-          {/* Main banner image */}
-          <div className="relative min-h-[190px] overflow-hidden rounded-xl sm:min-h-[230px] lg:min-h-[250px]">
-            <Image
-              src="/images/talent-readiness-banner.png"
-              alt="Executive boardroom prepared for strategic leadership discussions"
-              fill
-              sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-cover"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-r from-[#061426]/20 to-transparent" />
-
-            {/* Decorative rings */}
-            <div className="pointer-events-none absolute -left-8 top-1/2 h-40 w-40 -translate-y-1/2 rounded-full border border-[#E2A32F]/40" />
-
-            <div className="pointer-events-none absolute -left-1 top-1/2 h-28 w-28 -translate-y-1/2 rounded-full border border-[#E2A32F]/30" />
           </div>
         </div>
 

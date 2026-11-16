@@ -1,3 +1,5 @@
+const GOLD = "#F5A623";
+
 const resourceAreas = [
   {
     number: "01",
@@ -19,6 +21,15 @@ const resourceAreas = [
   },
 ];
 
+function DiamondMarker() {
+  return (
+    <span
+      aria-hidden="true"
+      className="relative top-[-1px] inline-block h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+    />
+  );
+}
+
 function ArrowIcon() {
   return (
     <svg
@@ -39,12 +50,13 @@ function ArrowIcon() {
 
 export default function ResourcesComingSoon() {
   return (
-    <section className="relative overflow-hidden bg-[#F8F7F3] py-16 text-[#071426] sm:py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-white py-16 text-[#071426] sm:py-20 lg:py-24">
       <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
         {/* Section heading */}
         <div className="flex items-center gap-3">
-          <span className="h-[2px] w-9 bg-[#F4A019]" />
-          <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-[#A96812] sm:text-[15px]">
+          <DiamondMarker />
+
+          <p className="font-[var(--font-body)] text-[11px] font-semibold uppercase leading-none tracking-[0.2em] text-[#F5A623] sm:text-xs">
             Resources
           </p>
         </div>
@@ -55,7 +67,7 @@ export default function ResourcesComingSoon() {
             <h2 className="font-heading text-[40px] font-semibold leading-[1.1] tracking-[-0.035em] sm:text-[52px] lg:text-[62px]">
               Insights to Drive
               <br />
-              Leadership <span className="text-[#D98616]">Forward.</span>
+              Leadership <span className="text-[#F5A623]">Forward.</span>
             </h2>
           </div>
 
@@ -70,14 +82,15 @@ export default function ResourcesComingSoon() {
         <div className="relative mt-12 overflow-hidden rounded-[10px] bg-[#071426] px-7 py-9 sm:px-10 sm:py-12 lg:mt-14 lg:px-14 lg:py-14">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute right-0 top-0 h-full w-[35%] bg-gradient-to-l from-[#F4A019]/[0.07] to-transparent"
+            className="pointer-events-none absolute right-0 top-0 h-full w-[35%] bg-gradient-to-l from-[#F5A623]/[0.07] to-transparent"
           />
 
           <div className="relative grid gap-9 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
             <div>
-              <div className="inline-flex items-center gap-2 border border-[#F4A019]/35 bg-[#F4A019]/10 px-3 py-2">
-                <span className="h-2 w-2 rounded-full bg-[#F4A019]" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#F4B34F]">
+              <div className="inline-flex items-center gap-2 border border-[#F5A623]/35 bg-[#F5A623]/10 px-3 py-2">
+                <span className="h-2 w-2 rounded-full bg-[#F5A623]" />
+
+                <span className="text-[10px] font-bold uppercase tracking-[0.14em] text-[#F5A623]">
                   Resource Library · In Development
                 </span>
               </div>
@@ -93,14 +106,14 @@ export default function ResourcesComingSoon() {
                 leadership.
               </p>
 
-              <p className="mt-5 text-[12px] font-medium tracking-wide text-[#F4A019]">
+              <p className="mt-5 text-[12px] font-medium tracking-wide text-[#F5A623]">
                 Check back soon for new resources.
               </p>
             </div>
 
             {/* Status detail */}
             <div className="flex items-center gap-5 border-t border-white/15 pt-6 lg:min-w-[220px] lg:flex-col lg:items-start lg:border-l lg:border-t-0 lg:pl-9 lg:pt-0">
-              <div className="flex h-[54px] w-[54px] shrink-0 items-center justify-center border border-[#F4A019]/45 text-[#F4A019]">
+              <div className="flex h-[54px] w-[54px] shrink-0 items-center justify-center border border-[#F5A623]/45 text-[#F5A623]">
                 <svg
                   viewBox="0 0 24 24"
                   className="h-6 w-6"
@@ -120,9 +133,11 @@ export default function ResourcesComingSoon() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.13em] text-white/45">
                   What's ahead
                 </p>
+
                 <p className="mt-1 font-heading text-[20px] font-semibold text-white">
                   Knowledge. Perspective.
                 </p>
+
                 <p className="mt-1 text-[13px] text-white/50">
                   Made for leaders.
                 </p>
@@ -136,9 +151,9 @@ export default function ResourcesComingSoon() {
           {resourceAreas.map((item) => (
             <div
               key={item.number}
-              className="rounded-[10px] bg-white px-6 py-7 sm:px-7 sm:py-9 lg:px-9"
+              className="rounded-[10px] border border-[#EAEAEA] bg-white px-6 py-7 shadow-[0_8px_28px_rgba(7,20,38,0.045)] sm:px-7 sm:py-9 lg:px-9"
             >
-              <span className="text-[12px] font-semibold tracking-[0.12em] text-[#D98616]">
+              <span className="text-[12px] font-semibold tracking-[0.12em] text-[#F5A623]">
                 {item.number}
               </span>
 
@@ -162,7 +177,7 @@ export default function ResourcesComingSoon() {
 
           <a
             href="/schedule-consultation"
-            className="group inline-flex min-h-[48px] w-fit items-center gap-4 rounded-[4px] bg-[#071426] px-5 text-[11px] font-bold uppercase tracking-[0.1em] text-white transition-colors hover:bg-[#F4A019] hover:text-[#071426] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F4A019] focus-visible:ring-offset-2"
+            className="cta-button group inline-flex min-h-[48px] w-fit items-center gap-4 rounded-[4px] bg-[#071426] px-5 text-[11px] font-bold uppercase tracking-[0.1em] text-white transition-colors hover:bg-[#F5A623] hover:text-[#071426] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2"
           >
             Schedule a Consultation
             <span className="transition-transform group-hover:translate-x-1">

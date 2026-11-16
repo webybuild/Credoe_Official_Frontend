@@ -6,7 +6,7 @@ const executiveSearch = {
   highlight: "business forward.",
   description:
     "We identify and recruit exceptional executives and leaders who align with your vision, culture, and long-term goals, helping your organization build stronger leadership teams and achieve lasting success.",
-  backgroundImage: "/images/cardOneImg.png",
+  backgroundImage: "/images/cardOneImage.png",
 
   // 01. THE CHALLENGE
   challenge: {

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const GOLD = "#F4A019";
+const GOLD = "#F5A623";
 const SLIDE_DURATION = 6500;
 
 const defaultTestimonials = [
@@ -70,7 +70,12 @@ function QuoteMark() {
 
 function InfoIcon() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4">
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      className="block h-3.5 w-3.5 shrink-0"
+    >
       <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
       <path
         d="M12 11v5M12 8h.01"
@@ -136,7 +141,7 @@ function TestimonialModal({ testimonial, onClose }) {
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#F4A019]/15"
+          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full border border-[#F5A623]/15"
         />
 
         <div
@@ -148,9 +153,9 @@ function TestimonialModal({ testimonial, onClose }) {
         <div className="relative flex items-center justify-between gap-4 border-b border-white/10 px-5 py-4 sm:px-8 sm:py-6">
           <div className="min-w-0">
             <div className="flex items-center gap-3">
-              <span className="h-[2px] w-7 shrink-0 bg-[#F4A019]" />
+              <span className="h-[2px] w-7 shrink-0 bg-[#F5A623]" />
 
-              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#F4A019] sm:text-[10px]">
+              <span className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#F5A623] sm:text-[10px]">
                 Client Testimonial
               </span>
             </div>
@@ -168,7 +173,7 @@ function TestimonialModal({ testimonial, onClose }) {
             type="button"
             onClick={onClose}
             aria-label="Close testimonial"
-            className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] sm:h-10 sm:w-10"
+            className="flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F5A623] hover:bg-[#F5A623] hover:text-[#061426] sm:h-10 sm:w-10 font-[var(--font-button)]"
           >
             <CloseIcon />
           </button>
@@ -184,11 +189,11 @@ function TestimonialModal({ testimonial, onClose }) {
             </p>
           </blockquote>
 
-          <div className="mt-6 h-px w-12 bg-[#F4A019] sm:mt-7" />
+          <div className="mt-6 h-px w-12 bg-[#F5A623] sm:mt-7" />
 
           {/* Client details */}
           <div className="mt-5 sm:mt-6">
-            <p className="font-heading text-[21px] font-semibold leading-tight tracking-[-0.02em] text-[#F4A019] sm:text-[28px]">
+            <p className="font-heading text-[21px] font-semibold leading-tight tracking-[-0.02em] text-[#F5A623] sm:text-[28px]">
               {testimonial.company}
             </p>
 
@@ -206,14 +211,14 @@ function TestimonialModal({ testimonial, onClose }) {
 
         {/* Modal footer */}
         <div className="relative flex items-center justify-between border-t border-white/10 px-5 py-4 sm:px-8">
-          <span className="text-[8px] font-medium uppercase tracking-[0.15em] text-white/35 sm:text-[9px] sm:tracking-[0.18em]">
+          <span className="text-[8px] font-medium uppercase tracking-[0.15em] text-white/35 sm:text-[9px]">
             Credoe Talent Solutions
           </span>
 
           <button
             type="button"
             onClick={onClose}
-            className="cursor-pointer text-[10px] font-semibold uppercase tracking-[0.12em] text-[#F4A019] transition-colors hover:text-white sm:text-[11px]"
+            className="cursor-pointer text-[10px] font-semibold uppercase tracking-[0.12em] text-[#F5A623] transition-colors hover:text-white sm:text-[11px] font-[var(--font-button)]"
           >
             Close
           </button>
@@ -276,7 +281,7 @@ function AnimatedTestimonial({ testimonial, slideDirection, onReadFull }) {
         </blockquote>
 
         <div className="mt-4 flex flex-wrap items-center gap-2.5 sm:mt-5 sm:gap-4">
-          <span className="h-[2px] w-7 shrink-0 bg-[#F4A019] sm:w-12" />
+          <span className="h-[2px] w-7 shrink-0 bg-[#F5A623] sm:w-12" />
 
           <span className="text-[8px] font-medium uppercase tracking-[0.15em] text-white/45 sm:text-[10px] sm:tracking-[0.24em]">
             A Client Perspective
@@ -287,28 +292,42 @@ function AnimatedTestimonial({ testimonial, slideDirection, onReadFull }) {
             onClick={onReadFull}
             aria-label="Read full testimonial"
             title="Read full testimonial"
-            className="group inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-[#F4A019]/40 bg-[#F4A019]/[0.08] px-2.5 text-[8px] font-semibold uppercase tracking-[0.1em] text-[#F4A019] transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] sm:gap-2 sm:px-3 sm:text-[9px] sm:tracking-[0.12em]"
+            className="group inline-flex h-8 shrink-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-[#F5A623]/60 bg-[#F5A623]/[0.10] px-3 text-[9px] font-bold uppercase leading-none tracking-[0.11em] text-[#F5A623] shadow-[0_2px_8px_rgba(245,166,35,0.06)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#F5A623] hover:bg-[#F5A623] hover:text-[#061426] hover:shadow-[0_4px_12px_rgba(245,166,35,0.16)] sm:h-9 sm:gap-2 sm:px-3.5 sm:text-[10px] font-[var(--font-button)]"
           >
             <InfoIcon />
-            <span>Read full</span>
+            <span className="block leading-none">Read Full</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+              className="block h-3.5 w-3.5 shrink-0"
+            >
+              <path
+                d="M5 12h14m-6-5 6 5-6 5"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
           </button>
         </div>
       </div>
 
       {/* Client identity */}
-      <aside className="relative flex min-h-[125px] min-w-0 flex-col justify-center gap-3 overflow-hidden rounded-lg border border-white/10 bg-white/[0.045] p-4 sm:min-h-[150px] sm:gap-5 sm:p-5 lg:min-h-[260px] lg:justify-between lg:rounded-xl lg:p-6">
+      <aside className="relative flex min-h-[125px] min-w-0 flex-col justify-center gap-3 overflow-hidden rounded-lg border border-white/10 bg-white/[0.045] p-4 sm:min-h-[150px] sm:gap-5 sm:p-5 lg:min-h-[220px] lg:justify-between lg:rounded-xl lg:p-6">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full border border-[#F4A019]/20"
+          className="pointer-events-none absolute -right-20 -top-20 h-48 w-48 rounded-full border border-[#F5A623]/20"
         />
 
         {/* Company name */}
         <div className="relative min-w-0 border-b border-white/10 pb-3 sm:pb-4 lg:pb-5">
-          <div className="mb-2 text-[8px] font-semibold uppercase tracking-[0.18em] text-[#F4A019] sm:text-[9px] sm:tracking-[0.2em]">
+          <div className="mb-2 text-[8px] font-semibold uppercase tracking-[0.18em] text-[#F5A623] sm:text-[9px] sm:tracking-[0.2em]">
             Client Recognition
           </div>
 
-          <p className="break-words font-heading text-[19px] font-semibold leading-[1.2] tracking-[-0.025em] text-[#F4A019] sm:text-[25px] lg:text-[28px]">
+          <p className="break-words font-heading text-[19px] font-semibold leading-[1.2] tracking-[-0.025em] text-[#F5A623] sm:text-[25px] lg:text-[28px]">
             {testimonial.company}
           </p>
         </div>
@@ -323,7 +342,7 @@ function AnimatedTestimonial({ testimonial, slideDirection, onReadFull }) {
             {testimonial.role}
           </p>
 
-          <div className="mt-3 h-px w-8 bg-[#F4A019] lg:mt-4 lg:w-10" />
+          <div className="mt-3 h-px w-8 bg-[#F5A623] lg:mt-4 lg:w-10" />
         </div>
       </aside>
     </div>
@@ -338,7 +357,6 @@ export default function ClientSuccessSection({
     : [];
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [slideDirection, setSlideDirection] = useState("next");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -377,16 +395,17 @@ export default function ClientSuccessSection({
     );
   }, [totalTestimonials]);
 
-  // Automatic testimonial rotation.
+  // Automatically change testimonials every 6.5 seconds.
+  // Hovering over the section does not pause the slider.
   useEffect(() => {
-    if (isPaused || isModalOpen || totalTestimonials <= 1) {
+    if (isModalOpen || totalTestimonials <= 1) {
       return undefined;
     }
 
     const timer = setTimeout(next, SLIDE_DURATION);
 
     return () => clearTimeout(timer);
-  }, [activeIndex, isPaused, isModalOpen, next, totalTestimonials]);
+  }, [activeIndex, isModalOpen, next, totalTestimonials]);
 
   // Animated progress indicator.
   useEffect(() => {
@@ -412,10 +431,12 @@ export default function ClientSuccessSection({
       },
     );
 
-    if (isPaused || isModalOpen) animation.pause();
+    if (isModalOpen) {
+      animation.pause();
+    }
 
     return () => animation.cancel();
-  }, [activeIndex, isPaused, isModalOpen]);
+  }, [activeIndex, isModalOpen]);
 
   if (totalTestimonials === 0) return null;
 
@@ -426,14 +447,6 @@ export default function ClientSuccessSection({
       <section
         id="testimonials"
         className="relative isolate overflow-hidden bg-[#061426] text-white"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onFocusCapture={() => setIsPaused(true)}
-        onBlurCapture={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget)) {
-            setIsPaused(false);
-          }
-        }}
       >
         {/* Background atmosphere */}
         <div
@@ -444,55 +457,83 @@ export default function ClientSuccessSection({
 
           <div className="absolute -right-[220px] -top-[200px] h-[500px] w-[500px] rounded-full border border-white/[0.045] sm:h-[600px] sm:w-[600px]" />
 
-          <div className="absolute -right-[150px] -top-[140px] h-[390px] w-[390px] rounded-full border border-[#F4A019]/[0.09] sm:h-[460px] sm:w-[460px]" />
+          <div className="absolute -right-[150px] -top-[140px] h-[390px] w-[390px] rounded-full border border-[#F5A623]/[0.09] sm:h-[460px] sm:w-[460px]" />
 
-          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#F4A019]/40 to-transparent" />
+          <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-[#F5A623]/40 to-transparent" />
         </div>
 
         {/* Main content */}
-        <div className="mx-auto max-w-[1500px] px-6 pb-8 pt-9 sm:px-8 sm:pb-12 sm:pt-12 lg:px-12 lg:pb-14 lg:pt-14">
+        <div className="mx-auto max-w-[1500px] px-6 pb-12 pt-12 sm:px-8 sm:pb-12 sm:pt-12 lg:px-12 lg:pb-14 lg:pt-14 xl:px-14 xl:pb-16 xl:pt-16">
           {/* Header */}
-          <header className="mb-6 flex flex-col justify-between gap-4 sm:mb-9 sm:gap-5 lg:mb-10 lg:flex-row lg:items-end">
+          <header className="mb-4 flex flex-col justify-between gap-4 sm:mb-5 sm:gap-5 lg:mb-5 lg:flex-row lg:items-end">
             <div className="max-w-[760px] min-w-0">
-              <div className="flex items-center gap-3 sm:gap-4">
-                <span className="h-[2px] w-7 shrink-0 bg-[#F4A019] sm:w-10" />
+              {/* Section label */}
+              <div className="flex items-center gap-3">
+                <span
+                  aria-hidden="true"
+                  className="relative top-[-1px] h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+                />
 
-                <p className="text-[8px] font-semibold uppercase tracking-[0.17em] text-[#F4A019] sm:text-[11px] sm:tracking-[0.24em]">
+                <p className="text-[11px] font-semibold uppercase leading-none tracking-[0.2em] text-[#F5A623] sm:text-xs">
                   Client Success Stories
                 </p>
               </div>
 
-              <h2 className="mt-4 font-heading text-[29px] font-medium leading-[1.14] tracking-[-0.035em] text-white sm:mt-5 sm:text-[42px] lg:text-[52px] xl:text-[58px]">
+              <h2 className="mt-3 font-heading text-[29px] font-medium leading-[1.14] tracking-[-0.035em] text-white sm:mt-4 sm:text-[42px] lg:text-[52px] xl:text-[58px]">
                 Trust is built
                 <br />
-                through <span className="text-[#F4A019]">results.</span>
+                through <span className="text-[#F5A623]">results.</span>
               </h2>
 
-              <p className="mt-3 max-w-[540px] text-[11px] leading-[1.75] text-white/60 sm:mt-4 sm:text-[14px] sm:leading-[1.8] lg:text-[15px]">
+              <p className="mt-2 max-w-[540px] text-[11px] leading-[1.75] text-white/60 sm:mt-3 sm:text-[14px] sm:leading-[1.8] lg:text-[15px]">
                 We partner with organizations to deliver exceptional talent and
                 measurable impact. Here’s what our clients have to say about
                 their experience with us.
               </p>
             </div>
 
-            {/* Dynamic testimonial count */}
-            <div className="flex w-[120px] shrink-0 items-end gap-2 lg:pb-1">
-              <span className="w-[3ch] font-heading text-[40px] leading-none tabular-nums text-[#F4A019] sm:text-[54px]">
-                {formatNumber(activeIndex + 1)}
-              </span>
+            {/* Top-right navigation */}
+            <div className="flex shrink-0 items-center justify-between gap-4 lg:pb-2">
+              <div className="flex items-end gap-2">
+                <span className="w-[3ch] font-heading text-[34px] leading-none tabular-nums text-[#F5A623] sm:text-[42px]">
+                  {formatNumber(activeIndex + 1)}
+                </span>
 
-              <div className="mb-1 min-w-0">
-                <div className="h-px w-9 bg-white/30" />
+                <div className="mb-1 min-w-0">
+                  <div className="h-px w-8 bg-white/30" />
 
-                <p className="mt-1.5 whitespace-nowrap text-[8px] uppercase tracking-[0.15em] text-white/45 sm:text-[9px] sm:tracking-[0.18em]">
-                  Of {formatNumber(totalTestimonials)} Stories
-                </p>
+                  <p className="mt-1.5 whitespace-nowrap text-[8px] uppercase tracking-[0.15em] text-white/45 sm:text-[9px] sm:tracking-[0.18em]">
+                    Of {formatNumber(totalTestimonials)} Stories
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={previous}
+                  disabled={totalTestimonials <= 1}
+                  aria-label="Previous testimonial"
+                  className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F5A623] hover:bg-[#F5A623] hover:text-[#061426] disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10 font-[var(--font-button)]"
+                >
+                  <ArrowIcon direction="left" />
+                </button>
+
+                <button
+                  type="button"
+                  onClick={next}
+                  disabled={totalTestimonials <= 1}
+                  aria-label="Next testimonial"
+                  className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F5A623] hover:bg-[#F5A623] hover:text-[#061426] disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10 font-[var(--font-button)]"
+                >
+                  <ArrowIcon />
+                </button>
               </div>
             </div>
           </header>
 
           {/* Featured testimonial */}
-          <div className="relative h-[520px] border-y border-white/10 py-5 sm:h-[590px] sm:py-8 lg:h-[380px] lg:py-10 xl:h-[400px]">
+          <div className="relative h-[420px] border-y border-white/10 py-4 sm:h-[460px] sm:py-6 lg:h-[320px] lg:py-6 xl:h-[340px]">
             <AnimatedTestimonial
               key={activeTestimonial.name}
               testimonial={activeTestimonial}
@@ -501,11 +542,10 @@ export default function ClientSuccessSection({
             />
           </div>
 
-          {/* Navigation */}
-          <div className="mt-5 flex items-center justify-between gap-3 sm:mt-7">
-            {/* Dynamic current position */}
+          {/* Bottom progress and current position */}
+          <div className="mt-4 flex items-center justify-between gap-3 sm:mt-5">
             <div className="flex min-w-0 items-center gap-2.5 sm:gap-3">
-              <span className="font-heading text-[14px] tabular-nums text-[#F4A019] sm:text-[17px]">
+              <span className="font-heading text-[14px] tabular-nums text-[#F5A623] sm:text-[17px]">
                 {formatNumber(activeIndex + 1)}
               </span>
 
@@ -520,37 +560,12 @@ export default function ClientSuccessSection({
               </span>
             </div>
 
-            {/* Progress and controls */}
-            <div className="flex shrink-0 items-center gap-3 sm:gap-5">
-              <div className="h-[2px] w-10 overflow-hidden bg-white/15 sm:w-24 lg:w-28">
-                <div
-                  ref={progressRef}
-                  className="h-full origin-left bg-[#F4A019]"
-                  style={{ transform: "scaleX(0)" }}
-                />
-              </div>
-
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={previous}
-                  disabled={totalTestimonials <= 1}
-                  aria-label="Previous testimonial"
-                  className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
-                >
-                  <ArrowIcon direction="left" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={next}
-                  disabled={totalTestimonials <= 1}
-                  aria-label="Next testimonial"
-                  className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-white/15 text-white/70 transition-all duration-300 hover:border-[#F4A019] hover:bg-[#F4A019] hover:text-[#061426] disabled:cursor-not-allowed disabled:opacity-30 sm:h-10 sm:w-10"
-                >
-                  <ArrowIcon />
-                </button>
-              </div>
+            <div className="flex h-[2px] w-10 shrink-0 overflow-hidden bg-white/15 sm:w-24 lg:w-28">
+              <div
+                ref={progressRef}
+                className="h-full origin-left bg-[#F5A623]"
+                style={{ transform: "scaleX(0)" }}
+              />
             </div>
           </div>
         </div>

@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+const GOLD = "#F5A623";
+
 const features = [
   {
     title: "Holistic Perspective",
@@ -108,16 +110,16 @@ function PhilosophyVisual() {
         </span>
 
         {/* Gold decorative rings */}
-        <div className="pointer-events-none absolute -bottom-[130px] right-[-30px] h-[260px] w-[260px] rounded-full border border-[#DCA02E]/20" />
-        <div className="pointer-events-none absolute -bottom-[100px] right-[-5px] h-[210px] w-[210px] rounded-full border border-[#DCA02E]/15" />
+        <div className="pointer-events-none absolute -bottom-[130px] right-[-30px] h-[260px] w-[260px] rounded-full border border-[#F5A623]/20" />
+        <div className="pointer-events-none absolute -bottom-[100px] right-[-5px] h-[210px] w-[210px] rounded-full border border-[#F5A623]/15" />
 
         {/* Quote content */}
         <div className="relative z-10 max-w-[470px]">
-          <span className="mb-5 block h-[4px] w-[45px] rounded-sm bg-[#E2A52F] sm:mb-6 sm:h-[5px] sm:w-[55px] lg:mb-7" />
+          <span className="mb-5 block h-[4px] w-[45px] rounded-sm bg-[#F5A623] sm:mb-6 sm:h-[5px] sm:w-[55px] lg:mb-7" />
 
           <p className="font-serif text-[22px] italic leading-[1.45] text-white sm:text-[27px] lg:text-[31px] xl:text-[34px]">
             True hiring success demands{" "}
-            <span className="text-[#E2A52F]">organizational readiness</span>,
+            <span className="text-[#F5A623]">organizational readiness</span>,
             not just candidate readiness.
           </p>
         </div>
@@ -130,16 +132,16 @@ export default function PhilosophySection() {
   return (
     <section
       id="philosophy"
-      className="relative isolate overflow-hidden bg-[#FCFBF9] px-5 py-14 sm:px-8 sm:py-16 lg:px-[7.6%] lg:py-20"
+      className="relative isolate overflow-hidden bg-[#FFFFFF] px-5 py-14 sm:px-8 sm:py-16 lg:px-[7.6%] lg:py-20"
     >
       {/* Decorative background circles */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-[350px] top-[100px] h-[600px] w-[600px] rounded-full border border-[#E2A52F]/20"
+        className="pointer-events-none absolute -left-[350px] top-[100px] h-[600px] w-[600px] rounded-full border border-[#F5A623]/20"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-[300px] top-[150px] h-[500px] w-[500px] rounded-full border border-[#E2A52F]/15"
+        className="pointer-events-none absolute -left-[300px] top-[150px] h-[500px] w-[500px] rounded-full border border-[#F5A623]/15"
       />
 
       <div className="relative mx-auto max-w-[1600px]">
@@ -149,23 +151,26 @@ export default function PhilosophySection() {
           <div className="relative z-10">
             {/* Eyebrow */}
             <div className="mb-5 flex items-center gap-4 sm:mb-6 sm:gap-5">
-              <span className="h-[4px] w-[44px] shrink-0 rounded-sm bg-[#DDA32F] sm:h-[5px] sm:w-[54px] lg:w-[58px]" />
+              <span
+                aria-hidden="true"
+                className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+              />
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[#C98B19] sm:text-[11px] lg:text-[12px]">
+              <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
                 Our Core Philosophy
               </span>
             </div>
 
             {/* Heading */}
-            <h2 className="font-serif text-[36px] font-bold leading-[1.08] tracking-[-1px] text-[#091B32] sm:text-[46px] sm:tracking-[-1.5px] lg:text-[52px] xl:text-[58px]">
+            <h2 className="font-heading text-[36px] font-medium leading-[1.12] tracking-[-0.035em] text-[#091B32] sm:text-[46px] lg:text-[50px] xl:text-[54px]">
               Beyond Qualified
-              <span className="block text-[#DCA02E]">Candidates.</span>
+              <span className="block text-[#F5A623]">Candidates.</span>
             </h2>
 
             {/* Description */}
             <div className="mt-5 max-w-[690px] space-y-4 text-[14px] leading-[1.75] text-[#505663] sm:mt-6 sm:space-y-5 sm:text-[15px] lg:mt-7 lg:text-[16px] xl:text-[17px]">
               <p>
-                At CREDOE Talent Solutions, we believe successful hiring goes
+                At Credoe Talent Solutions, we believe successful hiring goes
                 beyond identifying qualified candidates. It requires ensuring
                 the organization is fully positioned to attract, integrate, and
                 retain high-impact talent.
@@ -204,8 +209,8 @@ export default function PhilosophySection() {
               <div
                 className={`flex h-[64px] w-[64px] shrink-0 items-center justify-center rounded-full sm:h-[74px] sm:w-[74px] lg:h-[78px] lg:w-[78px] ${
                   feature.gold
-                    ? "bg-[#E0A32F] text-[#071B33]"
-                    : "bg-[#071B33] text-[#E0A32F]"
+                    ? "bg-[#F5A623] text-[#071B33]"
+                    : "bg-[#071B33] text-[#F5A623]"
                 }`}
               >
                 <FeatureIcon type={feature.type} />

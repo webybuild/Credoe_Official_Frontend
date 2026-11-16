@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-const GOLD = "#F4A019";
+const GOLD = "#F5A623";
 const NAVY = "#071523";
 const HEADING = "#0C1A32";
 
@@ -31,16 +31,16 @@ const contactDetails = [
 ];
 
 const fieldClassName =
-  "block w-full rounded-md border border-[#D9DEE5] bg-white px-3 py-[11px] text-[13px] leading-5 text-[#17243A] outline-none transition placeholder:text-[#98A2B3] focus:border-[#D98900] focus:ring-2 focus:ring-[#F4A019]/20";
+  "block w-full rounded-md border border-[#D9DEE5] bg-white px-3 py-[11px] text-[13px] leading-5 text-[#17243A] outline-none transition placeholder:text-[#98A2B3] focus:border-[#F5A623] focus:ring-2 focus:ring-[#F5A623]/20";
 
 function SectionEyebrow({ children }) {
   return (
     <div className="mb-4 flex items-center justify-center gap-4">
-      <span className="h-px w-7 shrink-0 bg-[#F4A019]" />
+      <span className="h-px w-7 shrink-0 bg-[#F5A623]" />
       <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#17243A]">
         {children}
       </p>
-      <span className="h-px w-7 shrink-0 bg-[#F4A019]" />
+      <span className="h-px w-7 shrink-0 bg-[#F5A623]" />
     </div>
   );
 }
@@ -86,11 +86,11 @@ function ContactRings() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute -bottom-20 -right-28 h-[350px] w-[350px] rounded-full border border-[#F4A019]/35"
+      className="pointer-events-none absolute -bottom-20 -right-28 h-[350px] w-[350px] rounded-full border border-[#F5A623]/35"
     >
-      <div className="absolute inset-[9%] rounded-full border border-[#F4A019]/30" />
-      <div className="absolute inset-[18%] rounded-full border border-[#F4A019]/25" />
-      <div className="absolute inset-[27%] rounded-full border border-[#F4A019]/20" />
+      <div className="absolute inset-[9%] rounded-full border border-[#F5A623]/30" />
+      <div className="absolute inset-[18%] rounded-full border border-[#F5A623]/25" />
+      <div className="absolute inset-[27%] rounded-full border border-[#F5A623]/20" />
     </div>
   );
 }
@@ -140,7 +140,7 @@ function ContactInformation() {
                   href={detail.href}
                   target={detail.title === "Office" ? "_blank" : undefined}
                   rel={detail.title === "Office" ? "noreferrer" : undefined}
-                  className="mt-1 inline-block max-w-full break-words text-sm leading-6 text-white/90 transition hover:text-[#F4A019]"
+                  className="mt-1 inline-block max-w-full break-words text-sm leading-6 text-white/90 transition hover:text-[#F5A623]"
                 >
                   {detail.value}
                 </a>
@@ -263,7 +263,7 @@ export default function ContactFormSection() {
   return (
     <section
       id="contact-form"
-      className="bg-[#FCFCFB] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20"
+      className="bg-[#ffffff] px-5 py-14 sm:px-8 sm:py-16 lg:px-12 lg:py-20"
     >
       <div className="mx-auto max-w-[1200px]">
         {/* Section heading */}
@@ -274,7 +274,7 @@ export default function ContactFormSection() {
             className="font-heading text-3xl font-semibold leading-tight tracking-tight sm:text-5xl"
             style={{ color: HEADING }}
           >
-            How Can We <span style={{ color: "#D98900" }}>Help?</span>
+            How Can We <span style={{ color: GOLD }}>Help?</span>
           </h2>
 
           <p className="mx-auto mt-4 max-w-[700px] text-sm leading-6 text-[#536176] sm:text-base sm:leading-7">
@@ -372,7 +372,7 @@ export default function ContactFormSection() {
                   checked={formData.consent}
                   onChange={handleChange}
                   required
-                  className="mt-0.5 h-4 w-4 shrink-0 accent-[#D98900]"
+                  className="mt-0.5 h-4 w-4 shrink-0 accent-[#F5A623]"
                 />
 
                 <span>
@@ -383,7 +383,7 @@ export default function ContactFormSection() {
 
               <button
                 type="submit"
-                className="flex min-h-[46px] w-full items-center justify-center gap-3 rounded-md px-5 py-3 text-xs font-bold text-[#07111E] transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D98900] focus-visible:ring-offset-2"
+                className="flex min-h-[46px] w-full items-center justify-center gap-3 rounded-md px-5 py-3 text-xs font-bold text-[#07111E] transition hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2"
                 style={{ backgroundColor: GOLD }}
               >
                 SEND MESSAGE

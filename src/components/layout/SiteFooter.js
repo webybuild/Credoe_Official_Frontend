@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+const GOLD = "#F5A623";
 
 const industries = [
-  { name: "Manufacturing", icon: "manufacturing" },
-  { name: "Technology", icon: "technology" },
-  { name: "Healthcare", icon: "healthcare" },
-  { name: "Financial Services", icon: "finance" },
-  { name: "Professional Services", icon: "professional" },
+  "Manufacturing",
+  "Technology",
+  "Healthcare",
+  "Financial Services",
+  "Professional Services",
 ];
 
 const quickLinks = [
@@ -26,75 +26,6 @@ const socialLinks = [
     label: "LinkedIn",
   },
 ];
-
-function IndustryIcon({ type }) {
-  const common = {
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: 1.45,
-    strokeLinecap: "round",
-    strokeLinejoin: "round",
-  };
-
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      className="h-7 w-7 sm:h-9 sm:w-9 lg:h-[54px] lg:w-[54px]"
-      aria-hidden="true"
-      {...common}
-    >
-      {type === "manufacturing" && (
-        <>
-          <path d="M5 52V33l13 8V30l13 9V24l14 9v19z" />
-          <path d="M5 52h48" />
-          <path d="M20 52V42h8v10M37 52V42h8v10" />
-          <path d="M25 25V11l10-5v19" />
-          <path d="M35 11l8-4 8 4v13" />
-          <path d="M39 12l9 2 6-4" />
-          <path d="M49 10l7 2-1-8-6 2" />
-        </>
-      )}
-
-      {type === "technology" && (
-        <>
-          <rect x="5" y="8" width="54" height="37" rx="3" />
-          <path d="M5 38h54" />
-          <path d="M32 45v9M21 55h22" />
-          <path d="M13 15h38" />
-        </>
-      )}
-
-      {type === "healthcare" && (
-        <>
-          <path d="M32 55 9 32C-1 20 8 7 20 8c6 0 10 4 12 9 3-5 7-9 14-9 12 0 19 13 9 24z" />
-          <path d="M9 31h12l5-12 8 25 6-16 4 6h11" />
-        </>
-      )}
-
-      {type === "finance" && (
-        <>
-          <path d="M5 22 32 7l27 15z" />
-          <path d="M8 55h48M5 60h54" />
-          <path d="M12 25v26M24 25v26M40 25v26M52 25v26" />
-          <circle cx="32" cy="17" r="2" />
-        </>
-      )}
-
-      {type === "professional" && (
-        <>
-          <circle cx="32" cy="13" r="8" />
-          <circle cx="14" cy="25" r="6" />
-          <circle cx="50" cy="25" r="6" />
-          <circle cx="20" cy="39" r="7" />
-          <circle cx="44" cy="39" r="7" />
-          <path d="M19 31c0-7 5-11 13-11s13 4 13 11" />
-          <path d="M7 42c0-6 4-9 10-9M47 33c7 0 10 3 10 9" />
-          <path d="M8 54c0-8 5-12 12-12m8 12c0-9 5-13 12-13s12 4 12 13z" />
-        </>
-      )}
-    </svg>
-  );
-}
 
 function FooterIcon({ type, className = "h-5 w-5 sm:h-6 sm:w-6" }) {
   const common = {
@@ -147,29 +78,26 @@ function SocialIcon({ type }) {
     );
   }
 
-  if (type === "x") {
+  if (type === "instagram") {
     return (
       <svg
         viewBox="0 0 24 24"
         className="h-[17px] w-[17px] sm:h-5 sm:w-5"
-        fill="currentColor"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         aria-hidden="true"
       >
-        <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.9 5.8 22H2.6l7.3-8.4L1.8 2h6.5l4.4 6.6zM17.8 19.8h1.7L7.3 4.1H5.5z" />
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
       </svg>
     );
   }
 
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="h-[17px] w-[17px] sm:h-5 sm:w-5"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.2 3.6z" />
-    </svg>
-  );
+  return null;
 }
 
 function SectionHeading({ children }) {
@@ -178,24 +106,28 @@ function SectionHeading({ children }) {
       <h3 className="text-[14px] font-semibold uppercase tracking-[0.015em] text-white sm:text-[16px]">
         {children}
       </h3>
-      <span className="mt-3 block h-[2px] w-[35px] bg-[#F4A019] sm:mt-4" />
+      <span
+        className="mt-3 block h-[2px] w-[35px] sm:mt-4"
+        style={{ backgroundColor: GOLD }}
+      />
     </div>
   );
 }
 
+function DiamondMarker() {
+  return (
+    <span
+      aria-hidden="true"
+      className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px]"
+      style={{
+        backgroundColor: GOLD,
+        boxShadow: "0 0 12px rgba(245,166,35,0.35)",
+      }}
+    />
+  );
+}
+
 export default function SiteFooter() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  function handleSubscribe(event) {
-    event.preventDefault();
-
-    if (!email.trim()) return;
-
-    // Connect your newsletter API or provider here.
-    setSubscribed(true);
-  }
-
   return (
     <footer className="relative overflow-hidden bg-[#020D19] text-white">
       {/* Subtle navy gradient */}
@@ -209,41 +141,95 @@ export default function SiteFooter() {
       />
 
       <div className="relative mx-auto max-w-[1600px] px-5 pb-7 pt-9 sm:px-8 sm:pb-8 sm:pt-12 lg:px-11 lg:pt-14">
-        {/* Industries strip */}
-        <div className="grid grid-cols-2 overflow-hidden rounded-xl border border-white/10 bg-[#071321]/60 lg:grid-cols-[1.35fr_repeat(5,minmax(0,1fr))] lg:rounded-[4px]">
-          <div className="col-span-2 px-5 py-6 sm:px-8 lg:col-span-1 lg:flex lg:min-h-[148px] lg:flex-col lg:justify-center lg:px-8">
-            <div className="flex items-center gap-3">
-              <span className="h-[2px] w-[30px] shrink-0 bg-[#F4A019]" />
-              <h2 className="whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.025em] text-[#F4A019] sm:text-[15px]">
-                Industries We Serve
-              </h2>
+        {/* Industries We Serve */}
+        <section className="relative overflow-hidden border border-white/[0.12] bg-[#071827] px-5 py-6 sm:px-8 sm:py-7 lg:px-10 lg:py-8">
+          {/* Decorative background lighting */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-20 -top-32 h-[320px] w-[320px] rounded-full blur-[100px]"
+            style={{
+              background: "rgba(245,166,35,0.08)",
+            }}
+          />
+
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -bottom-40 left-[25%] h-[260px] w-[420px] rounded-full blur-[100px]"
+            style={{
+              background: "rgba(25,75,110,0.16)",
+            }}
+          />
+
+          <div className="relative">
+            {/* Section heading */}
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+              <div className="max-w-[680px]">
+                <div className="flex items-center gap-3">
+                  <DiamondMarker />
+
+                  <p
+                    className="text-[11px] font-bold uppercase tracking-[0.22em] sm:text-[12px]"
+                    style={{ color: GOLD }}
+                  >
+                    Industries We Serve
+                  </p>
+                </div>
+
+                <h2 className="mt-4 max-w-[680px] font-heading text-[34px] font-medium leading-[1.12] tracking-[-0.025em] text-white sm:text-[42px] lg:text-[48px] xl:text-[52px]">
+                  Leadership that moves
+                  <span className="block text-[#F5A623]">
+                    industries forward.
+                  </span>
+                </h2>
+              </div>
+
+              <p className="max-w-[390px] text-[14px] leading-[1.9] text-white/65 sm:text-[15px] lg:mb-2 lg:text-[16px]">
+                Every industry has its own challenges. We connect organizations
+                with exceptional leaders who understand their landscape and know
+                how to create lasting impact.
+              </p>
             </div>
 
-            <p className="mt-3 max-w-[300px] text-[13px] leading-[1.7] text-white/75 sm:mt-4 sm:text-[15px] sm:text-white/90">
-              From startups to enterprise, we help organizations in diverse
-              industries thrive.
-            </p>
+            {/* Industry cards */}
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
+              {industries.map((industry) => (
+                <div
+                  key={industry}
+                  className="group relative flex min-h-[92px] flex-col justify-between overflow-hidden border border-white/[0.12] bg-white/[0.035] p-4 transition-all duration-500 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:bg-[#F5A623]/[0.07] sm:min-h-[105px] sm:p-5 lg:min-h-[116px] lg:p-5 xl:p-6"
+                >
+                  {/* Top gold accent */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-0 h-[2px] w-0 transition-all duration-500 group-hover:w-full"
+                    style={{ backgroundColor: GOLD }}
+                  />
+
+                  {/* Subtle corner glow */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+                    style={{ backgroundColor: GOLD }}
+                  />
+
+                  <div className="relative flex items-center justify-between">
+                    <DiamondMarker />
+
+                    <span
+                      aria-hidden="true"
+                      className="text-[20px] leading-none text-white/35 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#F5A623]"
+                    >
+                      ↗
+                    </span>
+                  </div>
+
+                  <h3 className="relative mt-4 max-w-[210px] font-heading text-[19px] font-medium leading-[1.3] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:text-[20px] lg:text-[18px] xl:text-[20px]">
+                    {industry}
+                  </h3>
+                </div>
+              ))}
+            </div>
           </div>
-
-          {industries.map((industry, index) => (
-            <div
-              key={industry.name}
-              className={`flex min-h-[100px] flex-col items-center justify-center gap-2 border-t border-white/10 px-2 py-4 text-center sm:min-h-[115px] sm:gap-3 lg:min-h-[148px] lg:border-l lg:border-t-0 lg:border-white/10 lg:px-2 ${
-                index === industries.length - 1
-                  ? "col-span-2 mx-auto w-1/2 lg:col-span-1 lg:mx-0 lg:w-full"
-                  : ""
-              }`}
-            >
-              <span className="text-[#F4A019]">
-                <IndustryIcon type={industry.icon} />
-              </span>
-
-              <span className="max-w-[145px] text-[11px] leading-[1.35] text-white/90 sm:text-[13px] lg:text-[14px]">
-                {industry.name}
-              </span>
-            </div>
-          ))}
-        </div>
+        </section>
 
         {/* Main footer columns */}
         <div className="mt-12 grid grid-cols-1 gap-9 sm:grid-cols-2 sm:gap-10 lg:mt-[104px] lg:grid-cols-[1.3fr_0.8fr_1.1fr_1.25fr] lg:gap-0">
@@ -265,21 +251,6 @@ export default function SiteFooter() {
               Connecting exceptional talent with extraordinary organizations to
               drive meaningful impact.
             </p>
-
-            <div className="mt-6 flex items-center gap-4 sm:mt-8 sm:gap-6">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.type}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.label}
-                  className="flex h-[38px] w-[38px] items-center justify-center rounded-full border border-[#F4A019]/50 text-white transition-colors hover:bg-[#F4A019] hover:text-[#020D19] sm:h-[44px] sm:w-[44px] sm:border-[#F4A019]/60"
-                >
-                  <SocialIcon type={social.type} />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick links */}
@@ -294,10 +265,14 @@ export default function SiteFooter() {
                 >
                   <a
                     href={link.href}
-                    className="group flex min-h-[42px] items-center justify-between gap-3 text-[13px] text-white/90 transition-colors hover:text-[#F4A019] sm:min-h-[45px] sm:text-[15px]"
+                    className="group flex min-h-[42px] items-center justify-between gap-3 text-[13px] text-white/90 transition-colors hover:text-[#F5A623] sm:min-h-[45px] sm:text-[15px]"
                   >
                     {link.label}
-                    <span className="text-[19px] leading-none text-[#F4A019] transition-transform group-hover:translate-x-1 sm:text-[22px]">
+
+                    <span
+                      className="text-[19px] leading-none transition-transform group-hover:translate-x-1 sm:text-[22px]"
+                      style={{ color: GOLD }}
+                    >
                       ›
                     </span>
                   </a>
@@ -313,9 +288,9 @@ export default function SiteFooter() {
             <div className="mt-5 sm:mt-7">
               <a
                 href="tel:+16788660962"
-                className="flex items-center gap-3 border-b border-white/10 pb-4 text-[13px] text-white/90 transition-colors hover:text-[#F4A019] sm:gap-4 sm:pb-5 sm:text-[15px]"
+                className="flex items-center gap-3 border-b border-white/10 pb-4 text-[13px] text-white/90 transition-colors hover:text-[#F5A623] sm:gap-4 sm:pb-5 sm:text-[15px]"
               >
-                <span className="shrink-0 text-[#F4A019]">
+                <span className="shrink-0 text-[#F5A623]">
                   <FooterIcon type="phone" />
                 </span>
                 <span>(678) 866-0962</span>
@@ -323,16 +298,16 @@ export default function SiteFooter() {
 
               <a
                 href="mailto:adyer@credoetalent.com"
-                className="flex items-center gap-3 border-b border-white/10 py-4 text-[12px] text-white/90 transition-colors hover:text-[#F4A019] sm:gap-4 sm:py-5 sm:text-[14px] xl:text-[15px]"
+                className="flex items-center gap-3 border-b border-white/10 py-4 text-[12px] text-white/90 transition-colors hover:text-[#F5A623] sm:gap-4 sm:py-5 sm:text-[14px] xl:text-[15px]"
               >
-                <span className="shrink-0 text-[#F4A019]">
+                <span className="shrink-0 text-[#F5A623]">
                   <FooterIcon type="email" />
                 </span>
                 <span className="break-all">adyer@credoetalent.com</span>
               </a>
 
               <div className="flex items-start gap-3 py-4 text-[13px] leading-[1.6] text-white/90 sm:gap-4 sm:py-5 sm:text-[15px]">
-                <span className="mt-0.5 shrink-0 text-[#F4A019]">
+                <span className="mt-0.5 shrink-0 text-[#F5A623]">
                   <FooterIcon type="location" />
                 </span>
                 <span>730 Peachtree Street NE, #570 Atlanta, GA 30308</span>
@@ -340,64 +315,48 @@ export default function SiteFooter() {
             </div>
           </div>
 
-          {/* Newsletter */}
+          {/* Stay Connected */}
           <div className="lg:pl-10">
             <SectionHeading>Stay Connected</SectionHeading>
 
             <p className="mt-5 max-w-[290px] text-[13px] leading-[1.8] text-white/75 sm:mt-7 sm:text-[15px] sm:text-white/85">
-              Subscribe to our newsletter for insights and industry updates.
+              Follow Credoe Talent for leadership insights, company updates, and
+              perspectives from our team.
             </p>
 
-            <form
-              onSubmit={handleSubscribe}
-              className="mt-5 max-w-[360px] sm:mt-7"
-            >
-              <label htmlFor="footer-newsletter-email" className="sr-only">
-                Your email address
-              </label>
-
-              <div className="flex min-h-[48px] overflow-hidden rounded-[5px] border border-white/15 bg-[#081523] focus-within:border-[#F4A019] sm:min-h-[52px]">
-                <input
-                  id="footer-newsletter-email"
-                  type="email"
-                  value={email}
-                  onChange={(event) => {
-                    setEmail(event.target.value);
-                    setSubscribed(false);
-                  }}
-                  required
-                  placeholder="Your email address"
-                  className="min-w-0 flex-1 bg-transparent px-3 text-[13px] text-white outline-none placeholder:text-white/55 sm:px-4 sm:text-[14px] sm:placeholder:text-white/65"
-                />
-
-                <button
-                  type="submit"
-                  aria-label="Subscribe to newsletter"
-                  className="flex w-[48px] shrink-0 items-center justify-center bg-[#F4A019] text-[#071321] transition-colors hover:bg-[#FFB83E] sm:w-[58px]"
+            {/* Social media links */}
+            <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-7 sm:gap-4">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.type}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Follow us on ${social.label}`}
+                  className="group inline-flex min-h-[46px] items-center gap-3 rounded-[5px] border border-[#F5A623]/50 px-4 text-[12px] font-semibold text-white transition-all duration-300 hover:border-[#F5A623] hover:bg-[#F5A623] hover:text-[#020D19] sm:min-h-[50px] sm:px-5 sm:text-[13px]"
                 >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="h-5 w-5 sm:h-6 sm:w-6"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="m22 2-7 20-4-9-9-4Z" />
-                    <path d="M22 2 11 13" />
-                  </svg>
-                </button>
-              </div>
+                  <SocialIcon type={social.type} />
+                  <span>LinkedIn</span>
+                  <span className="text-[16px] transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
+              ))}
 
-              {subscribed && (
-                <p role="status" className="mt-3 text-sm text-[#F4A019]">
-                  Thanks for subscribing. Connect this form to your newsletter
-                  service to save the address.
-                </p>
-              )}
-            </form>
+              {/* Instagram coming soon */}
+              <div
+                aria-label="Instagram coming soon"
+                className="inline-flex min-h-[46px] items-center gap-3 rounded-[5px] border border-white/15 px-4 text-[12px] font-semibold text-white/65 sm:min-h-[50px] sm:px-5 sm:text-[13px]"
+              >
+                <SocialIcon type="instagram" />
+
+                <span>Instagram</span>
+
+                <span className="rounded-full border border-[#F5A623]/35 bg-[#F5A623]/10 px-2 py-1 text-[8px] font-semibold uppercase tracking-[0.08em] text-[#F5A623]">
+                  Coming Soon
+                </span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -409,16 +368,19 @@ export default function SiteFooter() {
             <div className="flex flex-wrap items-center gap-4 sm:gap-8">
               <a
                 href="/privacy-policy"
-                className="transition-colors hover:text-[#F4A019]"
+                className="transition-colors hover:text-[#F5A623]"
               >
                 Privacy Policy
               </a>
 
-              <span className="hidden h-[19px] w-px bg-[#F4A019] sm:block" />
+              <span
+                className="hidden h-[19px] w-px sm:block"
+                style={{ backgroundColor: GOLD }}
+              />
 
               <a
                 href="/terms-of-service"
-                className="transition-colors hover:text-[#F4A019]"
+                className="transition-colors hover:text-[#F5A623]"
               >
                 Terms of Service
               </a>

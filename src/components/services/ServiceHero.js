@@ -102,7 +102,6 @@ export default function ServiceHero({
           {/* Gold accent */}
           <div className="mt-5 flex items-center gap-3">
             <span className="h-[2px] w-10 rounded-full bg-[#F4A019]" />
-            <span className="h-px w-12 bg-white/25" />
           </div>
 
           {/* Description */}

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const EYEBROW_GOLD = "#F5A623";
+
 export default function ContactHero() {
   return (
     <section className="relative isolate min-h-[540px] overflow-hidden bg-[#061426] text-white sm:min-h-[560px] lg:min-h-[540px] xl:min-h-[560px]">
@@ -79,9 +81,12 @@ export default function ContactHero() {
 
           {/* Eyebrow */}
           <div className="mb-4 flex items-center gap-4 sm:mb-5">
-            <span className="h-[2px] w-10 shrink-0 bg-[#F4A019] sm:w-12" />
+            <span
+              aria-hidden="true"
+              className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+            />
 
-            <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#F4A019] sm:text-[11px] sm:tracking-[0.25em] lg:text-[12px]">
+            <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
               Get in Touch
             </span>
           </div>
@@ -94,7 +99,6 @@ export default function ContactHero() {
           {/* Gold accent */}
           <div className="mt-5 flex items-center gap-3">
             <span className="h-[2px] w-10 rounded-full bg-[#F4A019]" />
-            <span className="h-px w-12 bg-white/25" />
           </div>
 
           {/* Description */}

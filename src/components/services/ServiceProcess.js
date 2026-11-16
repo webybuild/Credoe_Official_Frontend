@@ -1,6 +1,7 @@
 "use client";
 
 const GOLD = "#F4A019";
+const EYEBROW_GOLD = "#F5A623";
 
 function ProcessIcon({ index }) {
   const common = {
@@ -86,7 +87,7 @@ export default function ServiceProcess({
   steps = [],
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-[#FAF9F6] py-20 text-[#07172B] sm:py-24 lg:py-28">
+    <section className="relative isolate overflow-hidden bg-[#ffffff] py-20 text-[#07172B] sm:py-24 lg:py-28">
       {/* Background detailing */}
       <div
         aria-hidden="true"
@@ -102,22 +103,23 @@ export default function ServiceProcess({
         {/* Section heading */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-16">
           <div>
+            {/* Eyebrow */}
             <div className="mb-8 flex items-center gap-4">
               <span
-                className="h-[2px] w-10"
-                style={{ backgroundColor: GOLD }}
+                aria-hidden="true"
+                className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
               />
 
               <span
                 className="font-heading text-[16px] font-medium"
-                style={{ color: GOLD }}
+                style={{ color: EYEBROW_GOLD }}
               >
                 {sectionNumber}
               </span>
 
-              <span className="h-9 w-px bg-[#D99B27]/30" />
+              <span className="h-9 w-px bg-[#F5A623]/30" />
 
-              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#788194] sm:text-[13px]">
+              <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
                 {eyebrow}
               </span>
             </div>

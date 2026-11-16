@@ -102,23 +102,23 @@ function ImpactIcon() {
 
 export default function ChallengeSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-[#FCFBF9] px-5 py-14 sm:px-8 sm:py-16 lg:px-[7%] lg:py-20">
+    <section className="relative isolate overflow-hidden bg-white px-5 py-14 sm:px-8 sm:py-16 lg:px-[7%] lg:py-20">
       {/* Decorative background rings */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-[330px] top-[120px] h-[500px] w-[500px] rounded-full border border-[#DDA32F]/20"
+        className="pointer-events-none absolute -left-[330px] top-[120px] h-[500px] w-[500px] rounded-full border border-[#F5A623]/20"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -left-[285px] top-[165px] h-[410px] w-[410px] rounded-full border border-[#DDA32F]/15"
+        className="pointer-events-none absolute -left-[285px] top-[165px] h-[410px] w-[410px] rounded-full border border-[#F5A623]/15"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[300px] top-[-160px] h-[650px] w-[650px] rounded-full border border-[#DDA32F]/20"
+        className="pointer-events-none absolute -right-[300px] top-[-160px] h-[650px] w-[650px] rounded-full border border-[#F5A623]/20"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-[250px] top-[-110px] h-[550px] w-[550px] rounded-full border border-[#DDA32F]/15"
+        className="pointer-events-none absolute -right-[250px] top-[-110px] h-[550px] w-[550px] rounded-full border border-[#F5A623]/15"
       />
 
       <div className="relative mx-auto max-w-[1600px]">
@@ -126,16 +126,19 @@ export default function ChallengeSection() {
         <div className="mb-9 flex flex-col justify-between gap-6 sm:mb-10 lg:mb-12 lg:flex-row lg:items-end">
           <div className="max-w-[1000px]">
             <div className="mb-4 flex items-center gap-4 sm:mb-5 sm:gap-5">
-              <span className="h-[4px] w-[42px] shrink-0 rounded-full bg-[#DDA32F] sm:h-[5px] sm:w-[54px]" />
+              <span
+                aria-hidden="true"
+                className="h-[7px] w-[7px] shrink-0 rotate-45 rounded-[1px] bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.25)]"
+              />
 
-              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-[#C98B19] sm:text-[11px] lg:text-[12px]">
+              <span className="text-[10px] font-medium uppercase leading-relaxed tracking-[0.12em] text-[#F5A623] sm:text-sm">
                 The Challenge
               </span>
             </div>
 
             <h2 className="font-serif text-[36px] font-bold leading-[1.1] tracking-[-1px] text-[#091B32] sm:text-[46px] sm:tracking-[-1.5px] lg:text-[54px]">
               Why Most Executive Hires{" "}
-              <span className="text-[#D99B28]">Struggle.</span>
+              <span className="text-[#F5A623]">Struggle.</span>
             </h2>
 
             <p className="mt-4 max-w-[850px] text-[14px] leading-[1.75] text-[#27364B] sm:text-[15px] lg:text-[16px]">
@@ -144,7 +147,7 @@ export default function ChallengeSection() {
             </p>
           </div>
 
-          <div className="max-w-[390px] border-l-2 border-[#DDA32F] py-1 pl-5 text-[13px] leading-[1.75] text-[#858B98] sm:pl-6 sm:text-[14px] lg:mb-1">
+          <div className="max-w-[390px] border-l-2 border-[#F5A623] py-1 pl-5 text-[13px] leading-[1.75] text-[#858B98] sm:pl-6 sm:text-[14px] lg:mb-1">
             Successful executive integration depends on more than individual
             capability. Organizations must create the conditions that allow new
             leaders to perform, align, and contribute effectively.
@@ -156,7 +159,7 @@ export default function ChallengeSection() {
           {challenges.map((challenge) => (
             <article
               key={challenge.number}
-              className="group relative flex h-full flex-col overflow-hidden rounded-[13px] border border-[#E9E8E5] bg-white shadow-[0_5px_18px_rgba(9,27,50,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_14px_30px_rgba(9,27,50,0.12)]"
+              className="group relative flex h-full flex-col overflow-hidden rounded-[13px] border border-[#E5E5E5] bg-white shadow-[0_8px_25px_rgba(9,27,50,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_35px_rgba(9,27,50,0.12)]"
             >
               {/* Card image */}
               <div className="relative h-[180px] overflow-hidden sm:h-[200px] lg:h-[210px]">
@@ -165,6 +168,12 @@ export default function ChallengeSection() {
                   alt={challenge.title}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                  loading={
+                    challenge.image ===
+                    "/images/organizational-infrastructure.png"
+                      ? "eager"
+                      : "lazy"
+                  }
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
 
@@ -172,7 +181,7 @@ export default function ChallengeSection() {
               </div>
 
               {/* Icon overlapping image and content */}
-              <div className="absolute left-5 top-[150px] z-10 flex h-[66px] w-[66px] items-center justify-center rounded-full border-2 border-[#F0A018] bg-[#071A30] text-[#F0A018] shadow-lg sm:left-7 sm:top-[168px] sm:h-[74px] sm:w-[74px]">
+              <div className="absolute left-5 top-[150px] z-10 flex h-[66px] w-[66px] items-center justify-center rounded-full border-2 border-[#F5A623] bg-[#071A30] text-[#F5A623] shadow-lg sm:left-7 sm:top-[168px] sm:h-[74px] sm:w-[74px]">
                 <ChallengeIcon type={challenge.icon} />
               </div>
 
@@ -200,14 +209,14 @@ export default function ChallengeSection() {
         {/* Bottom statement banner */}
         <div className="relative mt-8 overflow-hidden rounded-[12px] bg-[#04152A] px-6 py-7 text-white shadow-[0_8px_24px_rgba(3,16,30,0.12)] sm:mt-9 sm:px-9 sm:py-8 lg:mt-8 lg:px-12 lg:py-8">
           {/* Decorative rings */}
-          <div className="pointer-events-none absolute -bottom-[130px] right-[-25px] h-[270px] w-[270px] rounded-full border border-[#DDA32F]/25" />
-          <div className="pointer-events-none absolute -bottom-[105px] right-0 h-[220px] w-[220px] rounded-full border border-[#DDA32F]/20" />
-          <div className="pointer-events-none absolute -bottom-[80px] right-[25px] h-[170px] w-[170px] rounded-full border border-[#DDA32F]/15" />
+          <div className="pointer-events-none absolute -bottom-[130px] right-[-25px] h-[270px] w-[270px] rounded-full border border-[#F5A623]/25" />
+          <div className="pointer-events-none absolute -bottom-[105px] right-0 h-[220px] w-[220px] rounded-full border border-[#F5A623]/20" />
+          <div className="pointer-events-none absolute -bottom-[80px] right-[25px] h-[170px] w-[170px] rounded-full border border-[#F5A623]/15" />
 
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-0">
             {/* Icon */}
             <div className="flex shrink-0 items-center justify-center lg:w-[130px] lg:border-r lg:border-white/20 lg:pr-8 xl:w-[145px] xl:pr-9">
-              <div className="flex h-[76px] w-[76px] items-center justify-center rounded-full border-2 border-[#F0A018] text-[#F0A018] sm:h-[86px] sm:w-[86px] lg:h-[90px] lg:w-[90px]">
+              <div className="flex h-[76px] w-[76px] items-center justify-center rounded-full border-2 border-[#F5A623] text-[#F5A623] sm:h-[86px] sm:w-[86px] lg:h-[90px] lg:w-[90px]">
                 <ImpactIcon />
               </div>
             </div>
@@ -216,13 +225,13 @@ export default function ChallengeSection() {
             <div className="lg:flex-1 lg:px-9 xl:px-12">
               <p className="max-w-[760px] font-serif text-[24px] leading-[1.35] sm:text-[28px] lg:text-[30px] xl:text-[32px]">
                 The right leader needs the right environment to deliver the{" "}
-                <span className="font-bold text-[#F0A018]">right results.</span>
+                <span className="font-bold text-[#F5A623]">right results.</span>
               </p>
             </div>
 
             {/* Supporting message */}
             <div className="border-t border-white/20 pt-5 sm:pt-6 lg:w-[300px] lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0 xl:w-[340px] xl:pl-10">
-              <span className="mb-3 block h-[4px] w-[45px] rounded-full bg-[#F0A018] sm:mb-4 sm:w-[50px]" />
+              <span className="mb-3 block h-[4px] w-[45px] rounded-full bg-[#F5A623] sm:mb-4 sm:w-[50px]" />
 
               <p className="text-[10px] font-medium uppercase leading-[1.9] tracking-[0.15em] text-white/70 sm:text-[11px] lg:text-[12px]">
                 Organizational Readiness

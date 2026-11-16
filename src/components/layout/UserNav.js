@@ -14,39 +14,36 @@ const menuItems = [
   { title: "CONTACT", path: "/contact" },
 ];
 
+// Keep service navigation labels in one shared, static source.
+// Both desktop and mobile navigation use this exact array.
 const services = [
   {
-    title: "Executive Search and Leadership Recruiting",
+    title: "Executive Search & Leadership Recruiting",
     description: "Finding exceptional leaders who move organizations forward.",
     path: "/services/executive-search",
-    number: "01",
   },
   {
     title: "Talent Advisory",
     description: "Building stronger talent strategies for lasting success.",
     path: "/services/talent-advisory",
-    number: "02",
   },
   {
     title: "Succession Planning",
     description:
       "Preparing future leaders and strengthening leadership continuity.",
     path: "/services/succession-planning",
-    number: "03",
   },
   {
     title: "Executive & Leadership Career Coaching",
     description:
       "Empowering leaders to grow, perform, and lead with confidence.",
     path: "/services/leadership-coaching",
-    number: "04",
   },
   {
     title: "Executive Talent Mapping & Benchmarking",
     description:
       "Mapping executive talent and benchmarking leadership capabilities for future readiness.",
     path: "/services/executive-talent-mapping",
-    number: "05",
   },
 ];
 
@@ -308,10 +305,6 @@ export default function UserNav() {
                             active ? "bg-[#F5A623]/10" : "hover:bg-white/[0.06]"
                           }`}
                         >
-                          <span className="font-heading text-sm text-[#F5A623]/70">
-                            {service.number}
-                          </span>
-
                           <span className="min-w-0 flex-1">
                             <span
                               className={`block text-[13px] font-semibold transition-colors ${
@@ -342,7 +335,11 @@ export default function UserNav() {
 
                   {/* Bottom detail */}
                   <div className="flex items-center justify-between border-t border-white/10 px-6 py-4">
-                    <span className="text-[9px] uppercase tracking-[0.2em] text-white/35">
+                    <span className="flex items-center gap-3 text-[9px] uppercase tracking-[0.2em] text-white/35">
+                      <span
+                        aria-hidden="true"
+                        className="h-[6px] w-[6px] shrink-0 rounded-full bg-[#F5A623] shadow-[0_0_10px_rgba(245,166,35,0.45)]"
+                      />
                       Credoe Talent Solutions
                     </span>
 
@@ -380,11 +377,11 @@ export default function UserNav() {
           {/* Desktop CTA */}
           <Link
             href="/schedule-consultation"
-            className={`group ml-3 inline-flex items-center justify-center gap-3 rounded-md bg-[#F5A623] font-[inherit] text-[12px] font-bold tracking-[0.08em] text-black transition-all duration-300 hover:bg-white ${
+            className={`cta-button group ml-3 inline-flex items-center justify-center gap-3 rounded-md bg-[#F5A623] text-[12px] font-bold tracking-[0.08em] text-black transition-all duration-300 hover:bg-white ${
               isScrolled ? "min-h-[42px] px-5" : "min-h-[50px] px-6"
             }`}
           >
-            LET'S TALK
+            SCHEDULE A CONSULTATION
             <FaArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
@@ -479,16 +476,12 @@ export default function UserNav() {
                         key={service.path}
                         href={service.path}
                         onClick={closeMenu}
-                        className={`flex items-center gap-3 border-l-2 py-3 pl-4 text-[13px] transition-colors ${
+                        className={`flex items-center border-l-2 py-3 pl-4 text-[13px] transition-colors ${
                           active
                             ? "border-[#F5A623] bg-[#F5A623]/[0.06] text-[#F5A623]"
                             : "border-white/10 text-white/70 hover:border-[#F5A623] hover:text-[#F5A623]"
                         }`}
                       >
-                        <span className="text-[10px] text-[#F5A623]/60">
-                          {service.number}
-                        </span>
-
                         {service.title}
                       </Link>
                     );
@@ -521,9 +514,9 @@ export default function UserNav() {
           <Link
             href="/schedule-consultation"
             onClick={closeMenu}
-            className="group mt-6 flex min-h-[50px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-6 font-[inherit] text-[12px] tracking-[0.08em] text-black transition-colors hover:bg-white font-bold"
+            className="cta-button group mt-6 flex min-h-[50px] items-center justify-center gap-3 rounded-md bg-[#F5A623] px-6 text-[12px] font-bold tracking-[0.08em] text-black transition-colors hover:bg-white"
           >
-            LET'S TALK
+            SCHEDULE A CONSULTATION
             <FaArrowRight className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
