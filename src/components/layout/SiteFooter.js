@@ -214,12 +214,12 @@ export default function SiteFooter() {
                   <div className="relative flex items-center justify-between">
                     <DiamondMarker />
 
-                    <span
+                    {/* <span
                       aria-hidden="true"
                       className="text-[20px] leading-none text-white/35 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#F5A623]"
                     >
-                      ↗
-                    </span>
+                      
+                    </span> */}
                   </div>
 
                   <h3 className="relative mt-4 max-w-[210px] font-heading text-[19px] font-medium leading-[1.3] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:text-[20px] lg:text-[18px] xl:text-[20px]">
