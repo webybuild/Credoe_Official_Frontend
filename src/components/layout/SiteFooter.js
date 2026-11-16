@@ -195,7 +195,7 @@ export default function SiteFooter() {
               {industries.map((industry) => (
                 <div
                   key={industry}
-                  className="group relative flex min-h-[92px] flex-col justify-between overflow-hidden border border-white/[0.12] bg-white/[0.035] p-4 transition-all duration-500 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:bg-[#F5A623]/[0.07] sm:min-h-[105px] sm:p-5 lg:min-h-[116px] lg:p-5 xl:p-6"
+                  className="group relative flex min-h-[80px] items-center justify-center overflow-hidden border border-white/[0.12] bg-white/[0.035] p-4 transition-all duration-500 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:bg-[#F5A623]/[0.07] sm:min-h-[88px] sm:p-5 lg:min-h-[96px] lg:p-5 xl:p-6"
                 >
                   {/* Top gold accent */}
                   <span
@@ -211,20 +211,13 @@ export default function SiteFooter() {
                     style={{ backgroundColor: GOLD }}
                   />
 
-                  <div className="relative flex items-center justify-between">
+                  <div className="relative flex w-full items-center gap-3">
                     <DiamondMarker />
 
-                    {/* <span
-                      aria-hidden="true"
-                      className="text-[20px] leading-none text-white/35 transition-all duration-300 group-hover:translate-x-1 group-hover:text-[#F5A623]"
-                    >
-                      
-                    </span> */}
+                    <h3 className="max-w-[210px] font-heading text-[19px] font-medium leading-[1.3] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:text-[20px] lg:text-[18px] xl:text-[20px]">
+                      {industry}
+                    </h3>
                   </div>
-
-                  <h3 className="relative mt-4 max-w-[210px] font-heading text-[19px] font-medium leading-[1.3] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:text-[20px] lg:text-[18px] xl:text-[20px]">
-                    {industry}
-                  </h3>
                 </div>
               ))}
             </div>
