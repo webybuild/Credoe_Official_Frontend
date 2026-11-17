@@ -191,11 +191,11 @@ export default function SiteFooter() {
             </div>
 
             {/* Industry cards */}
-            <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:grid-cols-2 sm:gap-3 lg:grid-cols-5 lg:gap-4">
+            <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:grid-cols-2 sm:gap-3 lg:grid-cols-5 lg:gap-3 xl:gap-4">
               {industries.map((industry, index) => (
                 <div
                   key={industry}
-                  className={`group relative flex min-h-[64px] items-center justify-start overflow-hidden border border-white/[0.12] bg-white/[0.035] p-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:bg-[#F5A623]/[0.07] sm:min-h-[88px] sm:justify-center sm:p-5 lg:min-h-[96px] lg:p-5 xl:p-6 ${
+                  className={`group relative flex min-h-[64px] items-center justify-start overflow-hidden border border-white/[0.12] bg-white/[0.035] p-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:bg-[#F5A623]/[0.07] sm:min-h-[88px] sm:justify-center sm:p-5 lg:min-h-[96px] lg:p-3 xl:p-5 ${
                     index === industries.length - 1
                       ? "col-span-2 lg:col-span-1"
                       : ""
@@ -215,10 +215,10 @@ export default function SiteFooter() {
                     style={{ backgroundColor: GOLD }}
                   />
 
-                  <div className="relative flex w-full items-center gap-2 sm:gap-3">
+                  <div className="relative flex w-full items-center gap-2 sm:gap-3 lg:gap-2 xl:gap-3">
                     <DiamondMarker />
 
-                    <h3 className="font-heading text-[14px] font-medium leading-[1.25] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:max-w-[210px] sm:text-[20px] sm:leading-[1.3] lg:text-[18px] xl:text-[20px]">
+                    <h3 className="whitespace-nowrap font-heading text-[14px] font-medium leading-[1.25] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:text-[20px] sm:leading-[1.3] lg:text-[clamp(13px,1.05vw,16px)] xl:text-[16px] 2xl:text-[18px]">
                       {industry}
                     </h3>
                   </div>
