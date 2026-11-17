@@ -198,13 +198,13 @@ export default function AboutFounder() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Read Andre Dyer's Heart of a Champion feature in MTSU News"
-                className="group mt-4 inline-flex min-h-[42px] items-center gap-3 rounded-md border border-[#F5A623] bg-gradient-to-r from-[#F5A623] to-[#F5A623] px-5 py-2.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-[#061426] shadow-[0_5px_16px_rgba(245,166,35,0.20)] transition-all duration-300 hover:-translate-y-0.5 lg:-translate-y-4 hover:border-[#061426] hover:from-[#061426] hover:to-[#102943] hover:text-[#F5A623] hover:shadow-[0_9px_22px_rgba(3,20,38,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2"
+                className="group mt-4 inline-flex min-h-[42px] items-center gap-3 rounded-md border border-[#F5A623] bg-gradient-to-r from-[#F5A623] to-[#F5A623] px-5 py-2.5 text-[10px] font-bold uppercase tracking-[0.14em] text-[#061426] shadow-[0_5px_16px_rgba(245,166,35,0.20)] transition-all duration-500 sm:text-[11px] lg:-translate-y-4 hover:border-[#061426] hover:from-[#061426] hover:to-[#102943] hover:text-[#F5A623] hover:shadow-[0_9px_22px_rgba(3,20,38,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2"
               >
                 <span>Read Andre's MTSU Feature</span>
 
                 <span
                   aria-hidden="true"
-                  className="flex h-6 w-6 items-center justify-center rounded-full bg-[#061426]/10 transition-all duration-300 group-hover:translate-x-1 group-hover:bg-[#F5A623]/15"
+                  className="flex h-6 w-6 items-center justify-center rounded-full bg-[#061426]/10 transition-all duration-500 group-hover:translate-x-1 group-hover:bg-[#F5A623]/15"
                 >
                   <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
                     <path
