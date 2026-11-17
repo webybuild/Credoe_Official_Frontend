@@ -140,9 +140,9 @@ export default function SiteFooter() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1600px] px-5 pb-7 pt-9 sm:px-8 sm:pb-8 sm:pt-12 lg:px-11 lg:pt-14">
+      <div className="relative mx-auto max-w-[1600px] px-4 pb-6 pt-7 sm:px-8 sm:pb-8 sm:pt-12 lg:px-11 lg:pt-14">
         {/* Industries We Serve */}
-        <section className="relative overflow-hidden border border-white/[0.12] bg-[#071827] px-5 py-6 sm:px-8 sm:py-7 lg:px-10 lg:py-8">
+        <section className="relative overflow-hidden border border-white/[0.12] bg-[#071827] px-4 py-4 sm:px-8 sm:py-7 lg:px-10 lg:py-8">
           {/* Decorative background lighting */}
           <div
             aria-hidden="true"
@@ -162,20 +162,20 @@ export default function SiteFooter() {
 
           <div className="relative">
             {/* Section heading */}
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
+            <div className="flex flex-col gap-2.5 sm:gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
               <div className="max-w-[680px]">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2.5 sm:gap-3">
                   <DiamondMarker />
 
                   <p
-                    className="text-[11px] font-bold uppercase tracking-[0.22em] sm:text-[12px]"
+                    className="text-[9px] font-bold uppercase tracking-[0.2em] sm:text-[12px] sm:tracking-[0.22em]"
                     style={{ color: GOLD }}
                   >
                     Industries We Serve
                   </p>
                 </div>
 
-                <h2 className="mt-4 max-w-[680px] font-heading text-[34px] font-medium leading-[1.12] tracking-[-0.025em] text-white sm:text-[42px] lg:text-[48px] xl:text-[52px]">
+                <h2 className="mt-2.5 max-w-[680px] font-heading text-[27px] font-medium leading-[1.12] tracking-[-0.025em] text-white sm:mt-4 sm:text-[42px] lg:text-[48px] xl:text-[52px]">
                   Leadership that moves
                   <span className="block text-[#F5A623]">
                     industries forward.
@@ -183,7 +183,7 @@ export default function SiteFooter() {
                 </h2>
               </div>
 
-              <p className="max-w-[390px] text-[14px] leading-[1.9] text-white/65 sm:text-[15px] lg:mb-2 lg:text-[16px]">
+              <p className="max-w-[390px] text-[12px] leading-[1.65] text-white/65 sm:text-[15px] sm:leading-[1.9] lg:mb-2 lg:text-[16px]">
                 Every industry has its own challenges. We connect organizations
                 with exceptional leaders who understand their landscape and know
                 how to create lasting impact.
@@ -191,11 +191,15 @@ export default function SiteFooter() {
             </div>
 
             {/* Industry cards */}
-            <div className="mt-6 grid grid-cols-1 gap-3 sm:mt-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-4">
-              {industries.map((industry) => (
+            <div className="mt-4 grid grid-cols-2 gap-2 sm:mt-8 sm:grid-cols-2 sm:gap-3 lg:grid-cols-5 lg:gap-4">
+              {industries.map((industry, index) => (
                 <div
                   key={industry}
-                  className="group relative flex min-h-[80px] items-center justify-center overflow-hidden border border-white/[0.12] bg-white/[0.035] p-4 transition-all duration-500 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:bg-[#F5A623]/[0.07] sm:min-h-[88px] sm:p-5 lg:min-h-[96px] lg:p-5 xl:p-6"
+                  className={`group relative flex min-h-[64px] items-center justify-start overflow-hidden border border-white/[0.12] bg-white/[0.035] p-3 transition-all duration-500 hover:-translate-y-1 hover:border-[#F5A623]/60 hover:bg-[#F5A623]/[0.07] sm:min-h-[88px] sm:justify-center sm:p-5 lg:min-h-[96px] lg:p-5 xl:p-6 ${
+                    index === industries.length - 1
+                      ? "col-span-2 lg:col-span-1"
+                      : ""
+                  }`}
                 >
                   {/* Top gold accent */}
                   <span
@@ -211,10 +215,10 @@ export default function SiteFooter() {
                     style={{ backgroundColor: GOLD }}
                   />
 
-                  <div className="relative flex w-full items-center gap-3">
+                  <div className="relative flex w-full items-center gap-2 sm:gap-3">
                     <DiamondMarker />
 
-                    <h3 className="max-w-[210px] font-heading text-[19px] font-medium leading-[1.3] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:text-[20px] lg:text-[18px] xl:text-[20px]">
+                    <h3 className="font-heading text-[14px] font-medium leading-[1.25] text-white transition-colors duration-300 group-hover:text-[#F5A623] sm:max-w-[210px] sm:text-[20px] sm:leading-[1.3] lg:text-[18px] xl:text-[20px]">
                       {industry}
                     </h3>
                   </div>
@@ -225,7 +229,7 @@ export default function SiteFooter() {
         </section>
 
         {/* Main footer columns */}
-        <div className="mt-12 grid grid-cols-1 gap-9 sm:grid-cols-2 sm:gap-10 lg:mt-[104px] lg:grid-cols-[1.3fr_0.8fr_1.1fr_1.25fr] lg:gap-0">
+        <div className="mt-8 grid grid-cols-1 gap-8 sm:mt-12 sm:grid-cols-2 sm:gap-10 lg:mt-[104px] lg:grid-cols-[1.3fr_0.8fr_1.1fr_1.25fr] lg:gap-0">
           {/* Brand column */}
           <div className="border-b border-white/10 pb-8 sm:col-span-2 lg:col-span-1 lg:border-r lg:border-b-0 lg:pb-0 lg:pr-8">
             <a

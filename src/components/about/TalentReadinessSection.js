@@ -14,7 +14,7 @@ const pillars = [
     title: "Organizational Infrastructure",
     description:
       "Reviews the systems, reporting structures, decision making processes, and role definitions a new leader will rely on to work effectively and make a meaningful contribution.",
-    image: "/images/organizational-infrastructure.png",
+    image: "/images/tf2.png",
     icon: "structure",
   },
   {

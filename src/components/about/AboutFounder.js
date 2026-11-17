@@ -87,7 +87,7 @@ export default function AboutFounder() {
         {/* Founder main layout */}
         <div className="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 xl:gap-16">
           {/* Founder portrait */}
-          <div className="relative mx-auto w-full max-w-[480px] lg:mx-0 lg:max-w-[580px]">
+          <div className="relative mx-auto w-full max-w-[480px] lg:ml-auto lg:mr-0 lg:max-w-[560px]">
             {/* Gold decorative outline */}
             <div
               aria-hidden="true"
@@ -97,11 +97,11 @@ export default function AboutFounder() {
             {/* Portrait image */}
             <div className="relative aspect-[4/4.35] overflow-hidden rounded-xl bg-[#E9E9E9] shadow-[0_18px_55px_rgba(3,16,30,0.12)]">
               <Image
-                src="/images/aboutImg.png"
+                src="/images/founderaboutImg.png"
                 alt="Andre Dyer, Founder of Credoe Talent Solutions"
                 fill
                 priority
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 580px"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 540px"
                 className="object-cover object-[center_22%]"
               />
 
@@ -159,7 +159,7 @@ export default function AboutFounder() {
             </p>
 
             {/* Biography */}
-            <div className="mt-5 space-y-3 text-[14px] leading-[1.65] text-[#596273] sm:mt-6 sm:space-y-3.5 sm:text-[15px] lg:text-[15px] lg:leading-[1.7] xl:text-base">
+            <div className="mt-5 space-y-2.5 text-[14px] leading-[1.65] text-[#596273] sm:mt-6 sm:space-y-3 sm:text-[15px] lg:text-[15px] lg:leading-[1.7] xl:text-base">
               <p>
                 Andre Dyer is an executive talent advisor and Founder of Credoe
                 Talent Solutions, a boutique executive search and talent
@@ -175,44 +175,12 @@ export default function AboutFounder() {
                 workforce discussions.
               </p>
 
-              <div>
-                <p>
-                  He previously held senior leadership roles at Deloitte and
-                  Accenture and currently serves on advisory boards at Middle
-                  Tennessee State University and as a Trustee with the MTSU
-                  Foundation.
-                </p>
-
-                {/* Featured MTSU article CTA */}
-                <Link
-                  href="https://mtsunews.com/2025/04/24/heart-of-a-champion/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Read Andre Dyer's Heart of a Champion feature in MTSU News"
-                  className="group mt-3 inline-flex min-h-[42px] items-center gap-3 rounded-full border border-[#F5A623] bg-gradient-to-r from-[#F5A623] to-[#F5A623] px-5 py-2.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-[#061426] shadow-[0_5px_16px_rgba(245,166,35,0.20)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#061426] hover:from-[#061426] hover:to-[#102943] hover:text-[#F5A623] hover:shadow-[0_9px_22px_rgba(3,20,38,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2"
-                >
-                  <span>Read Andre's MTSU Feature</span>
-
-                  <span
-                    aria-hidden="true"
-                    className="flex h-6 w-6 items-center justify-center rounded-full bg-[#061426]/10 transition-all duration-300 group-hover:translate-x-1 group-hover:bg-[#F5A623]/15"
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      className="h-3.5 w-3.5"
-                    >
-                      <path
-                        d="M5 12h14m-6-6 6 6-6 6"
-                        stroke="currentColor"
-                        strokeWidth="1.8"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-              </div>
+              <p>
+                He previously held senior leadership roles at Deloitte and
+                Accenture and currently serves on advisory boards at Middle
+                Tennessee State University and as a Trustee with the MTSU
+                Foundation.
+              </p>
 
               <p>
                 Andre is known for guiding thoughtful, engaging conversations
@@ -223,6 +191,32 @@ export default function AboutFounder() {
                 Discover Andre’s commitment to community service, leadership,
                 and making a meaningful impact beyond the workplace.
               </p>
+
+              {/* Featured MTSU article CTA */}
+              <Link
+                href="https://mtsunews.com/2025/04/24/heart-of-a-champion/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Read Andre Dyer's Heart of a Champion feature in MTSU News"
+                className="group mt-4 inline-flex min-h-[42px] items-center gap-3 rounded-md border border-[#F5A623] bg-gradient-to-r from-[#F5A623] to-[#F5A623] px-5 py-2.5 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.14em] text-[#061426] shadow-[0_5px_16px_rgba(245,166,35,0.20)] transition-all duration-300 hover:-translate-y-0.5 lg:-translate-y-4 hover:border-[#061426] hover:from-[#061426] hover:to-[#102943] hover:text-[#F5A623] hover:shadow-[0_9px_22px_rgba(3,20,38,0.20)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F5A623] focus-visible:ring-offset-2"
+              >
+                <span>Read Andre's MTSU Feature</span>
+
+                <span
+                  aria-hidden="true"
+                  className="flex h-6 w-6 items-center justify-center rounded-full bg-[#061426]/10 transition-all duration-300 group-hover:translate-x-1 group-hover:bg-[#F5A623]/15"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
+                    <path
+                      d="M5 12h14m-6-6 6 6-6 6"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
+              </Link>
             </div>
           </div>
         </div>

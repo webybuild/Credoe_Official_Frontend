@@ -248,19 +248,31 @@ export default function UserNav() {
                 }`}
               >
                 SERVICES
-                {/* Premium circular chevron */}
+                {/* Centered circular chevron */}
                 <span
-                  className={`flex h-6 w-6 items-center justify-center rounded-full border transition-all duration-300 ${
+                  className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
                     servicesOpen
                       ? "rotate-180 border-[#F5A623]/60 bg-[#F5A623]/10"
                       : "border-white/25 group-hover:border-[#F5A623]/60"
                   }`}
                 >
-                  <span
-                    className={`h-[6px] w-[6px] rotate-45 border-b border-r transition-colors duration-300 ${
-                      servicesOpen ? "border-[#F5A623]" : "border-white/80"
-                    }`}
-                  />
+                  <svg
+                    viewBox="0 0 16 16"
+                    className="h-3.5 w-3.5"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="m4 6 4 4 4-4"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={
+                        servicesOpen ? "text-[#F5A623]" : "text-white/80"
+                      }
+                    />
+                  </svg>
                 </span>
                 <span
                   className={`absolute bottom-1 left-2 right-2 h-0.5 origin-left bg-[#F5A623] transition-transform duration-200 ${
@@ -443,19 +455,31 @@ export default function UserNav() {
               }`}
             >
               SERVICES
-              {/* Premium circular chevron */}
+              {/* Centered circular chevron */}
               <span
-                className={`flex h-6 w-6 items-center justify-center rounded-full border transition-all duration-300 ${
+                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${
                   servicesOpen
                     ? "rotate-180 border-[#F5A623]/60 bg-[#F5A623]/10"
                     : "border-white/25"
                 }`}
               >
-                <span
-                  className={`h-[6px] w-[6px] rotate-45 border-b border-r ${
-                    servicesOpen ? "border-[#F5A623]" : "border-white/80"
-                  }`}
-                />
+                <svg
+                  viewBox="0 0 16 16"
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="m4 6 4 4 4-4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={
+                      servicesOpen ? "text-[#F5A623]" : "text-white/80"
+                    }
+                  />
+                </svg>
               </span>
             </button>
 

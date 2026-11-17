@@ -3,6 +3,12 @@
 const GOLD = "#F4A019";
 const EYEBROW_GOLD = "#F5A623";
 
+function formatMetricTitle(value) {
+  if (typeof value !== "string") return value;
+
+  return value.toLowerCase().replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
 function ImpactIcon({ index }) {
   const common = {
     fill: "none",
@@ -132,20 +138,22 @@ export default function ServiceImpact({
             </p>
 
             {/* Metrics */}
-            <div className="mt-7 grid grid-cols-2 border-l border-t border-[#D99B27]/20 sm:mt-9">
+            <div className="mt-7 grid min-w-0 grid-cols-2 overflow-hidden border-l border-t border-[#D99B27]/20 sm:mt-9">
               {metrics.map((metric, index) => (
                 <div
                   key={metric.value || index}
-                  className="relative flex min-w-0 flex-col justify-start border-b border-r border-[#D99B27]/20 px-3 py-4 sm:min-h-[130px] sm:px-6 sm:py-6"
+                  className="relative flex min-w-0 flex-col justify-start overflow-hidden border-b border-r border-[#D99B27]/20 px-2.5 py-4 sm:min-h-[130px] sm:px-6 sm:py-6"
                 >
+                  {/* Metric title */}
                   <span
-                    className="break-words font-heading text-[clamp(24px,7vw,38px)] font-medium leading-[1.05] tracking-[-0.045em] sm:text-[46px]"
+                    className="block min-w-0 whitespace-nowrap font-heading text-[clamp(16px,2.7vw,34px)] font-medium leading-[1.05] tracking-[-0.05em] sm:text-[42px] lg:text-[40px] xl:text-[42px]"
                     style={{ color: GOLD }}
                   >
-                    {metric.value}
+                    {formatMetricTitle(metric.value)}
                   </span>
 
-                  <p className="mt-2 max-w-[190px] break-words text-[9px] font-semibold uppercase leading-[1.55] tracking-[0.055em] text-[#758096] sm:mt-3 sm:text-[11px] sm:leading-[1.6] sm:tracking-[0.09em]">
+                  {/* Metric label */}
+                  <p className="mt-2 max-w-full text-[9px] font-normal capitalize leading-[1.55] tracking-[0.04em] text-[#758096] [overflow-wrap:normal] sm:mt-3 sm:text-[11px] sm:leading-[1.6] sm:tracking-[0.09em]">
                     {metric.label}
                   </p>
 
@@ -193,16 +201,16 @@ export default function ServiceImpact({
                   {/* Text */}
                   <div className="min-w-0 flex-1">
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                      <h4 className="font-heading text-[16px] font-semibold leading-tight text-white sm:text-[19px]">
+                      <h4 className="font-heading text-[15px] font-semibold leading-tight text-white [overflow-wrap:normal] sm:text-[18px]">
                         {outcome.title}
                       </h4>
 
-                      <span className="text-[8px] tracking-[0.15em] text-white/30 sm:text-[9px]">
+                      <span className="shrink-0 text-[8px] tracking-[0.15em] text-white/30 sm:text-[9px]">
                         {outcome.number}
                       </span>
                     </div>
 
-                    <p className="mt-1 text-[11px] leading-[1.65] text-white/55 sm:max-w-[390px] sm:text-[13px] sm:leading-[1.7]">
+                    <p className="mt-1 text-[11px] leading-[1.65] text-white/55 [overflow-wrap:normal] sm:max-w-[390px] sm:text-[13px] sm:leading-[1.7]">
                       {outcome.description}
                     </p>
                   </div>
