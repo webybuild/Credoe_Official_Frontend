@@ -102,7 +102,7 @@ export default function AboutFounder() {
                 fill
                 priority
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 540px"
-                className="object-cover object-[center_22%]"
+                className="scale-[1.2] object-cover object-[center_22%]"
               />
 
               {/* Image bottom gradient */}
@@ -162,10 +162,10 @@ export default function AboutFounder() {
             <div className="mt-5 space-y-2.5 text-[14px] leading-[1.65] text-[#596273] sm:mt-6 sm:space-y-3 sm:text-[15px] lg:text-[15px] lg:leading-[1.7] xl:text-base">
               <p>
                 Andre Dyer is an executive talent advisor and Founder of Credoe
-                Talent Solutions, a boutique executive search and talent
-                advisory firm partnering with CEOs, boards, and senior
-                leadership teams to build high impact executive and senior level
-                talent.
+                Talent Solutions, a boutique executive search, leadership
+                recruiting, and talent advisory firm partnering with CEOs,
+                boards, and senior leadership teams to build high impact
+                executive and senior level talent.
               </p>
 
               <p>
